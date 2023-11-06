@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form  id="form1">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre">
+        <label for="edad">Edad</label>
+        <input type="number" name="edad">
+        <label for="genero">Genero</label>
+        <select name="genero" >
+            <option value="M" selected>Masculino</option>
+            <option value="F">Femenino</option>
+        </select>
+        <label for="opcional">Nombre</label>
+        <input type="checkbox" name="opcional">
+
+        <input id="btn" type="submit" value="Enviar">
+
+    </form>
+    <script>
+        let btn = document.getElementById('form1');
+        
+        btn.addEventListener('submit',envio);
+
+        function envio(e){
+           e.preventDefault();
+           let form1 = document.getElementById('form1');
+            console.log('funciona');
+            let data = new FormData(form1);
+            console.log(data.getAll());
+
+        }
+    </script>
+    
+</body>
+</html>
