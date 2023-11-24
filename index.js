@@ -129,11 +129,11 @@ let objMenus = [
         </div>
         <div id="datos_detector" class="form-1 ">
             <label for="marca_detector" class="hiden">Marca detector</label>
-            <input type="text" name="marca_detector" id="marca_detector" placeholder="" class="hiden" value="N/D" class="envioDbEquipo">
+            <input type="text" name="marca_detector" id="marca_detector" placeholder="" class="hiden"  class="envioDbEquipo">
             <label for="modelo_detector" class="hiden">Modelo detector</label>
-            <input type="text" name="modelo_detector" id="modelo_detector" placeholder="" class="hiden" value="N/D" class="envioDbEquipo">
+            <input type="text" name="modelo_detector" id="modelo_detector" placeholder="" class="hiden"  class="envioDbEquipo">
             <label for="serie_detector" class="hiden">Serie detector</label>
-            <input type="text" name="serie_detector" id="serie_detector" placeholder="" class="hiden" value="N/D" class="envioDbEquipo">
+            <input type="text" name="serie_detector" id="serie_detector" placeholder="" class="hiden"  class="envioDbEquipo">
         </div>
         <label for="serie_detector">Tipo de radiación</label>
         <select name="tipo_radiacion" id="tipo_radiacion" class="envioDbEquipo">
@@ -568,14 +568,14 @@ let servicios={
     },
     
     'd3er5t72qwege65':{
-        id:'d3er5t72sddge65',
+        id:'d3er5t72qwege65',
         status:'arribo',
         arriboData:{
             cliente:{
                 nombre:'HALLIBURTON DE MÉXICO, S. DE R.L. DE C.V.',
             },
             equipo:{
-                marca_monitor:'Tracerco',
+                marca_monitor:'Ludlum',
                 modelo_monitor:'12-4',
                 serie_monitor:'223440',
                 marca_detector:'Ludlum',
@@ -625,8 +625,14 @@ let equipos={
 
 }
 let ordenesServicio={
+  
 
 }
+
+
+
+
+
 let contadorIntervalos=0;
 
      
@@ -671,11 +677,11 @@ function listeners(){
                 if(document.getElementById('check_det').checked){
                     document.getElementById('datos_detector').innerHTML=`
                     <label for="marca_detector" >Marca detector</label>
-                    <input type="text" name="marca_detector" id="marca_detector" class="envioDb" >
+                    <input type="text" name="marca_detector" id="marca_detector" class="envioDbEquipo" >
                     <label for="modelo_detector"> Modelo detector</label>
-                    <input type="text" name="modelo_detector" id="modelo_detector" class="envioDb" >
+                    <input type="text" name="modelo_detector" id="modelo_detector" class="envioDbEquipo" >
                     <label for="serie_detector" >Serie detector</label>
-                    <input type="text" name="serie_detector" id="serie_detector" class="envioDb" >`
+                    <input type="text" name="serie_detector" id="serie_detector" class="envioDbEquipo" >`
                     
                     
                 }else{
@@ -689,6 +695,10 @@ function listeners(){
                         }
                 
                 break;
+            case 'mas_equipos':
+                
+                break;
+            
             case 'envio_arribo_db':
                 sendDBArribo();
                 monitor.innerHTML ='';
@@ -719,7 +729,13 @@ function listeners(){
                 contadorIntervalos++;
                 sendDBInterval();
                 callNewInterval();
-                break;           
+                break;         
+            case 'envio_os_db':
+                sendOs(op[1]);
+                break; 
+            case 'buscar_os':
+                autoCompleteOs();
+                break;  
                 default:
                 break;
         }
@@ -974,14 +990,15 @@ function sendDBInterval(){
 
 
 }
-function sendDBArribo(){
+function sendDBArribo(){ 
 
     let data_equipo = document.querySelectorAll('.envioDbEquipo');
     let cliente = document.querySelector('.envioDbCliente');
     let medio_arribo = document.querySelectorAll('.envioDb');
+    console.log(data_equipo);
     //Variable para guardar información que sewra enviada a la base de datos
     let arriboData={}
-    let equipo={}
+    let equipo={marca_detector:'N/D',modelo_detector:'N/D',serie_detector:'N/D'}
     let recepcion={}
     arriboData['cliente']={
         nombre:cliente.value,
@@ -1018,6 +1035,93 @@ function sendDBArribo(){
 
 
 
+
+}
+function sendOs(id){
+    let dataConsesionario = document.querySelectorAll('.dataConsesionario');
+    let dataServicio= document.querySelectorAll('.dataServicio');
+    let dataEnvio = document.querySelectorAll('.dataEntrega');
+    let dataOs = document.getElementById('orden');
+
+    let consesionario={}
+    let obj_os={}
+    let servicio={}
+    let envio={} 
+
+    
+    //Crear un registro para envio a DB
+
+    dataConsesionario.forEach(item=>{
+        consesionario[item.id]=item.value;
+    });
+    
+    dataServicio.forEach(item=>{
+        if(item.type == 'checkbox'){   
+            if(item.checked == true){
+                servicio[item.id]='Si';
+            }else{
+                servicio[item.id]='No';
+            }       
+        }else{
+            servicio[item.id]=item.value;
+        }
+    });
+    
+    dataEnvio.forEach(item=>{
+        envio[item.id]=item.value;
+    });
+
+    //Creamos registro de OS para auto llenado de formulario 
+    obj_os={
+        consesionario,
+        servicio,
+        envio
+    }
+   
+    obj_os[dataOs.id]=dataOs.value;
+    console.log('[ORDENES]:');
+    console.log(ordenesServicio);
+    let encontrado=false;
+    let nvo_registro ={}
+    nvo_registro[id]=dataOs.value;
+
+    if(Object.keys(ordenesServicio).length === 0){
+        ordenesServicio[dataOs.value]=obj_os;
+        ordenesServicio[dataOs.value]['registros']=nvo_registro;
+    } else{
+        Object.keys(ordenesServicio).forEach(item=>{    
+            if(item===dataOs.value){
+                ordenesServicio[dataOs.value]['registros'][id]=dataOs.value;
+                encontrado=false;
+                return;
+            }
+            encontrado=true;
+        });
+        if(encontrado){
+            ordenesServicio[dataOs.value]=obj_os;
+            ordenesServicio[dataOs.value]['registros']=nvo_registro;
+            encontrado=false;
+        }
+        
+    } 
+    console.log('[O.S]:');
+    console.log(ordenesServicio);
+
+    
+
+
+    servicios[id]['orden']={...obj_os};
+    console.log(servicios);
+
+    console.log(servicios[id]['status']);
+    servicios[id]['status']='calibracion';
+    console.log(servicios[id]['status']);
+
+
+
+
+
+   
 
 }
 /********************************************************************************************************************************************
@@ -1097,8 +1201,8 @@ function callFormOs(id){
         <h3>Datos del arribo</h3>
         <div class="data-customer">
             <span>${equipo.arriboData.cliente.nombre}</span>
-            <p><span>Monitor:</span> ${equipo.arriboData.equipo.marca_monitor} ${equipo.arriboData.equipo.modelo_monitor} <span> Serie:</span>${equipo.arriboData.equipo.serie_detector}</p>
-            <p><span>Detector:</span> ${equipo.arriboData.equipo.marca_detector} ${equipo.arriboData.equipo.modelo_detector}</p>
+            <p><span>Monitor:</span> ${equipo.arriboData.equipo.marca_monitor} ${equipo.arriboData.equipo.modelo_monitor} <span> Serie:</span>${equipo.arriboData.equipo.serie_monitor}</p>
+            <p><span>Detector:</span> ${equipo.arriboData.equipo.marca_detector} ${equipo.arriboData.equipo.modelo_detector} <span> Serie:</span>${equipo.arriboData.equipo.serie_detector}</p>
             <p><span>Tipo Radiación:</span> ${equipo.arriboData.equipo.tipo_radiacion}</p>
             <p><span>Recibido:</span> ${equipo.arriboData.medioArribo.recepcion}</p>
             <p><span>Intervalos:</span> ${equipo.arriboData.equipo.intervalos}</p>
@@ -1108,7 +1212,7 @@ function callFormOs(id){
     <article class="card form-1" >
         <h3>Orden de Servicio</h3>
         <label for="orden">Orden de Servicio</label>
-        <input type="text" id="orden" class="dataConsesionario">
+        <input type="text" id="orden" class="dataOs">
         <button id="buscar_os">Buscar</button> 
 
         <h3>Datos consesionario</h3>
@@ -1155,19 +1259,35 @@ function callFormOs(id){
         <textarea name="direccion" id="direccion_entrega" cols="30" rows="5" class="dataEntrega"></textarea>
         <label for="razon">Atención a:</label>
         <input type="text" id="atencion" class="dataEntrega">
+        <label for="telefono">Tel. contacto:</label>
+        <input type="tel" id="telefono" class="dataEntrega">
+        <label for="correo">Correo notificaciones:</label>
+        <input type="email" id="correo" class="dataEntrega">
         <label for="razon">Seguro de envío</label>
-        <select name="seguro_envio" class="dataEntrega">
+        <select id="seguro_envio" class="dataEntrega">
             <option value="seguro">Envio con seguro</option>
             <option value="sin seguro">Envio sin seguro</option>
             <option value="pendiente">Pendiente</option>
             <option value="cliente">Cliente</option>
         </select>
         <label for="razon">Comentarios</label>
-        <textarea id="entrega_comentarios" cols="30" rows="5" ></textarea>
+        <textarea id="entrega_comentarios" cols="30" rows="5" class="dataEntrega"></textarea>
     
     </article>
-     <a class="btn-send">Enviar</a>
-</section>`
+     <a class="btn-send" id="envio_os_db:${id}">Enviar</a>
+</section>
+<section>
+    <article class="card form-1">
+        <h3>Asignar otros equipos a esta Orden de servicio</h3>
+        <input type="checkbox" id="mas_equipos">
+        
+    </article>
+    <div id="arribos_adicionales">
+
+    </div>
+</section>
+
+`
 
 
 }
@@ -1329,5 +1449,63 @@ function callNewInterval(){
     }
    
 }
+function autoCompleteOs(){ 
+    let os = document.getElementById('orden').value;
+    let data =ordenesServicio[os]
+    if(!data){
+        alert('No hay esa orden');
+    }else{
+        console.log(ordenesServicio[os]);
+        document.getElementById('razon_social').value=data.consesionario.razon_social;
+        document.getElementById('direccion').value=data.consesionario.direccion;
+        data.servicio.tipo_servicio == 'Si'
+        ? document.getElementById('tipo_servicio').checked=true
+        : document.getElementById('tipo_servicio').checked=false
 
-listeners(); 
+        data.servicio.declaracion_conformidad == 'Si'
+        ? document.getElementById('declaracion_conformidad').checked=true
+        : document.getElementById('declaracion_conformidad').checked=false
+
+        document.getElementById('declaracion_conformidad_s').value=data.servicio.declaracion_conformidad_s;
+        document.getElementById('norma_referencia').value=data.servicio.norma_referencia;
+
+        data.servicio.fecha_cer == 'Si'
+        ? document.getElementById('fecha_cer').checked=true
+        : document.getElementById('fecha_cer').checked=false
+
+        data.servicio.fecha_etiqueta == 'Si'
+        ? document.getElementById('fecha_etiqueta').checked=true
+        : document.getElementById('fecha_etiqueta').checked=false
+
+        document.getElementById('periodo_cal').value=data.servicio.periodo_cal;
+
+        document.getElementById('razon_entrega').value=data.envio.razon_entrega;
+        document.getElementById('direccion_entrega').value=data.envio.direccion_entrega;
+        document.getElementById('atencion').value=data.envio.atencion;
+        document.getElementById('telefono').value=data.envio.telefono;
+        document.getElementById('correo').value=data.envio.correo;
+        document.getElementById('seguro_envio').value=data.envio.seguro_envio;
+        document.getElementById('entrega_comentarios').value=data.envio.entrega_comentarios;
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+
+
+    }
+    
+
+
+}
+
+listeners();  

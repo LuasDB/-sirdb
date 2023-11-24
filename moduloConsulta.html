@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="sweetalert2.min.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap');
 
@@ -232,6 +233,9 @@
             border-radius: 4px;
             color: var(--background-color);
         }
+        .material-symbols-outlined{
+            cursor: pointer;
+        }
        
         
 
@@ -374,6 +378,76 @@
             height: auto;
            
         }
+        /* TABLAS  */
+        .table-list{
+
+            width: 95%;
+            min-width: 500px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            color: var(--gray);
+            border-collapse: collapse;
+            justify-content: center;
+             
+
+            
+        }
+        .table-list thead th{
+            padding: 10px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            border-bottom: var(--gray) 1px solid;
+        }
+        .table-list thead td span{
+            cursor: pointer;
+        }
+        .table-list tbody tr td{
+            padding: 10px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            border-top: var(--low-gray) 1px solid;
+        }
+        .nav-tools-2{
+            width: 100%;
+            display: grid;
+            grid-template-columns: 3fr 1fr ;
+            justify-content: end;
+        }
+        .nav-tools-2 h2{
+            font-size: 1.8rem;
+        }
+        
+        .tools-horizontal{
+            margin-left: 5rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .search-table span{
+            cursor: pointer;
+        }
+        .search-table{
+           display: flex;
+           flex-direction: row;
+           justify-content: center;
+           align-items: center;
+           border: 1px solid var(--gray);
+           border-radius: 10px;
+           width: 50%;
+           background-color: var(--background-color)
+        }
+        .search-table input{
+            margin: 0;
+            width: 85%;
+            border: none;
+            outline: none;
+            background-color: var(--background-color);
+            font-size: 1.2rem;
+            color: var(--yellow);
+        }
+        
+
         
        
 
@@ -383,81 +457,78 @@
 
 </head>
 <body>
+    <datalist id="año">
+        <option value="2023" >        
+    </datalist>
       
     <main class="container" id="monitor">
-        <section class="card container form-upload">
-            <h3>Subir Informes de Pruebas de Fuga</h3>
-
-            <datalist id="empresas">
-                
-            </datalist>
-            <datalist id="isotopos">
-                <option value="Cs-137">
-                <option value="Am-241">
-                <option value="Co-60">
-                <option value="Sr-90">
-                <option value="Am-241 Be">
-            </datalist>
-            <datalist id="licencias">
-                <option value="A00.200/1258/2023">
-                <option value="A00.200/1254/2022">
-                <option value="A00.200/1218/2021">
-                
-            </datalist>
-            
-            
-           
-            <a class="btn-new" id=""><span class="material-symbols-outlined">
-                add_circle
-                </span>Nuevo archivo</a>
-            <div class="update" id="update_area">
-                
-                <div><label for="empresa">Empresa:</label>
-                <input list="empresas" name="empresa" id="empresa" autocomplete="nope">
-                </div>
-                <div><label for="licencia">No.Licencia:</label>
-                    <input list="licencias" name="licencia" id="licencia" autocomplete="nope">
-                    </div>
-                <div><label for="num_informe">No. de informe</label>
-                <input type="text" id="num_informe" name="num_informe" autocomplete="nope">
-                </div>
-                <div><label for="num_serie">No. serie fuente</label>
-                <input type="text" id="num_serie" name="num_serie" autocomplete="nope">
-                </div>
-                <div><label for="marca_fuente">Marca fuente</label>
-                    <input type="text" id="marca_fuente" name="marca_fuente" autocomplete="nope">
-                </div>
-                <div><label for="actividad">Actividad</label>
-                    <input type="text" id="actividad" name="actividad" autocomplete="nope">
-                </div>
-                <div><label for="isotopo">Isotopo</label>
-                <input list="isotopos" name="isotopo" id="isotopo" autocomplete="nope">
-                </div>
-                <div><label for="fecha_frotis">Fecha frotis</label>
-                <input type="date" id="fecha_frotis" name="fecha_frotis" autocomplete="nope">
-                </div>
-                <div><label for="fecha_informe">Fecha Informe</label>
-                    <input type="date" id="fecha_informe" name="fecha_informe" autocomplete="nope">
-                    </div>
-                <div><label for="fecha_frotis">Adjuntar Informe:</label>
-                <input type="file" id="file" name="archivo2">
-                </div>
-                <br>
-                <a class="btn-new" id="nuevo_archivo"><span class="material-symbols-outlined">
-                    upgrade
-                    </span>Subir archivo</a>
-
-
-
+        <nav class="">
+            <div class="ruta">
+                <p id="ruta"></p>
             </div>
-<!-- 
-                <a class="btn-new" id=""><span class="material-symbols-outlined">
-                    add_circle
-                    </span>descargar archivo</a>
+            <div class="nav-tools-2">
+                <h2>SCHLUMBERGER OFFSHORE SERVICES (MÉXICO) N.V. </h2>
+                <div class="tools-horizontal">
+                    <span class="material-symbols-outlined">person</span>
+                <input type="checkbox" id="menu_check" class="hiden">
+                <label for="menu_check">
+                    <span class="btn-menu material-symbols-outlined" id="menu">menu</span>
+                    <span class="material-symbols-outlined" id="close">menu_open</span>
+                </label>
+                
+                <span class="material-symbols-outlined">settings</span>
 
-
-            -->
-
+                </div>
+                
+            </div>
+            
+        </nav>
+        
+        <label for="año">Selecciona el año de busqueda</label>
+        <input list="año" name="año" id="a" value="2023">
+        <div class="search-table">
+            <span class="material-symbols-outlined" id="btn_buscar" >search</span></a>
+            <input type="text" class="search-input" id="busqueda" autocomplete="nope">
+        </div>
+        <section class="card">
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Licencia</th>
+                        <th>Isotopo</th>
+                        <th>Serie</th>
+                        <th>Actividad Original</th>
+                        <th>Fecha frotis</th>
+                        <th>Fecha Informe</th>
+                        <th>Informe</th>
+                    </tr>                   
+                </thead>
+                <tbody id="data_content">
+                    <!-- <tr>
+                        <td>A00.200/2589/2023</td>
+                        <td>Cs-137</td>
+                        <td>ASd28522</td>
+                        <td>1.35 Mbq</td>
+                        <td>2023-02-12</td>
+                        <td>2023-02-15</td>
+                        <td><span class="material-symbols-outlined">
+                            download
+                            </span></td>
+                    </tr>  
+                    <tr>
+                        <td>A00.200/2589/2023</td>
+                        <td>Cs-137</td>
+                        <td>BDE522</td>
+                        <td>10 Mbq</td>
+                        <td>2023-02-12</td>
+                        <td>2023-02-15</td>
+                        <td><span class="material-symbols-outlined">
+                            download
+                            </span></td>
+                    </tr>   -->
+                    
+                </tbody>
+            </table>
 
         </section>
 
@@ -467,7 +538,7 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
         import { getStorage,ref,uploadBytes,getDownloadURL,uploadBytesResumable ,getMetadata,updateMetadata} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
-        import {  collection, addDoc,getFirestore,query,where,getDocs,doc,setDoc,getDoc} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+        import { collectionGroup, collection, addDoc,getFirestore,query,where,getDocs,doc,setDoc,getDoc} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
         
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -481,131 +552,95 @@
             messagingSenderId: "844126039442",
             appId: "1:844126039442:web:781bb173550e1560d1654b"
         };
-      let file = document.getElementById('file');
+      
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const storage = getStorage(app);
         const db = getFirestore(app);
+        //PARA LA APP
+        const btn_buscar=document.getElementById('btn_buscar');
+        const a = document.getElementById('a');
+        const tabla = document.getElementById('data_content');
+        const busqueda = document.getElementById('busqueda');
 
-        // VARIABLES PARA EL DOM
-        const btn = document.getElementById('nuevo_archivo');
         
-        // const btn2 = document.getElementById('descargar_archivo');
         
-        //EVENTOS DE LOS BOTONES
-        btn.addEventListener('click',envio);
-        
-        // btn2.addEventListener('click',descarga);
+        // btn_buscar.addEventListener('click',buscar);
+        busqueda.addEventListener('keyup',filtro);
 
-        // FUNCIONES DE CONSTRUCCIÓN DEL DOM
-        async function envio(){
-            //VARIABLES QUE PROVIENEN DEL DOM
-            let empresa=document.getElementById('empresa').value;
-            let num_informe=document.getElementById('num_informe').value;
-            let num_serie=document.getElementById('num_serie').value;
-            let marca_fuente=document.getElementById('marca_fuente').value;
-            let actividad=document.getElementById('actividad').value;
-            let isotopo=document.getElementById('isotopo').value;
-            let fecha_frotis=document.getElementById('fecha_frotis').value;
-            let fecha_informe=document.getElementById('fecha_informe').value;
-            let licencia=document.getElementById('licencia').value;
-
+        //FUNCIONES
+        async function consulta(){
+            tabla.innerHTML='';
+            const ref2 = collection(db,"informesPF"+a.value);
+            const q = query(ref2,where("clienteId","==","h7MZ6wSR2BVJVxNa9qF9"))
+            const res = await getDocs(q);
+            res.forEach(element => {
+                let fila = document.createElement('tr');
+                fila.classList.add('renglon');
+                fila.innerHTML=`
+                <td class="hiden">${element.data().licencia} ${element.data().isotopo} ${element.data().num_serie}</td>
+                <td>${element.data().licencia}</td>
+                <td>${element.data().isotopo}</td>
+                <td>${element.data().num_serie}</td>
+                <td>${element.data().actividad}</td>
+                <td>${element.data().fecha_frotis}</td>
+                <td>${element.data().fecha_informe}</td>
+                `;
+                let btnD = document.createElement('td');
+                btnD.onclick = ()=> descargar(element.data().nombre_pdf);
+                btnD.innerHTML=`<span class="material-symbols-outlined" id="btnDown:${element.data().nombre_pdf}">download</span>`;
+                // <td><span class="material-symbols-outlined" id="btnDown:${element.data().nombre_pdf}" onclick="myFunction()">download</span></td>
+                fila.appendChild(btnD);
+                tabla.appendChild(fila);
+            });
+        }
+        function filtro(){
+            let renglones = document.querySelectorAll('.renglon');
+            let newArray =[]
             
-
-
-            let nombre_pdf=`${num_informe}_${empresa}_${isotopo}_${num_serie}.pdf`;
-            //BUSCAMOS EN LA COLECCION "clientes" EL NOMBRE DEL CLIENTE PARA VERIFICAR SI EXISTE, EN CASO DE EXISTIR
-            //GUARDAMOS LA NUEVA INFORMACION
-            const clienteRef= collection(db,"clientes");
-            const q = query(clienteRef,where("nombre","==",empresa));
-            const res= await getDocs(q);
-            if(res.docs.length == 0){
-                alert('Cliente no existe');
-
-            }else{
-                console.log("cleinte",res.docs[0].id);
-                //OBJETO DONDE GUARDAREMOS TODOS LOS DATOS PARA REGISTRO EN LA COLECCION DE INFORMES
-                let data={}
-                data={
-                    nombre_pdf,
-                    clienteId:res.docs[0].id,
-                    empresa,
-                    num_serie,
-                    isotopo,
-                    num_informe,
-                    fecha_frotis,
-                    fecha_informe,
-                    licencia,marca_fuente,actividad
-
-                }
-
-                const informeRef = await addDoc(collection(db,"informesPF2023"),data );
-                const storageRef = ref(storage,"2023/"+nombre_pdf);
-                uploadBytes(storageRef, file.files[0]).then((snapshot) => {
-                    console.log(snapshot);
-                });
-
-                if(informeRef){
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Se agrego el registro!",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
-
-
-
-
-
-
-                // //REFERENCIA DONDE SE GUARDARÁ LA INFORMACION
-                // const informeRef = doc(collection(db,"informesPF","2023",num_informe));
-                // await setDoc(informeRef,data);
-
+            renglones.forEach(row=>{               
+                newArray.push(row.children[0].innerHTML);
                 
-                // const l = await getDoc(informeRef);
-                // console.log(l.data());
-
-                // 
+            });
+            let nuevo = newArray.filter((r) => {
+                return r.toLowerCase().includes(busqueda.value.toLowerCase());           
+            });
+            let index =0;
+            console.log('[FILTRADOS]:',nuevo);
+            renglones.forEach(row=>{
+                if(row.children[0].innerHTML.toLowerCase().includes(busqueda.value.toLowerCase())){
                     
-                //
-
-                
- 
-
-            }
-           
-            
-            
-
-           
-            // const storageRef = ref(storage,nombre_pdf);
-                
-            // uploadBytes(storageRef, file.files[0]).then((snapshot) => {
-            //     console.log(snapshot);
-
-            //     });
-
-
-
-
-}
-
-        function descarga(){
+                    row.classList.remove('hiden');
+                }else{
+                    row.classList.add('hiden');
+                }
+                index++;
+            });
             
         }
-      
         
-      </script>
 
-    
+        function descargar(nombre){
+            console.log('[DESCARGANDO...]:',nombre);
+            getDownloadURL(ref(storage,'2023/'+nombre)).then((url)=>{
+                console.log(url);
+                 window.open(url);
+            }).catch(e=>{console.log(e)});
+
+        }
+        
+        consulta();
+        
+
+
+        
+    </script>
+
+  
     <!-- Scripts online para herramienbtas -->
     <script src="https://kit.fontawesome.com/609fa7e19c.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.min.js"></script>
-
     
 </body>
 </html>
