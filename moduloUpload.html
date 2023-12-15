@@ -522,36 +522,48 @@
 
             }else{
                 console.log("cleinte",res.docs[0].id);
-                //OBJETO DONDE GUARDAREMOS TODOS LOS DATOS PARA REGISTRO EN LA COLECCION DE INFORMES
-                let data={}
-                data={
-                    nombre_pdf,
-                    clienteId:res.docs[0].id,
-                    empresa,
-                    num_serie,
-                    isotopo,
-                    num_informe,
-                    fecha_frotis,
-                    fecha_informe,
-                    licencia,marca_fuente,actividad
+                // //OBJETO DONDE GUARDAREMOS TODOS LOS DATOS PARA REGISTRO EN LA COLECCION DE INFORMES
+                // let data={}
+                // data={
+                //     nombre_pdf,
+                //     clienteId:res.docs[0].id,
+                //     empresa,
+                //     num_serie,
+                //     isotopo,
+                //     num_informe,
+                //     fecha_frotis,
+                //     fecha_informe,
+                //     licencia,marca_fuente,actividad
 
-                }
+                // }
+                // // const informeRef =
+                //  await addDoc(collection(db,"informesPF2023"),data ); 
+               
 
-                const informeRef = await addDoc(collection(db,"informesPF2023"),data );
-                const storageRef = ref(storage,"2023/"+nombre_pdf);
-                uploadBytes(storageRef, file.files[0]).then((snapshot) => {
-                    console.log(snapshot);
-                });
 
-                if(informeRef){
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Se agrego el registro!",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
+               
+
+
+
+                ///////////////////////////////////////////////
+               
+               
+              
+                
+                // const storageRef = ref(storage,"2023/"+nombre_pdf);
+                // uploadBytes(storageRef, file.files[0]).then((snapshot) => {
+                //     console.log(snapshot);
+                // });
+
+                // if(informeRef){
+                //     Swal.fire({
+                //         position: "center",
+                //         icon: "success",
+                //         title: "Se agrego el registro!",
+                //         showConfirmButton: false,
+                //         timer: 1500
+                //     });
+                // }
 
 
 

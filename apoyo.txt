@@ -1,0 +1,658 @@
+<main class="container" id="monitor">
+
+            <!-- 
+            <section id="calibracion-proceso">
+                <section class="container-cards-2">
+                    <div class="card card-cal-info" id="arribos">
+                        <span class="material-symbols-outlined" id="arribos">browser_updated</span>
+                        <h3 id="arribos">Arribos</h3>
+                        <p id="arribos">5</p>
+                    </div> 
+                    <div class="card card-cal-info" id="calibracion">
+                        <span class="material-symbols-outlined" id="calibracion">speed</span>
+                        <h3 id="calibracion">Calibración</h3>
+                        <pid="calibracion">3</p>
+                    </div> 
+                    <div class="card card-cal-info" id="firmas">
+                        <span class="material-symbols-outlined" id="firmas">draw</span>
+                        <h3 id="firmas">Firmas</h3>
+                        <p id="firmas">5</p>
+                    </div> 
+                    <div class="card card-cal-info" id="embalaje">
+                        <span class="material-symbols-outlined" id="embalaje">box_add</span>
+                        <h3 id="embalaje">Embalaje</h3>
+                        <p id="embalaje">5</p>
+                    </div> 
+                    <div class="card card-cal-info" id="envios">
+                        <span class="material-symbols-outlined" id="envios">local_shipping</span>
+                        <h3 id="envios">Envios</h3>
+                        <p id="envios">5</p>
+                    </div> 
+                </section>
+                <section class="bitacora">
+                     <h2 class="title-divider">Bitacora</h2>
+                </section>
+            </section> 
+            
+
+            <section id="arribos">
+    <a class="btn-new" id="nuevo_arribo"><span class="material-symbols-outlined">
+        add_circle
+        </span>    Nuevo arribo</a>
+    <h2 class="title-divider">Arribos</h2>
+    <div class="card">
+        <article class="card-info-gral">
+            <div class="data-customer">
+                <span>Servicios Integrales para la Radiación , S.A. de C.V.</span>
+                <p><span>Equipo:</span> Ludlum 375</p>
+                <p><span>Serie:</span> 152589</p>
+                <p><span>Tipo Radiación:</span> Gamma</p>
+                <p><span>Recibido:</span> Paqueteria</p>
+            </div>
+            <div class="obj-date success">
+                <span>Fecha arribo</span>
+                <p>28/09/2023</p> 
+            </div>  
+            <div></div> 
+            <a class="btn btn-color" id="asignar_os">Asignar O.S.</a>    
+        </article>
+        
+    </div>
+    <div class="card">
+        <article class="card-info-gral">
+            <div class="data-customer">
+                <span>COMERCIAL METALICA FE, S.A. DE C.V.</span>
+                <p><span>Equipo:</span> Ludlum 375</p>
+                <p><span>Tipo Radiación:</span> Gamma</p>
+                <p><span>Recibido:</span> Área comercial</p>
+            </div>
+            <div class="obj-date success">
+                <span>Fecha arribo</span>
+                <p>28/09/2023</p> 
+            </div>  
+            <div></div> 
+            <a class="btn btn-color" id="asignar_os">Asignar O.S.</a>    
+        </article>
+        
+    </div>
+    <div class="card">
+        <article class="card-info-gral">
+            <div class="data-customer">
+                <span>Mondelez México, S. de R.L. </span>
+                <p><span>Equipo:</span> S.E. International Inspector</p>
+                <p><span>Tipo Radiación:</span> Gamma</p>
+                <p><span>Recibido:</span> Paqueteria</p>
+            </div>
+            <div class="obj-date success">
+                <span>Fecha arribo</span>
+                <p>28/09/2023</p> 
+            </div>  
+            <div></div> 
+            <a class="btn btn-color" id="asignar_os">Asignar O.S.</a>    
+        </article>
+        
+    </div>   
+</section>
+
+            <section id="arribo-form">
+                <article class="card form-1">
+                    <h3>Consesionario</h3>
+                    <label for="razon">Razón social</label>
+                    <input type="text" name="razon" placeholder="Razón Social / cliente">
+
+                </article>
+                <article class="card form-1">
+                    <h3>Equipo</h3>
+                    <label for="marca_monitor">Marca</label>
+                    <input type="text" name="marca_monitor" placeholder="S.E. International">
+                    <label for="modelo_monitor">Modelo</label>
+                    <input type="text" name="modelo_monitor" placeholder="Inspector">
+                    <label for="serie_monitor">Serie</label>
+                    <input type="text" name="serie_monitor" placeholder="13548">
+                    <div>
+                        <input type="checkbox" name="razon" id="check_det">
+                        <label for="razon">Detector interno</label> 
+                    </div>
+                    <label for="marca_detector">Marca detector</label>
+                    <input type="text" name="marca_detector" placeholder="Ludlum">
+                    <label for="modelo_detector">Modelo detector</label>
+                    <input type="text" name="modelo_detector" placeholder="44-9">
+                    <label for="serie_detector">Serie detector</label>
+                    <input type="text" name="serie_detector" placeholder="PR253644">
+                    <label for="serie_detector">Tipo de radiación</label>
+                    <input type="text" name="serie_detector" placeholder="Gamma">
+                    <label for="serie_detector">Magnitud</label>
+                    <input type="text" name="serie_detector" placeholder="mR/h">
+                    <label for="serie_detector">Intervalos</label>
+                    <input type="text" name="serie_detector" placeholder="0-1,0-10,0-100">
+                </article>
+                <article class="card form-1">
+                    <h3>Condiciones físicas</h3>
+                    <div class="condiciones-fisicas">
+                        <p>Desc.</p>
+                        <p>BC</p>
+                        <p>Observaciones</p>
+                    
+                        <label for="marca_detector">Carcasa:</label>
+                        <input type="checkbox" name="" id="">
+                        <input type="text">
+                        <label for="marca_detector">Display/Carátula:</label>
+                        <input type="checkbox" name="" id="">
+                        <input type="text"> 
+                        <label for="marca_detector">Interruptores/botones: </label>
+                        <input type="checkbox" name="" id="">
+                        <input type="text">
+                        <label for="marca_detector">Baterías/Cavidad: </label>
+                        <input type="checkbox" name="" id="">
+                        <input type="text">
+                        <label for="marca_detector">Cable del detector: </label>
+                        <input type="checkbox" name="" id="">
+                        <input type="text">
+                        <label for="marca_detector">Detector: </label>
+                        <input type="checkbox" name="" id="">
+                        <input type="text">
+                        <label for="marca_detector">Maletín/Embalaje: </label>
+                        <input type="checkbox" name="" id="">
+                        <input type="text">
+                        <label for="marca_detector">CD/Software </label>
+                        <input type="checkbox" name="" id="">
+                        <input type="text">
+                        <label for="marca_detector">Cable de alimentación: </label>
+                        <input type="checkbox" name="" id="">
+                        <input type="text">
+                        <label for="marca_detector">Cable PC: </label>
+                        <input type="checkbox" name="" id="">
+                        <input type="text">
+                        <label for="marca_detector">Otro: </label>
+                        <input type="checkbox" name="" id="">
+                        <input type="text">
+                    </div>   
+                </article>
+                <article class="card form-1">
+                    <h3>Medio de ingreso</h3>
+                    <label for="marca_detector">Recepción</label>
+                    <select name="recepcion" id="">
+                        <option value="servicio">Servicio</option>
+                        <option value="paqueteria">Paqueteria</option>
+                        <option value="comercial">Área comercial</option>
+                        <option value="cliente">Entrega cliente</option>
+                    </select>
+                </article>
+                <a class="btn-send">Enviar</a>
+            </section>
+   
+            
+            <section id="calibracion">
+                <h2 class="title-divider">Calibración</h2>
+                <div class="card">
+                    <article class="card-info-gral">
+                        <div class="data-customer">
+                            <span>Servicios Integrales para la Radiación , S.A. de C.V.</span>
+                            <p><span>Equipo:</span> Ludlum 375</p>
+                            <p><span>Tipo Radiación:</span> Gamma</p>
+                            <p><span>O.S. : </span> OS-T-PR23-005</p>
+                        </div>
+                        <div class="obj-date error">
+                            <span>Fecha objetivo</span>
+                            <p>28/09/2023</p> 
+                        </div>  
+                        <div></div> 
+                        <a class="btn btn-color" id="calibrar">Calibrar</a>    
+                    </article>
+                    
+                </div>
+                <div class="card">
+                    <article class="card-info-gral">
+                        <div class="data-customer">
+                            <span>Servicios Integrales para la Radiación , S.A. de C.V.</span>
+                            <p><span>Equipo:</span> Ludlum 375</p>
+                            <p><span>Tipo Radiación:</span> Gamma</p>
+                            <p><span>O.S. : </span> OS-T-PR23-005</p>
+                        </div>
+                        <div class="obj-date danger">
+                            <span>Fecha objetivo</span>
+                            <p>28/09/2023</p> 
+                        </div>  
+                        <div></div> 
+                        <a class="btn btn-color" id="calibrar">Calibrar</a>    
+                    </article>
+                    
+                </div>
+                <div class="card">
+                    <article class="card-info-gral">
+                        <div class="data-customer">
+                            <span>Servicios Integrales para la Radiación , S.A. de C.V.</span>
+                            <p><span>Equipo:</span> Ludlum 375</p>
+                            <p><span>Tipo Radiación:</span> Gamma</p>
+                            <p><span>O.S. : </span> OS-T-PR23-005</p>
+                        </div>
+                        <div class="obj-date success">
+                            <span>Fecha objetivo</span>
+                            <p>28/09/2023</p> 
+                        </div>  
+                        <div></div> 
+                        <a class="btn btn-color" id="calibrar">Calibrar</a>   
+                    </article>
+                    
+                </div>
+            </section>
+            
+            
+            
+            
+ 
+            <section id="os-form">
+                <article class="card form-1">
+                    <h3>Datos del arribo</h3>
+                    <div class="data-customer">
+                        <span>COMERCIAL METALICA FE, S.A. DE C.V.</span>
+                        <p><span>Monitor:</span> Ludlum 375</p>
+                        <p><span>Detector:</span> Ludlum 44-9</p>
+                        <p><span>Tipo Radiación:</span> Gamma</p>
+                        <p><span>Recibido:</span>Paquetería</p>
+                        <p><span>Intervalos:</span><input type="text" name="razon" placeholder="0-1,0-10,0-100"></p>
+                    </div>
+                    
+                </article>
+                <article class="card form-1">
+                    <h3>Datos consesionario</h3>
+                    <label for="razon">Razón social</label>
+                    <input type="text" name="razon" placeholder="Razón Social / cliente">
+                    <label for="razon">Dirección</label>
+                    <textarea name="direccion" id="direccion" cols="30" rows="5" placeholder="De los reyes No. 4 , Industrial puente de vigas, Tlalnepantla de Baz, Edo de México, C.P. 54070,México"></textarea>
+                </article>
+                <article class="card form-1">
+                    <h3>Datos del servicio</h3>
+                    <label for="razon">Orden de Servicio</label>
+                    <input type="text" name="razon" placeholder="OS-T-PR23-005">
+                    <div>
+                        <input type="checkbox" name="tipo_servicio">
+                        <label for="razon">Servicio Urgente</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="tipo_servicio">
+                        <label for="razon">Declaración de conformidad</label>
+                    </div>
+                    <label for="razon">Descripción de la declaración de conformidad</label>
+                    <input type="text" name="razon" placeholder="Declaración de conformidad">
+                    <input type="text" name="razon" placeholder="Norma de referencia">
+                    <label for="razon">Fecha de proxima calibración</label>
+                    <div>
+                        <input type="checkbox" name="tipo_servicio">
+                        <label for="razon">Certificado</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="tipo_servicio">
+                        <label for="razon">Etiqueta</label>
+                    </div>
+                    <label for="razon">Periodo de calibración</label>
+                    <select name="periodo_cal" >
+                        <option value="12">12 meses</option>
+                        <option value="12">6 meses</option>
+                    </select>
+                    
+                 </article>
+
+                 <article class="card form-1">
+                    <h3>Dirección de entrega</h3>
+                    <label for="razon">Razón social</label>
+                    <input type="text" name="razon" placeholder="Razón Social / cliente">
+                    <label for="razon">Dirección</label>
+                    <textarea name="direccion" id="direccion" cols="30" rows="5" placeholder="De los reyes No. 4 , Industrial puente de vigas, Tlalnepantla de Baz, Edo de México, C.P. 54070,México"></textarea>
+                    <label for="razon">Atención a:</label>
+                    <input type="text" name="razon" placeholder="Ing. Aldo Aldana">
+                    <label for="razon">Seguro de envío</label>
+                    <select name="seguro_envio" >
+                        <option value="seguro">Envio con seguro</option>
+                        <option value="sin">Envio sin seguro</option>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="cliente">Cliente</option>
+                    </select>
+                    <label for="razon">Comentarios</label>
+                    <textarea name="direccion" id="direccion" cols="30" rows="5" placeholder="Observaciones o comentarios"></textarea>
+                
+                </article>
+                 <a class="btn-send">Enviar</a>
+            </section>
+         
+ 
+         <section id="calibracion-form">
+            <article class="card form-1">
+                <h3>Datos del equipo</h3>
+                <div class="data-customer">
+                    <span>COMERCIAL METALICA FE, S.A. DE C.V.</span>
+                    <p><span>Monitor:</span> Ludlum 375</p>
+                    <p><span>Detector:</span> Ludlum 44-9</p>
+                    <p><span>Tipo Radiación:</span> Gamma</p>
+                    <p><span>Recibido:</span>Paquetería</p>
+                    <p><span>Intervalos:</span> 0-1,0-10,0-100</p>
+                </div>
+            </article>
+            <article class="card form-1">
+                <h3>Datos 1 </h3>
+                <label for="">Fecha</label>
+                <input type="date" name="fecha_cal" id="fecha_cal">
+                <label for="">Alcance Caratula</label>
+                <input type="number" name="alcance" id="alcance">
+                <label for="">Resolución</label>
+                <input type="number" name="alcance" id="alcance">
+
+            </article>
+            <a  class="btn-new"><span class="material-symbols-outlined">
+                add_circle
+                </span> Nuevo intervalo</a>
+                <article class="card intervalo-cal">
+                    <div>
+                        <p><span>Intervalo:</span> 0-1</p>
+                        <p><span>Promedio:</span> 0.55</p>
+                        <p><span>Error:</span> 9.5%</p>
+                    </div>
+                    <div>
+                        <span class="material-symbols-outlined focus-green">edit</span>
+                        <span class="material-symbols-outlined focus-red">delete</span>
+                    </div>
+                    
+
+                </article>
+                <article class="card intervalo-cal">
+                    <div>
+                        <p><span>Intervalo:</span> 0-10</p>
+                        <p><span>Promedio:</span> 0.55</p>
+                        <p><span>Error:</span> 9.5%</p>
+                    </div>
+                    <div>
+                        <span class="material-symbols-outlined focus-green">edit</span>
+                        <span class="material-symbols-outlined focus-red">delete</span>
+                    </div>
+                    
+
+                </article>
+            <form action="" class="card form-1">
+                <div class="col-2 ">
+                    <div>
+                        <label for="">Temperatura °C</label>
+                        <input type="number">
+                        <label for="">Humedad %</label>
+                        <input type="number">
+                    </div>
+                    <div>
+                        <label for="">Intervalo</label>
+                        <select name="intervalo" id="intervalo">
+                            <option value="1">X 0.1</option>
+                            <option value="1">X 1</option>
+                            <option value="1">X 10</option>
+                            <option value="1">X 100</option>
+                            <option value="1">X 1000</option>
+        
+                        </select>
+
+                    </div>
+                </div>
+                
+                <div class="form-cal">
+                    <div>
+                        
+                        <p>20%</p>
+                        <div class="obturadores">
+                            <div><label for="20_1">1</label>
+                                <input type="checkbox" name="20_1" id=""></div>
+                            <div><label for="20_2">2</label>
+                                <input type="checkbox" name="20_2" id=""></div>
+                            <div> <label for="20_3">3</label>
+                                <input type="checkbox" name="20_3" id=""></div>
+                        </div>
+                        <p>Dist: 600 cm</p>
+                        <p>PROM: 600 </p>
+                        <input type="number" id="v20_1" class="valor20" >
+                        <input type="number" id="v20_2" class="valor20" >
+                        <input type="number" id="v20_3" class="valor20" >
+                        <input type="number" id="v20_4" class="valor20" >
+                        <input type="number" id="v20_5" class="valor20" >
+                        <input type="number" id="v20_6" class="valor20" >
+                        <input type="number" id="v20_7" class="valor20" >
+                        <input type="number" id="v20_8" class="valor20" >
+                        <input type="number" id="v20_9" class="valor20" >
+                        <input type="number" id="v20_10" class="valor20" >
+                    </div>
+                    <div>
+                        
+                        <p>50%</p>
+                        <div class="obturadores">
+                            <div><label for="20_1">1</label>
+                                <input type="checkbox" name="20_1" id=""></div>
+                            <div><label for="20_2">2</label>
+                                <input type="checkbox" name="20_2" id=""></div>
+                            <div> <label for="20_3">3</label>
+                                <input type="checkbox" name="20_3" id=""></div>
+                        </div>
+                        <p>Dist: 600 cm</p>
+                        <p>PROM: 600 </p>
+                        <input type="number" id="v20_1" class="valor50">
+                        <input type="number" id="v20_2" class="valor50">
+                        <input type="number" id="v20_3" class="valor50">
+                        <input type="number" id="v20_4" class="valor50">
+                        <input type="number" id="v20_5" class="valor50">
+                        <input type="number" id="v20_6" class="valor50" >
+                        <input type="number" id="v20_7" class="valor50" >
+                        <input type="number" id="v20_8" class="valor50" >
+                        <input type="number" id="v20_9" class="valor50" >
+                        <input type="number" id="v20_10" class="valor50" >
+
+                    </div>
+                    <div>
+                        
+                        <p>80%</p>
+                        <div class="obturadores">
+                            <div><label for="20_1">1</label>
+                                <input type="checkbox" name="20_1" id=""></div>
+                            <div><label for="20_2">2</label>
+                                <input type="checkbox" name="20_2" id=""></div>
+                            <div> <label for="20_3">3</label>
+                                <input type="checkbox" name="20_3" id=""></div>
+                        </div>
+                        <p>Dist: 600 cm</p>
+                        <p>PROM: 600 </p>
+                        <input type="number" id="v20_1" class="valor80">
+                        <input type="number" id="v20_2" class="valor80">
+                        <input type="number" id="v20_3" class="valor80">
+                        <input type="number" id="v20_4" class="valor80">
+                        <input type="number" id="v20_5" class="valor80">
+                        <input type="number" id="v20_6" class="valor80" >
+                        <input type="number" id="v20_7" class="valor80" >
+                        <input type="number" id="v20_8" class="valor80" >
+                        <input type="number" id="v20_9" class="valor80" >
+                        <input type="number" id="v20_10" class="valor80" >
+                    </div>
+                    <a class="btn-send">Guardar</a>
+                </div>
+
+                
+
+            </form>
+            <a  class="btn-send">Finalizar calibración</a>
+         </section>
+
+
+        <section id="firmas-cer">
+            <h3 class="title-divider">Certificados para firma Signatario</h3>
+            <div class="card">
+                <article class="card-info-gral">
+                    <div class="data-customer">
+                        <p><span>Certificado No.:</span>SIR23-CAL245</p>
+                        <span>Servicios Integrales para la Radiación , S.A. de C.V.</span>
+                        <p><span>Equipo:</span> Ludlum 375</p>
+                        
+                    </div>
+                    <div class="obj-date success">
+                        <span>Fecha cal</span>
+                        <p>28/09/2023</p> 
+                    </div>  
+                     <div></div>
+                    <a href="c:/Documentos/certificados 1.pdf"><span class="material-symbols-outlined text-center">
+                        edit_square
+                        </span></a>
+                </article>
+                
+            </div>
+            <h3 class="title-divider">Certificados para firma revisión</h3>
+            <div class="card">
+                <article class="card-info-gral">
+                    <div class="data-customer">
+                        <p><span>Certificado No.:</span>SIR23-CAL245</p>
+                        <span>Servicios Integrales para la Radiación , S.A. de C.V.</span>
+                        <p><span>Equipo:</span> Ludlum 375</p>
+                        
+                    </div>
+                    <div class="obj-date success">
+                        <span>Fecha cal</span>
+                        <p>28/09/2023</p> 
+                    </div>  
+                     <div></div>
+                    <a href="c:/Documentos/certificados 1.pdf"><span class="material-symbols-outlined text-center">
+                        edit_square
+                        </span></a>
+                </article>
+                
+            </div>
+            <h3 class="title-divider">Certificados para firma Aprovación</h3>
+            <div class="card">
+                <article class="card-info-gral">
+                    <div class="data-customer">
+                        <p><span>Certificado No.:</span>SIR23-CAL245</p>
+                        <span>Servicios Integrales para la Radiación , S.A. de C.V.</span>
+                        <p><span>Equipo:</span> Ludlum 375</p>
+                        
+                    </div>
+                    <div class="obj-date success">
+                        <span>Fecha cal</span>
+                        <p>28/09/2023</p> 
+                    </div>  
+                     <div></div>
+                    <a href="c:/Documentos/certificados 1.pdf"><span class="material-symbols-outlined text-center">
+                        edit_square
+                        </span></a>
+                </article>
+                
+            </div>
+        </section> 
+
+
+        <section id="embalajes">
+            <h3>Equipos listos para etiqueta y embalaje</h3>
+            <div class="card">
+                <article class="card-info-gral">
+                    <div class="data-customer">
+                        <p><span>Certificado No.:</span>SIR23-CAL245</p>
+                        <span>Servicios Integrales para la Radiación , S.A. de C.V.</span>
+                        <p><span>Equipo:</span> Ludlum 375</p>
+                        
+                    </div>
+                    <div class="obj-date success">
+                        <span>Fecha objetivo</span>
+                        <p>28/09/2023</p> 
+                    </div>  
+                     <div></div>
+                    <a class="text-center" href="c:/Documentos/certificados 1.pdf"><span class="material-symbols-outlined">
+                        edit_document
+                        </span></a>
+                </article>
+                
+            </div>
+
+        </section> 
+   
+
+    <section id="arribo-form">
+        <div class="card">
+            <article class="card-info-gral">
+                <div class="data-customer">
+                    <span>COMERCIAL METALICA FE, S.A. DE C.V.</span>
+                    <p><span>Equipo:</span> Ludlum 375</p>
+                    <p><span>Tipo Radiación:</span> Gamma</p>
+                    <p><span>Modo envio:</span> Con seguro</p>
+                    <p><span>Comentarios:</span> Enviar en su maletín y caja de cartón</p>
+                </div>
+                <div class="obj-date success">
+                    <span>Fecha Objetivo</span>
+                    <p>28/09/2023</p> 
+                </div>  
+                <div></div> 
+                <a class="btn btn-color">Etiqueta</a>    
+            </article>
+            
+        </div>
+        <article class="card form-1">
+            <h3>Condiciones físicas salida</h3>
+            <div class="condiciones-fisicas">
+                <p>Desc.</p>
+                <p>BC</p>
+                <p>Observaciones</p>
+            
+                <label for="marca_detector">Carcasa:</label>
+                <input type="checkbox" name="" id="">
+                <input type="text">
+                <label for="marca_detector">Display/Carátula:</label>
+                <input type="checkbox" name="" id="">
+                <input type="text"> 
+                <label for="marca_detector">Interruptores/botones: </label>
+                <input type="checkbox" name="" id="">
+                <input type="text">
+                <label for="marca_detector">Baterías/Cavidad: </label>
+                <input type="checkbox" name="" id="">
+                <input type="text">
+                <label for="marca_detector">Cable del detector: </label>
+                <input type="checkbox" name="" id="">
+                <input type="text">
+                <label for="marca_detector">Detector: </label>
+                <input type="checkbox" name="" id="">
+                <input type="text">
+                <label for="marca_detector">Maletín/Embalaje: </label>
+                <input type="checkbox" name="" id="">
+                <input type="text">
+                <label for="marca_detector">CD/Software </label>
+                <input type="checkbox" name="" id="">
+                <input type="text">
+                <label for="marca_detector">Cable de alimentación: </label>
+                <input type="checkbox" name="" id="">
+                <input type="text">
+                <label for="marca_detector">Cable PC: </label>
+                <input type="checkbox" name="" id="">
+                <input type="text">
+                <label for="marca_detector">Otro: </label>
+                <input type="checkbox" name="" id="">
+                <input type="text">
+            </div>   
+        </article>
+       
+        <a class="btn-send">Embalado</a>
+    </section> 
+
+        
+        <section id="envios">            
+            <h2 class="title-divider">Listos para envio</h2>
+            <div class="card">
+                <article class="card-info-gral">
+                    <div class="data-customer">
+                        <span>Servicios Integrales para la Radiación , S.A. de C.V.</span>
+                        <p><span>Equipo:</span> Ludlum 375</p>
+                        <p><span>Serie:</span> 3258455</p>
+
+                        <p><span>Dirección envío:</span> De los reyes No. 4 , Industrial puente de vigas, Tlalnepantla de Baz, Edo de México, C.P. 54070,México </p>
+                        <p><span>Contacto:</span> Ing. Aldo Aldana Gómez </p>
+                        <p><span>Tel:</span> 55 55 52 52 56 </p>
+                        <p><span>Correo:</span> aldo.aldana@siradiacion.com.mx </p>
+                        <p><span>Metodo de envío:</span> Paqueteria /Con seguro </p>
+                        <p><span>Observaciones:</span>El cliente solicita se envien sus equipos en una sola guia </p>
+                    </div>
+                    <div class="obj-date success">
+                        <span>Fecha objetivo</span>
+                        <p>28/09/2023</p> 
+                    </div>  
+                    <div></div> 
+                    <a class="btn btn-color">Finalizar Servicio</a>    
+                </article>             
+            </div>     
+        </section>  -->
+
+
+    </main> 

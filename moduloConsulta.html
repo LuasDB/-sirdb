@@ -539,6 +539,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
         import { getStorage,ref,uploadBytes,getDownloadURL,uploadBytesResumable ,getMetadata,updateMetadata} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
         import { collectionGroup, collection, addDoc,getFirestore,query,where,getDocs,doc,setDoc,getDoc} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-auth.js";
         
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -562,7 +563,7 @@
         const a = document.getElementById('a');
         const tabla = document.getElementById('data_content');
         const busqueda = document.getElementById('busqueda');
-
+ 
         
         
         // btn_buscar.addEventListener('click',buscar);

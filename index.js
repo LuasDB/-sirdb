@@ -644,9 +644,9 @@ function listeners(){
         console.log('ASIDE:' + e.target.id);
         ruta.innerHTML=e.target.id;
         switch (e.target.id) {
-            case 'cal':                
-                callCalibraciones();
-                break;
+            // case 'cal':                
+            //     callCalibraciones();
+            //     break;
         
             default:
                 break;
@@ -1125,7 +1125,7 @@ function sendOs(id){
 
 }
 /********************************************************************************************************************************************
- * Funciones de llamadas para construir DOM
+ * Funciones de llamadas para construir DOM CALIBRACIONES
  * *****************************************************************************************************************************************/
 function callCalibraciones(){
     monitor.innerHTML ='';
@@ -1507,5 +1507,6 @@ function autoCompleteOs(){
 
 
 }
+
 
 listeners();  
