@@ -4,12 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laboratorio SIRSA</title>
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="./styles/style.css">
-    
-
-
 </head>
 <body>
     <nav class="card">
@@ -56,7 +52,7 @@
     
     
     <main class="container" id="monitor">
-        <section class="card scroll-horizontal">
+        <!-- <section class="card scroll-horizontal">
             <span class="tittle">No. Licencia</span>
             <table>
                 <thead>
@@ -74,7 +70,7 @@
                         <td>Pruebas de fuga a Terceros</td>
                         <td>08/08/2023</td>
                         <td>08/08/2027</td>
-                        <td>Activo</td>
+                        <td ><span class="activo">Activo</span></td>
                         <td><img src="./assets/icons/editar.svg"></img></td>
                         <td><img src="./assets/icons/eliminar.svg"></img></td>
                     </tr>      
@@ -83,7 +79,7 @@
                         <td>Pruebas de fuga a Terceros</td>
                         <td>08/08/2023</td>
                         <td>08/08/2027</td>
-                        <td>Activo</td>
+                        <td ><span class="activo">Activo</span></td>
                         <td><img src="./assets/icons/editar.svg"></img></td>
                         <td><img src="./assets/icons/eliminar.svg"></img></td>
                     </tr>                     <tr>
@@ -91,12 +87,14 @@
                         <td>Pruebas de fuga a Terceros</td>
                         <td>08/08/2023</td>
                         <td>08/08/2027</td>
-                        <td>Activo</td>
+                        <td ><span class="baja">Baja</span></td>
                         <td><img src="./assets/icons/editar.svg"></img></td>
                         <td><img src="./assets/icons/eliminar.svg"></img></td>
                     </tr>         
                 </tbody>
             </table>
+            <a class="btn-new">Agregar nuevo</a>
+
         </section>
         <section class="card scroll-horizontal">
             <span class="tittle">Fuentes de referencia</span>
@@ -104,42 +102,175 @@
                 <thead>
                     <th>Isotopo</th>
                     <th>Energia</th>
+                    <th>Serie</th>
                     <th>Act.Original</th>
-                    <th>Fecha vencimiento</th>
+                    <th>Fecha cal</th>
                     <th>Estatus</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>A00.200/1998/2023</td>
-                        <td>Pruebas de fuga a Terceros</td>
-                        <td>08/08/2023</td>
-                        <td>08/08/2027</td>
-                        <td>Activo</td>
+                        <td>Cs-137</td>
+                        <td>662 KeV</td>
+                        <td>60-4565</td>
+                        <td>1.9 mCi</td> 
+                        <td>12/05/1999</td>
+                        <td ><span class="activo">Activo</span></td>
+                        <td><img src="./assets/icons/editar.svg"></img></td>
+                        <td><img src="./assets/icons/eliminar.svg"></img></td>
+
+                    </tr> 
+                    <tr>
+                        <td>Cs-137</td>
+                        <td>662 KeV</td>
+                        <td>60-4565</td>
+                        <td>1.9 mCi</td> 
+                        <td>12/05/1999</td>
+                        <td ><span class="activo">Activo</span></td>
                         <td><img src="./assets/icons/editar.svg"></img></td>
                         <td><img src="./assets/icons/eliminar.svg"></img></td>
                     </tr>      
-                    <tr>
-                        <td>A00.200/1998/2023</td>
-                        <td>Pruebas de fuga a Terceros</td>
-                        <td>08/08/2023</td>
-                        <td>08/08/2027</td>
-                        <td>Activo</td>
-                        <td><img src="./assets/icons/editar.svg"></img></td>
-                        <td><img src="./assets/icons/eliminar.svg"></img></td>
-                    </tr>                     <tr>
-                        <td>A00.200/1998/2023</td>
-                        <td>Pruebas de fuga a Terceros</td>
-                        <td>08/08/2023</td>
-                        <td>08/08/2027</td>
-                        <td>Activo</td>
-                        <td><img src="./assets/icons/editar.svg"></img></td>
-                        <td><img src="./assets/icons/eliminar.svg"></img></td>
-                    </tr>         
+                    
                 </tbody>
             </table>
+            <br>
+            <a class="btn-new">Agregar nuevo</a>
+
         </section>
+        <section class="card scroll-horizontal">
+            <span class="tittle">Equipo para realizar las pruebas</span>
+            <table>
+                <thead>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Serie</th>
+                    <th>Tipo</th>
+                    <th>Estatus</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>S.E. International</td>
+                        <td>Ursa II</td>
+                        <td>200158</td>
+                        <td>Multicanal</td>
+                        <td ><span class="activo">Activo</span></td>
+                        <td><img src="./assets/icons/editar.svg"></img></td>
+                        <td><img src="./assets/icons/eliminar.svg"></img></td>
+
+                    </tr> 
+                    <tr>
+                        <td>Ludlum </td>
+                        <td>2200</td>
+                        <td>1250158</td>
+                        <td>Monocanal</td>
+                        <td ><span class="baja">Baja</span></td>
+                        <td><img src="./assets/icons/editar.svg"></img></td>
+                        <td><img src="./assets/icons/eliminar.svg"></img></td>
+
+                    </tr>      
+                    
+                </tbody>
+            </table>
+            <br>
+            <a class="btn-new">Agregar nuevo</a>
+
+        </section>
+        <section class="card scroll-horizontal">
+            <span class="tittle">Detectores</span>
+            <table>
+                <thead>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Serie</th>
+                    <th>Tipo</th>
+                    <th>HV</th>
+                    <th>Estatus</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ludlum</td>
+                        <td>44-10</td>
+                        <td>PR231245</td>
+                        <td>Centelleo</td>
+                        <td>900 V</td>
+                        <td ><span class="activo">Activo</span></td>
+                        <td><img src="./assets/icons/editar.svg"></img></td>
+                        <td><img src="./assets/icons/eliminar.svg"></img></td>
+
+                    </tr> 
+                    <tr>
+                        <td>Ludlum</td>
+                        <td>44-10</td>
+                        <td>PR231245</td>
+                        <td>Centelleo</td>
+                        <td>900 V</td>
+                        <td ><span class="activo">Activo</span></td>
+                        <td><img src="./assets/icons/editar.svg"></img></td>
+                        <td><img src="./assets/icons/eliminar.svg"></img></td>
+
+                    </tr> 
+                    <tr>
+                        <td>Ludlum</td>
+                        <td>44-10</td>
+                        <td>PR231245</td>
+                        <td>Centelleo</td>
+                        <td>900 V</td>
+                        <td ><span class="activo">Activo</span></td>
+                        <td><img src="./assets/icons/editar.svg"></img></td>
+                        <td><img src="./assets/icons/eliminar.svg"></img></td>
+                    </tr> 
+                    
+                </tbody>
+            </table>
+            <br>
+            <a class="btn-new">Agregar nuevo</a>
+
+        </section>
+        <section class="card scroll-horizontal">
+            <span class="tittle">Personal Autorizado para P.F.</span>
+            <table>
+                <thead>
+                    <th>Nombre</th>
+                    <th>Cargo</th>
+                    <th>Estatus</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ing. Mario Saul De la fuente Barrueta</td>
+                        <td>Auxiliar de E.S.R</td>
+                        <td ><span class="activo">Activo</span></td>
+                        <td><img src="./assets/icons/editar.svg"></img></td>
+                        <td><img src="./assets/icons/eliminar.svg"></img></td>
+
+                    </tr> 
+                    <tr>
+                        <td>Ing. Francisco Javier García Villanueva</td>
+                        <td>E.S.R</td>
+                        <td ><span class="activo">Activo</span></td>
+                        <td><img src="./assets/icons/editar.svg"></img></td>
+                        <td><img src="./assets/icons/eliminar.svg"></img></td>
+                    </tr>
+                    <tr>
+                        <td>Ing. Julio César Ríos Balderas</td>
+                        <td>P.O.E.</td>
+                        <td ><span class="activo">Activo</span></td>
+                        <td><img src="./assets/icons/editar.svg"></img></td>
+                        <td><img src="./assets/icons/eliminar.svg"></img></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <br>
+            <a class="btn-new">Agregar nuevo</a>
+
+        </section> -->
         
     </main>
     
@@ -162,8 +293,10 @@
     <!-- Scripts online para herramienbtas -->
     <script src="https://kit.fontawesome.com/609fa7e19c.js" crossorigin="anonymous"></script>
     <script src="./index.js"></script>
-    <script src="./js/pf.js"></script>
-    <script src="./js/laboratorio.js"></script>
+    <script src="./js/laboratorio/pf.js"></script>
+    <script src="./js/laboratorio/cal.js"></script>
+    <script src="./js/laboratorio/laboratorio.js"></script>
+
     <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     
     

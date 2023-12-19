@@ -8,6 +8,8 @@
             --low-gray:rgb(128, 128, 128,0.2);
             --yellow:#FFCC00;
             --tittle-color:#ff0080;
+            --activo:greenyellow;
+            --baja:rgb(255, 0, 0,0.5);
 
         }
         html{
@@ -174,6 +176,7 @@
             background-color: var(--primary-color);
             color: var(--background-color);
             border-radius: 5px;
+            cursor: pointer;
         }
         .btn-send{
             display: flex;
@@ -229,6 +232,7 @@
             color: var(--background-color);
         }
         .tittle{
+            font-size: 1.6rem;
             font-weight: bold;
             color: var(--tittle-color);
         }
@@ -237,6 +241,44 @@
         table{
             border-collapse: collapse;
             min-width: 580px;
+            font-size: 1.4rem;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        table thead {
+            color: var(--primary-color);
+        }
+        table tbody tr td{
+            
+            
+            padding: 5px auto;
+            vertical-align: middle;
+            border-bottom: 1px solid var(--low-gray);
+            color: var(--gray);
+        }
+        table tbody tr td span{
+            margin: 1px auto;
+        }
+       
+        table tbody tr td span.activo{           
+            display: block;
+            width: 50px;
+            padding: 5px;
+
+            align-self: center;
+            border-radius: 5px;
+            background-color: var(--activo);
+        }
+        table tbody tr td span.baja{
+            display: block;
+            width: 50px;
+            min-width: 49px;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: var(--baja);
+            color: rgb(0, 0, 0,0.5);
         }
        
         
