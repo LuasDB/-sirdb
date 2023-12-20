@@ -53,37 +53,24 @@
     
     <main class="container" id="monitor">
         <section class="card form-1">         
-            <span class="tittle">Nueva Fuente</span>
+            <span class="tittle">Nuevo Detector</span>
             <br>
-            <label for="isotopo">Isotopo</label>
-            <select name="isotopo" id="isotopo">
-                <option value="Cs-137">Cs-137</option>
-                <option value="Co-60">Co-60</option>
-                <option value="Sr-90">Sr-90</option>
-                <option value="Ba-133">Ba-133</option>
-                <option value="Am-241">Am-241</option>
-                <option value="H-3">H-3</option>
+            <label for="marca">Marca</label>
+            <input type="text" name="marca" id="marca" class="envioBd">
+            <label for="modelo">Modelo</label>
+            <input type="text" name="modelo" id="modelo" class="envioBd">
+            <label for="serie">Serie</label>
+            <input type="text" name="serie" id="serie" class="envioBd">
+            <label for="hv">HV</label>
+            <input type="text" name="hv" id="hv" class="envioBd">
+            <label for="tipo">Tipo</label>
+            <select name="tipo" id="tipo" class="envioBd">
+                <option value="Centelleo">Centelleo</option>
+                <option value="Gaiger Muller">Gaiger Muller</option>
+                <option value="Proporcional">Proporcional</option>
+                <option value="Gas sin ventana">Gas sin ventana</option>
             </select>
-            <label for="energia">Energía(s)</label>
-            <input type="text" name="energia" id="energia">
-            <label for="marca">marca</label>
-            <input type="text" name="marca" id="marca">
-            <label for="serie">serie</label>
-            <input type="text" name="serie" id="serie">
-            <label for="actividad_original">Actividad_original</label>
-            <input type="number" name="actividad_original" id="actividad_original">
-            <label for="unidades">Unidades</label>
-            <select name="unidades" id="unidades" >
-                <option value="Ci">Ci</option>
-                <option value="mCi">mCi</option>
-                <option value="µCi">µCi</option>
-                <option value="Bq">Bq</option>
-                <option value="KBq">KBq</option>
-                <option value="MBq">MBq</option>
-                <option value="GBq">GBq</option>
-            </select>
-            <label for="fecha_cal">fecha_cal</label>
-            <input type="date" name="fecha_cal" id="fecha_cal">
+            
             <a class="btn-send" id="enviar">Enviar</a>
         </section>
         

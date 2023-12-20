@@ -60,6 +60,44 @@ const formulariosPf = [
 <label for="fecha_cal">fecha_cal</label>
 <input type="date" name="fecha_cal" id="fecha_cal" class="envioBd">
 <a class="btn-send" id="enviar">Enviar</a>
+</section>`,
+`<section class="card form-1">         
+<span class="tittle">Nuevo Equipo</span>
+<br>
+<label for="marca">Marca</label>
+<input type="text" name="marca" id="marca" class="envioBd">
+<label for="modelo">Modelo</label>
+<input type="text" name="modelo" id="modelo" class="envioBd">
+<label for="serie">serie</label>
+<input type="text" name="serie" id="serie" class="envioBd">
+<label for="tipo">Tipo</label>
+<select name="tipo" id="tipo" class="envioBd">
+    <option value="Monocanal">Monocanal</option>
+    <option value="Multicanal">Multicanal</option>
+</select>
+
+<a class="btn-send" id="enviar">Enviar</a>
+</section>`,
+` <section class="card form-1">         
+<span class="tittle">Nuevo Detector</span>
+<br>
+<label for="marca">Marca</label>
+<input type="text" name="marca" id="marca" class="envioBd">
+<label for="modelo">Modelo</label>
+<input type="text" name="modelo" id="modelo" class="envioBd">
+<label for="serie">Serie</label>
+<input type="text" name="serie" id="serie" class="envioBd">
+<label for="hv">HV</label>
+<input type="text" name="hv" id="hv" class="envioBd">
+<label for="tipo">Tipo</label>
+<select name="tipo" id="tipo" class="envioBd">
+    <option value="Centelleo">Centelleo</option>
+    <option value="Gaiger Muller">Gaiger Muller</option>
+    <option value="Proporcional">Proporcional</option>
+    <option value="Gas sin ventana">Gas sin ventana</option>
+</select>
+
+<a class="btn-send" id="enviar">Enviar</a>
 </section>`
 ]
 // funcion para crear ID aleatorios 
@@ -100,10 +138,21 @@ function agregar(tabla,area){
         const enviar=document.getElementById('enviar');
         enviar.onclick = ()=> envioBdPf('licencias');
         break;
-        case 'fuentes':
+      case 'fuentes':
         monitorLab.innerHTML = formulariosPf[1];
         const enviar_fuentes=document.getElementById('enviar');
         enviar_fuentes.onclick = ()=> envioBdPf('fuentes');
+        break;
+      case 'equipos':
+        monitorLab.innerHTML = formulariosPf[2];
+        const enviar_equipos=document.getElementById('enviar');
+        enviar_equipos.onclick = ()=> envioBdPf('equipos');
+
+        break;
+      case 'detectores':
+        monitorLab.innerHTML =formulariosPf[3];
+        const enviar_detectores=document.getElementById('enviar');
+        enviar_detectores.onclick = ()=> envioBdPf('detectores');
         break;
     
       default:
@@ -156,6 +205,12 @@ function editarElemento(id,tabla,area){
           <a class="btn-send" id="guardar">Guardar</a>
         </section>`;
         document.getElementById('guardar').onclick = ()=> actualizarBdPf(id,tabla);
+        let statusLic=document.getElementById('status').options;
+        for (const item of statusLic) {
+          if(item.value === licencia.status){
+            item.selected = true;
+          }
+        }
       break;
       case 'fuente':
         const fuente = laboratorioPf.fuentes.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
@@ -222,7 +277,94 @@ function editarElemento(id,tabla,area){
           }
         }
       break;
-      default:
+      case 'equipo':
+        const equipo = laboratorioPf.equipos.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+        monitorLab.innerHTML=`
+        <section class="card form-1">         
+            <span class="tittle">Equipo ${equipo.marca} modelo ${equipo.modelo}</span>
+            <br>
+            <label for="marca">Marca</label>
+            <input type="text" name="marca" id="marca" value="${equipo.marca}" class="envioBd">
+            <label for="modelo">Modelo</label>
+            <input type="text" name="modelo" id="modelo" value="${equipo.modelo}" class="envioBd">
+            <label for="serie">serie</label>
+            <input type="text" name="serie" id="serie" value="${equipo.serie}" class="envioBd">
+            <label for="tipo">Tipo</label>
+            <select name="tipo" id="tipo" class="envioBd">
+                <option value="Monocanal">Monocanal</option>
+                <option value="Multicanal">Multicanal</option>
+            </select>
+            <span class="tittle ">Status</span>
+            <select name="status" id="status" class="envioBd">
+              <option value="Activo">Activo</option>
+              <option value="Baja">Baja</option>
+          </select>
+            
+            <a class="btn-send" id="guardar">Guardar</a>
+        </section>
+        `;
+        //Para devolver la seleccion de los select:
+        document.getElementById('guardar').onclick = ()=> actualizarBdPf(id,tabla);
+        let stat=document.getElementById('status').options;
+        for (const item of stat) {
+          if(item.value === equipo.status){
+            item.selected = true;
+          }
+        }
+        let tipo=document.getElementById('tipo').options;
+        for (const item of tipo) {
+          if(item.value === equipo.status){
+            item.selected = true;
+          }
+        }
+        break;
+      case 'detector':
+          const detector = laboratorioPf.detectores.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+          monitorLab.innerHTML=`
+          <section class="card form-1">         
+            <span class="tittle">Detector ${detector.marca} modelo ${detector.modelo} serie ${detector.serie}</span>
+            <br>
+            <label for="marca">Marca</label>
+            <input type="text" name="marca" id="marca" class="envioBd" value="${detector.marca}">
+            <label for="modelo">Modelo</label>
+            <input type="text" name="modelo" id="modelo" class="envioBd" value="${detector.modelo}">
+            <label for="serie">Serie</label>
+            <input type="text" name="serie" id="serie" class="envioBd" value="${detector.serie}">
+            <label for="hv">HV</label>
+            <input type="text" name="hv" id="hv" class="envioBd" value="${detector.hv}">
+            <label for="tipo">Tipo</label>
+            <select name="tipo" id="tipo" class="envioBd">
+                <option value="Centelleo">Centelleo</option>
+                <option value="Gaiger Muller">Gaiger Muller</option>
+                <option value="Proporcional">Proporcional</option>
+                <option value="Gas sin ventana">Gas sin ventana</option>
+            </select>
+            <span class="tittle ">Status</span>
+            <select name="status" id="status" class="envioBd">
+              <option value="Activo">Activo</option>
+              <option value="Baja">Baja</option>
+            </select>
+            
+            <a class="btn-send" id="guardar">Guardar</a>
+          </section>
+          `;
+          //Para devolver la seleccion de los select:
+          document.getElementById('guardar').onclick = ()=> actualizarBdPf(id,tabla);
+          let statatus_det=document.getElementById('status').options;
+          for (const item of statatus_det) {
+            if(item.value === detector.status){
+              item.selected = true;
+            }
+          }
+          let tipo_det=document.getElementById('tipo').options;
+          for (const item of tipo_det) {
+            if(item.value === detector.tipo){
+              item.selected = true;
+            }
+          }
+          break;
+  
+        default:
         break;
 
     }
@@ -253,13 +395,30 @@ function envioBdPf(tabla){
       objdata['id']=generateRandomString(15);
       laboratorioPf.licencias.push(objdata);
       break;
-      case 'fuentes':      
+    case 'fuentes':      
       document.querySelectorAll('.envioBd').forEach(item =>{
         objdata[item.id]=item.value;
       });
       objdata['status']='Activo';
       objdata['id']=generateRandomString(15);
       laboratorioPf.fuentes.push(objdata);
+      break;
+    case 'equipos':      
+      document.querySelectorAll('.envioBd').forEach(item =>{
+        objdata[item.id]=item.value;
+      });
+      objdata['status']='Activo';
+      objdata['id']=generateRandomString(15);
+      laboratorioPf.equipos.push(objdata);
+      break;
+    case 'detectores':      
+      document.querySelectorAll('.envioBd').forEach(item =>{
+        objdata[item.id]=item.value;
+      });
+      objdata['status']='Activo';
+      objdata['id']=generateRandomString(15);
+      console.log(objdata)
+      laboratorioPf.detectores.push(objdata);
       break;
   
     default:
@@ -298,7 +457,27 @@ function actualizarBdPf(id, tabla){
         index= laboratorioPf.fuentes.findIndex(item => item.id === id);
         laboratorioPf.fuentes[index] = {...objdata};
         break;
-    
+    case 'equipo':
+      document.querySelectorAll('.envioBd').forEach(item =>{
+        objdata[item.id]=item.value;
+      });
+      // objdata['id']=id;
+      console.log(`[ACUALIZACION]:${id}`);
+      console.log(objdata)
+      index= laboratorioPf.equipos.findIndex(item => item.id === id);
+      laboratorioPf.equipos[index] = {...objdata};
+      break;
+    case 'detector':
+      document.querySelectorAll('.envioBd').forEach(item =>{
+        objdata[item.id]=item.value;
+      });
+      // objdata['id']=id;
+      console.log(`[ACUALIZACION]:${id}`);
+      console.log(objdata)
+      index= laboratorioPf.detectores.findIndex(item => item.id === id);
+      laboratorioPf.detectores[index] = {...objdata};
+      break;
+  
     default:
       break;
   }

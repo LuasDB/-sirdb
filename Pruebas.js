@@ -8,7 +8,7 @@ console.log(fechas.sort((a,b)=>{return new Date(a).getTime() > new Date(b).getTi
 
 
 
-const seleccion= document.getElementById('unidades').options;
+// const seleccion= document.getElementById('unidades').options;
 
 // seleccion.forEach(element => {
 //     console.log(element.value);

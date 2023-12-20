@@ -26,14 +26,15 @@ const laboratorioPf =
         fecha_emision:'2023-08-08',
         fecha_vencimiento:'2023-12-20',
         razon_social:'Servicios Integrales para la Radiación,S.A. de C.V.',
-        status:'Baja',domicilio:{
+        status:'Baja',
+        domicilio:{
           direccion:'De los reyes No.4',
           colonia:'Industrial Puente de Vigas',
           ciudad:'Tlalnepantla de Baz',
           estado:'Edo. de México',
           cp:'54070',
           pais:'México'
-      },
+        },
       },
       {
         id:'sdsdlgg34344334',
