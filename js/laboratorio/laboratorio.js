@@ -26,8 +26,41 @@ const formulariosPf = [
   <label for="pais">País</label>
   <input type="text" class="dir" name="pais" id="pais">
   <a class="btn-send" id="enviar">Enviar</a>
+</section>`,
+`<section class="card form-1">         
+<span class="tittle">Nueva Fuente</span>
+<br>
+<label for="isotopo">Isotopo</label>
+<select name="isotopo" id="isotopo" class="envioBd">
+    <option value="Cs-137">Cs-137</option>
+    <option value="Co-60">Co-60</option>
+    <option value="Sr-90">Sr-90</option>
+    <option value="Ba-133">Ba-133</option>
+    <option value="Am-241">Am-241</option>
+    <option value="H-3">H-3</option>
+</select>
+<label for="energia">Energía(s)</label>
+<input type="text" name="energia" id="energia" class="envioBd">
+<label for="marca">marca</label>
+<input type="text" name="marca" id="marca" class="envioBd">
+<label for="serie">serie</label>
+<input type="text" name="serie" id="serie" class="envioBd">
+<label for="actividad_original">Actividad_original</label>
+<input type="number" name="actividad_original" id="actividad_original" class="envioBd">
+<label for="unidades">Unidades</label>
+<select name="unidades" id="unidades" class="envioBd" >
+    <option value="Ci">Ci</option>
+    <option value="mCi">mCi</option>
+    <option value="µCi">µCi</option>
+    <option value="Bq">Bq</option>
+    <option value="KBq">KBq</option>
+    <option value="MBq">MBq</option>
+    <option value="GBq">GBq</option>
+</select>
+<label for="fecha_cal">fecha_cal</label>
+<input type="date" name="fecha_cal" id="fecha_cal" class="envioBd">
+<a class="btn-send" id="enviar">Enviar</a>
 </section>`
-
 ]
 // funcion para crear ID aleatorios 
 
@@ -64,8 +97,13 @@ function agregar(tabla,area){
     switch (tabla) {
       case 'licencias':
         monitorLab.innerHTML = formulariosPf[0];
-        let enviar=document.getElementById('enviar');
+        const enviar=document.getElementById('enviar');
         enviar.onclick = ()=> envioBdPf('licencias');
+        break;
+        case 'fuentes':
+        monitorLab.innerHTML = formulariosPf[1];
+        const enviar_fuentes=document.getElementById('enviar');
+        enviar_fuentes.onclick = ()=> envioBdPf('fuentes');
         break;
     
       default:
@@ -79,11 +117,10 @@ function agregar(tabla,area){
 }
 function editarElemento(id,tabla,area){
   if(area === 'pf'){
-    const licencia = laboratorioPf.licencias.find(item => item.id === id);
-    console.log(`[LICENCIA ${id}]:`);
-    console.log(licencia);
+    
     switch(tabla){
       case 'licencia':
+        const licencia = laboratorioPf.licencias.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
         monitorLab.innerHTML=`
         <section class="card form-1">         
           <span class="tittle">Licencia ${licencia.num_lic}</span>
@@ -118,10 +155,73 @@ function editarElemento(id,tabla,area){
           </select>
           <a class="btn-send" id="guardar">Guardar</a>
         </section>`;
-
-        document.getElementById('guardar').onclick = ()=> actualizarBdPf(id,tabla)
-
-        break;
+        document.getElementById('guardar').onclick = ()=> actualizarBdPf(id,tabla);
+      break;
+      case 'fuente':
+        const fuente = laboratorioPf.fuentes.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+        monitorLab.innerHTML=`
+        <section class="card form-1">         
+            <span class="tittle">Fuente ${fuente.isotopo} serie ${fuente.serie}</span>
+            <br>
+            <label for="isotopo">Isotopo</label>
+            <select name="isotopo" id="isotopo" class="envioBd">
+                <option value="Cs-137">Cs-137</option>
+                <option value="Co-60">Co-60</option>
+                <option value="Sr-90">Sr-90</option>
+                <option value="Ba-133">Ba-133</option>
+                <option value="Am-241">Am-241</option>
+                <option value="H-3">H-3</option>
+            </select>
+            <label for="energia">Energía(s)</label>
+            <input type="text" name="energia" id="energia" value="${fuente.energia}" class="envioBd">
+            <label for="marca">marca</label>
+            <input type="text" name="marca" id="marca" value="${fuente.marca}" class="envioBd">
+            <label for="serie">serie</label>
+            <input type="text" name="serie" id="serie" value="${fuente.serie}" class="envioBd">
+            <label for="actividad_original">Actividad_original</label>
+            <input type="number" name="actividad_original" id="actividad_original" value="${fuente.actividad_original}" class="envioBd">
+            <label for="unidades">Unidades</label>
+            <select name="unidades" id="unidades" value="${fuente.unidades}" class="envioBd" >
+                <option value="Ci">Ci</option>
+                <option value="mCi">mCi</option>
+                <option value="µCi">µCi</option>
+                <option value="Bq">Bq</option>
+                <option value="KBq">KBq</option>
+                <option value="MBq">MBq</option>
+                <option value="GBq">GBq</option>
+            </select>
+            <label for="fecha_cal">fecha_cal</label>
+            <input type="date" name="fecha_cal" id="fecha_cal" value="${fuente.fecha_cal}" class="envioBd">
+            <span class="tittle ">Status</span>
+            <select name="status" id="status" class="envioBd">
+              <option value="Activo">Activo</option>
+              <option value="Baja">Baja</option>
+          </select>
+            <a class="btn-send" id="guardar">Guardar</a>
+        </section>
+        `;
+        //Para devolver la seleccion de los select:
+        document.getElementById('guardar').onclick = ()=> actualizarBdPf(id,tabla);
+        let isotopos=document.getElementById('isotopo').options;
+        for (const item of isotopos) {
+          if(item.value === fuente.isotopo){
+            item.selected = true;
+          }
+        }
+        
+        let unidades=document.getElementById('unidades').options;
+        for (const item of unidades) {
+          if(item.value === fuente.unidades){
+            item.selected = true;
+          }
+        }
+        let status=document.getElementById('status').options;
+        for (const item of status) {
+          if(item.value === fuente.status){
+            item.selected = true;
+          }
+        }
+      break;
       default:
         break;
 
@@ -133,13 +233,14 @@ function editarElemento(id,tabla,area){
 function deleteElemento(id,tabla){
   console.log(`[ELIMINAR ${tabla}]:${id}`);
 }
-/************************************************************************************************************************
+/***************************************************************************************************
  * FUNCIONES PARA ENVIO A BASE DE DATOS
- *************************************************************************************************************************/
+ ***************************************************************************************************/
 function envioBdPf(tabla){
+  const objdata={};
   switch (tabla) {
     case 'licencias':
-      const objdata={}
+      
       const objdir = {};
       document.querySelectorAll('.dir').forEach(item =>{
         objdir[item.id]=item.value;
@@ -152,6 +253,14 @@ function envioBdPf(tabla){
       objdata['id']=generateRandomString(15);
       laboratorioPf.licencias.push(objdata);
       break;
+      case 'fuentes':      
+      document.querySelectorAll('.envioBd').forEach(item =>{
+        objdata[item.id]=item.value;
+      });
+      objdata['status']='Activo';
+      objdata['id']=generateRandomString(15);
+      laboratorioPf.fuentes.push(objdata);
+      break;
   
     default:
       break;
@@ -160,9 +269,11 @@ function envioBdPf(tabla){
   
 }
 function actualizarBdPf(id, tabla){
+  const objdata={}
+  let index;
   switch (tabla) {
     case 'licencia':
-      const objdata={}
+      
       const objdir = {};
       document.querySelectorAll('.dir').forEach(item =>{
         objdir[item.id]=item.value;
@@ -171,11 +282,23 @@ function actualizarBdPf(id, tabla){
         objdata[item.id]=item.value;
       });
       objdata['domicilio']={...objdir};
+      objdata['id']=id;
+
       console.log(`[ACTUALIZACION]:${objdata}`);
-      const index= laboratorioPf.licencias.findIndex(item => item.id === id);
+      index= laboratorioPf.licencias.findIndex(item => item.id === id);
       laboratorioPf.licencias[index] = objdata;
       break;
-  
+    case 'fuente':
+        document.querySelectorAll('.envioBd').forEach(item =>{
+          objdata[item.id]=item.value;
+        });
+        // objdata['id']=id;
+        console.log(`[ACUALIZACION]:${id}`);
+        console.log(objdata)
+        index= laboratorioPf.fuentes.findIndex(item => item.id === id);
+        laboratorioPf.fuentes[index] = {...objdata};
+        break;
+    
     default:
       break;
   }
@@ -184,10 +307,3 @@ function actualizarBdPf(id, tabla){
 
 
 }
-
-
-
-
-
-
-

@@ -52,40 +52,40 @@
     
     
     <main class="container" id="monitor">
-        <!-- <section class="card form-1">         
-            <span class="tittle">Nueva Licencia</span>
+        <section class="card form-1">         
+            <span class="tittle">Nueva Fuente</span>
             <br>
-            <label for="num_lic">Número Licencia</label>
-            <input type="text" name="num_lic" id="num_lic">
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre">
-            <label for="razon_social">Razón social</label>
-            <input type="text" name="razon_social" id="razon_social">
-            <label for="fecha_emision">Fecha Emision</label>
-            <input type="date" name="fecha_emision" id="fecha_emision">
-            <label for="fecha_vencimiento">fecha_vencimiento</label>
-            <input type="date" name="fecha_vencimiento" id="fecha_vencimiento">
-            <span class="tittle">Domicilio</span>
-            <label for="direccion">Dirección</label>
-            <input type="text" name="direccion" id="direccion">
-            <label for="colonia">Colonia</label>
-            <input type="text" name="colonia" id="colonia">
-            <label for="ciudad">Ciudad</label>
-            <input type="text" name="ciudad" id="ciudad">
-            <label for="estado">Estado</label>
-            <input type="text" name="estado" id="estado">
-            <label for="cp">Código Postal</label>
-            <input type="number" name="cp" id="cp">
-            <label for="pais">País</label>
-            <input type="text" name="pais" id="pais">
-            <br>
-            <span class="tittle">Status</span>
-            <select name="status" id="status">
-                <option value="Activo">Activo</option>
-                <option value="Baja">Baja</option>
+            <label for="isotopo">Isotopo</label>
+            <select name="isotopo" id="isotopo">
+                <option value="Cs-137">Cs-137</option>
+                <option value="Co-60">Co-60</option>
+                <option value="Sr-90">Sr-90</option>
+                <option value="Ba-133">Ba-133</option>
+                <option value="Am-241">Am-241</option>
+                <option value="H-3">H-3</option>
             </select>
+            <label for="energia">Energía(s)</label>
+            <input type="text" name="energia" id="energia">
+            <label for="marca">marca</label>
+            <input type="text" name="marca" id="marca">
+            <label for="serie">serie</label>
+            <input type="text" name="serie" id="serie">
+            <label for="actividad_original">Actividad_original</label>
+            <input type="number" name="actividad_original" id="actividad_original">
+            <label for="unidades">Unidades</label>
+            <select name="unidades" id="unidades" >
+                <option value="Ci">Ci</option>
+                <option value="mCi">mCi</option>
+                <option value="µCi">µCi</option>
+                <option value="Bq">Bq</option>
+                <option value="KBq">KBq</option>
+                <option value="MBq">MBq</option>
+                <option value="GBq">GBq</option>
+            </select>
+            <label for="fecha_cal">fecha_cal</label>
+            <input type="date" name="fecha_cal" id="fecha_cal">
             <a class="btn-send" id="enviar">Enviar</a>
-        </section> -->
+        </section>
         
     </main>
     
@@ -112,6 +112,9 @@
     <script src="./js/laboratorio/pf.js"></script>
     <script src="./js/laboratorio/cal.js"></script>
     <script src="./js/laboratorio/laboratorio.js"></script>
+    <script src="./db/db.js"></script>
+    <script type="module" src="./Pruebas.js"></script>
+
 
     <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="https://momentjs.com/downloads/moment.js"></script>
