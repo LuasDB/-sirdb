@@ -232,9 +232,12 @@
             color: var(--background-color);
         }
         .tittle{
+            margin: 10px auto;
+
             font-size: 1.6rem;
             font-weight: bold;
             color: var(--tittle-color);
+
         }
 
         /* TABLA  */
