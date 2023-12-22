@@ -204,6 +204,9 @@
             color: green;
             cursor: pointer;
         }
+        .text-gray-color{
+            color: var(--gray);
+        }
         .text-center{
             text-align: center;
         }
@@ -239,6 +242,19 @@
             color: var(--tittle-color);
 
         }
+        .align-items{
+           align-items: center;
+            
+        }
+        .bold-primary-color{
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .recuadro{
+            margin: 10px 0;
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+        }
 
         /* TABLA  */
         table{
@@ -253,9 +269,13 @@
         table thead {
             color: var(--primary-color);
         }
+        table thead th{
+            padding: 5px;
+            white-space: nowrap;
+            width: auto;
+        }
         table tbody tr td{
-            
-            
+                    
             padding: 5px auto;
             vertical-align: middle;
             border-bottom: 1px solid var(--low-gray);
@@ -340,7 +360,7 @@
             display: flex;
             flex-direction: column;
             padding: 5px 20px 10px;
-            color: var(--primary-color);
+            color: var(--gray);
         }      
         .form-1 select{
             padding: 5px;
@@ -407,6 +427,51 @@
             text-align: center;
             padding: 20px;
             overflow-x: auto;
+        }
+        /* Estilos para formulario pruebas de fuga */
+
+        .form-pruebas-fuga{
+            display: flex;
+            padding: 5%;
+            flex-direction: column;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: medium;
+        }
+        .form-pruebas-fuga label{
+            font-weight: bold;
+        }
+        .form-pruebas-fuga  span{
+            font-weight: bold;
+        }
+        .form-pruebas-fuga p{
+            margin: 10px;
+        }
+        .fila{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            
+        }
+        .columna{
+            display: flex;
+            flex-direction: column;
+            margin:10px;
+        }
+        .width-75{
+            width: 75%;
+            margin:10px;
+        }
+        .width-50{
+            width: 50%;
+            margin:10px;
+        }
+        .width-25{
+            width: 25%;
+            margin:10px;
+        }
+        .letra-color{
+            color: #ff0080;
         }
 
 

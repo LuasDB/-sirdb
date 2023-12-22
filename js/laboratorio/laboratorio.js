@@ -1,5 +1,6 @@
 const formulariosPf = [
-  `<section class="card form-1">         
+  `<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
+  <section class="card form-1">         
   <span class="tittle">Nueva Licencia</span>
   <br>
   <label for="num_lic">Número Licencia</label>
@@ -27,7 +28,8 @@ const formulariosPf = [
   <input type="text" class="dir" name="pais" id="pais">
   <a class="btn-send" id="enviar">Enviar</a>
 </section>`,
-`<section class="card form-1">         
+`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
+<section class="card form-1">         
 <span class="tittle">Nueva Fuente</span>
 <br>
 <label for="isotopo">Isotopo</label>
@@ -57,11 +59,12 @@ const formulariosPf = [
     <option value="MBq">MBq</option>
     <option value="GBq">GBq</option>
 </select>
-<label for="fecha_cal">fecha_cal</label>
+<label for="fecha_cal">Fecha de calibración</label>
 <input type="date" name="fecha_cal" id="fecha_cal" class="envioBd">
 <a class="btn-send" id="enviar">Enviar</a>
 </section>`,
-`<section class="card form-1">         
+`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
+<section class="card form-1">         
 <span class="tittle">Nuevo Equipo</span>
 <br>
 <label for="marca">Marca</label>
@@ -78,7 +81,8 @@ const formulariosPf = [
 
 <a class="btn-send" id="enviar">Enviar</a>
 </section>`,
-` <section class="card form-1">         
+`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
+<section class="card form-1">         
 <span class="tittle">Nuevo Detector</span>
 <br>
 <label for="marca">Marca</label>
@@ -98,6 +102,27 @@ const formulariosPf = [
 </select>
 
 <a class="btn-send" id="enviar">Enviar</a>
+</section>`,
+`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
+<section class="card form-1">         
+    <span class="tittle">Nuevo Personal</span>
+    <br>
+    <label for="nombre">Nombre</label>
+    <input type="text" name="nombre" id="nombre" class="envioBd">
+    <label for="nivel">Profesión</label>
+    <select name="nivel" id="nivel" class="envioBd">
+        <option value="Ing.">Ingeniero(a)</option>
+        <option value="Tec.">Técnico(a)</option>
+        <option value="Lic.">Licenciado(a)</option>
+        <option value="M. en C.">Maestria en ciencias</option>
+    </select>
+    <label for="cargo">Cargo dentro del laboratorio (P.F.)</label>
+    <select name="cargo" id="cargo" class="envioBd">
+        <option value="E.S.R.">E.S.R.</option>
+        <option value="Auxiliar de E.S.R.">Auxiliar de E.S.R.</option>
+        <option value="P.O.E.">P.O.E.</option>
+    </select>
+    <a class="btn-send" id="enviar">Enviar</a>
 </section>`
 ]
 // funcion para crear ID aleatorios 
@@ -128,6 +153,7 @@ function callLabGestion(){
 document.querySelector('.calibracion').onclick = ()=> calibracionDash();
 document.querySelector('.pruebas_fuga').onclick = ()=> pruebasFugaMenu();
 
+
 }
 function agregar(tabla,area){
   console.log(`[Agregar Nuevo ${tabla},del area ${area}]`);
@@ -154,11 +180,18 @@ function agregar(tabla,area){
         const enviar_detectores=document.getElementById('enviar');
         enviar_detectores.onclick = ()=> envioBdPf('detectores');
         break;
+      case 'personal':
+        monitorLab.innerHTML =formulariosPf[4];
+        const enviar_personal=document.getElementById('enviar');
+        enviar_personal.onclick = ()=> envioBdPf('personal');
+        
+        break;
     
       default:
         break;
     }
-
+    document.getElementById('atras').onclick = ()=> pruebasFugaLicencia();
+    
   }else{
     ///Funciones para calibración
   }
@@ -363,11 +396,64 @@ function editarElemento(id,tabla,area){
             }
           }
           break;
-  
+      case 'personal':
+        const personal = laboratorioPf.personalPf.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+        monitorLab.innerHTML=`
+        <h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
+        <section class="card form-1">         
+            <span class="tittle">${personal.cargo}</span>
+            <br>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" class="envioBd" value="${personal.nombre}">
+            <label for="nivel">Profesión</label>
+            <select name="nivel" id="nivel" class="envioBd">
+                <option value="Ing.">Ingeniero(a)</option>
+                <option value="Tec.">Técnico(a)</option>
+                <option value="Lic.">Licenciado(a)</option>
+                <option value="M. en C.">Maestria en ciencias</option>
+            </select>
+            <label for="cargo">Cargo dentro del laboratorio (P.F.)</label>
+            <select name="cargo" id="cargo" class="envioBd">
+                <option value="E.S.R.">E.S.R.</option>
+                <option value="Auxiliar de E.S.R.">Auxiliar de E.S.R.</option>
+                <option value="P.O.E.">P.O.E.</option>
+            </select>
+            <span class="tittle ">Status</span>
+            <select name="status" id="status" class="envioBd">
+              <option value="Activo">Activo</option>
+              <option value="Baja">Baja</option>
+            </select>
+            
+            <a class="btn-send" id="guardar">Guardar</a>
+          </section>
+        </section>
+        `;
+        //Para devolver la seleccion de los select:
+        document.getElementById('guardar').onclick = ()=> actualizarBdPf(id,tabla);
+        let statatus_personal=document.getElementById('status').options;
+        for (const item of statatus_personal) {
+          if(item.value === personal.status){
+            item.selected = true;
+          }
+        }
+        let nivel_personal=document.getElementById('nivel').options;
+        for (const item of nivel_personal) {
+          if(item.value === personal.nivel){
+            item.selected = true;
+          }
+        }
+        let cargo_personal=document.getElementById('cargo').options;
+        for (const item of cargo_personal) {
+          if(item.value === personal.cargo){
+            item.selected = true;
+          }
+        }
+        break;
+    
         default:
         break;
-
     }
+    document.getElementById('atras').onclick = ()=> pruebasFugaLicencia();
   }else{
     //Elementos de editar para Calibracion
   }
@@ -419,6 +505,15 @@ function envioBdPf(tabla){
       objdata['id']=generateRandomString(15);
       console.log(objdata)
       laboratorioPf.detectores.push(objdata);
+      break;
+    case 'personal':      
+      document.querySelectorAll('.envioBd').forEach(item =>{
+        objdata[item.id]=item.value;
+      });
+      objdata['status']='Activo';
+      objdata['id']=generateRandomString(15);
+      console.log(objdata)
+      laboratorioPf.personalPf.push(objdata);
       break;
   
     default:
@@ -476,6 +571,17 @@ function actualizarBdPf(id, tabla){
       console.log(objdata)
       index= laboratorioPf.detectores.findIndex(item => item.id === id);
       laboratorioPf.detectores[index] = {...objdata};
+      break;
+
+    case 'personal':
+      document.querySelectorAll('.envioBd').forEach(item =>{
+        objdata[item.id]=item.value;
+      });
+      // objdata['id']=id;
+      console.log(`[ACUALIZACION]:${id}`);
+      console.log(objdata)
+      index= laboratorioPf.personalPf.findIndex(item => item.id === id);
+      laboratorioPf.personalPf[index] = {...objdata};
       break;
   
     default:

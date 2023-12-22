@@ -35,7 +35,7 @@
             <li id="cal" onclick="callCalibraciones()"><span class="card-icon material-symbols-outlined ">
                 monitor_heart
                 </span> Calibración</li>
-            <li id="pf"  onclick="callPruebasFuga()"> <span class="card-icon material-symbols-outlined">
+            <li onclick="callPruebasFuga()"> <span class="card-icon material-symbols-outlined">
                 analytics
                 </span>Pruebas de Fuga</li>
             <li id="" ><span class="card-icon material-symbols-outlined">
@@ -52,31 +52,122 @@
     
     
     <main class="container" id="monitor">
-        <section class="card form-1">         
-            <span class="tittle">Nuevo Detector</span>
-            <br>
-            <label for="marca">Marca</label>
-            <input type="text" name="marca" id="marca" class="envioBd">
-            <label for="modelo">Modelo</label>
-            <input type="text" name="modelo" id="modelo" class="envioBd">
-            <label for="serie">Serie</label>
-            <input type="text" name="serie" id="serie" class="envioBd">
-            <label for="hv">HV</label>
-            <input type="text" name="hv" id="hv" class="envioBd">
-            <label for="tipo">Tipo</label>
-            <select name="tipo" id="tipo" class="envioBd">
-                <option value="Centelleo">Centelleo</option>
-                <option value="Gaiger Muller">Gaiger Muller</option>
-                <option value="Proporcional">Proporcional</option>
-                <option value="Gas sin ventana">Gas sin ventana</option>
+       
+        <section class="card form-1"> 
+            <span class="tittle">Solicitud de Análisis de Pruebas de Fuga</span>
+            <label for="os">Orden de Servicio</label>
+            <input type="text" id="os" name="os" class="envioBd">
+            <button>Buscar</button>
+            <span class="tittle">Datos del Permisionario</span>
+            <label for="razon_social">Razón Social</label>
+            <input type="text" id="razon_social" name="razon_social"  class="envioBdPermisionario">
+            <label for="licencia">Número de licencia</label>
+            <input type="text" id="licencia" name="licencia"  class="envioBdPermisionario">
+            <label for="fecha_vencimiento">Fecha de vencimiento de licencia</label>
+            <input type="text" id="fecha_vencimiento" name="fecha_vencimiento"  class="envioBdPermisionario">
+            <span class="tittle">Domicilio del permisionario</span>
+            <label for="calle">Calle y número</label>
+            <input type="text" id="calle" name="calle"  class="envioDir">
+            <label for="colonia">Colonia</label>
+            <input type="text" id="colonia" name="colonia"  class="envioDir">
+            <label for="ciudad">Ciudad</label>
+            <input type="text" id="ciudad" name="ciudad"  class="envioDir">
+            <label for="estado">Estado</label>
+            <input type="text" id="estado" name="estado"  class="envioDir">
+            <label for="cp">C.P.</label>
+            <input type="text" id="cp" name="cp"  class="envioDir">
+            <label for="pais">País</label>
+            <input type="text" id="pais" name="pais"  class="envioDir" value="México">
+            <span class="tittle">Datos del Encargado de Seguridad Radiologíca</span>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" class="envioBdEsr">
+            <label for="nivel">Profesión</label>
+            <select name="nivel" id="nivel" class="envioBdEsr">
+                <option value="Ing.">Ingeniero(a)</option>
+                <option value="Tec.">Técnico(a)</option>
+                <option value="Lic.">Licenciado(a)</option>
+                <option value="M. en C.">Maestria en ciencias</option>
+                <option value="C.">Ciudadano</option>
             </select>
+            <label for="correo">Email</label>
+            <input type="email" id="correo" name="correo"  class="envioBdEsr">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono"  class="envioBdEsr">
+            <label for="fax">Fax</label>
+            <input type="text" id="fax" name="fax"  class="envioBdEsr" value="N/D">
+            <span class="tittle">Frotis</span>
+            <a class="btn-new"><span class="material-symbols-outlined">add_circle</span>Nuevo frotis</a>
+            <div id="lista" class="scroll-horizontal">
+                <table>
+                    <thead>
+                        <th>Isótopo</th>
+                        <th>No.Serie</th>
+                        <th>Marca</th>
+                        <th>Act.Original</th>
+                        <th>Metodo Prueba</th>
+                        <th>Fecha Frotis</th>
+                        <th>Eliminar</th>
+                    </thead>
+                    <tbody id="frotis_tabla">
+                        <tr>
+                            <td>Co-60</td>
+                            <td>316-02-10</td>
+                            <td>Berthhold Technologies</td>
+                            <td>44 MBq</td>
+                            <td>Vía humeda (Superficie equivalente)</td>
+                            <td>2023-12-22</td>
+                            <td><img src="./assets/icons/eliminar.svg" class="edit_index"></img></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="frotis_form" class="recuadro form-1">
+                <span class="letra-color">Datos del frotis</span>
+                <br>
+                <label for="isotopo">Isotopo</label>
+                <select name="isotopo" id="isotopo" class="envioBd">
+                    <option value="Cs-137">Cs-137</option>
+                    <option value="Co-60">Co-60</option>
+                    <option value="Sr-90">Sr-90</option>
+                    <option value="Ba-133">Ba-133</option>
+                    <option value="Am-241">Am-241</option>
+                    <option value="H-3">H-3</option>
+                </select>
+                <label for="serie">serie</label>
+                <input type="text" name="serie" id="serie" class="envioBd">
+                <label for="marca">marca</label>
+                <input type="text" name="marca" id="marca" class="envioBd">
+                <label for="actividad_original">Actividad_original</label>
+                <input type="number" name="actividad_original" id="actividad_original" class="envioBd">
+                <label for="unidades">Unidades</label>
+                <select name="unidades" id="unidades" class="envioBd" >
+                    <option value="Ci">Ci</option>
+                    <option value="mCi">mCi</option>
+                    <option value="µCi">µCi</option>
+                    <option value="Bq">Bq</option>
+                    <option value="KBq">KBq</option>
+                    <option value="MBq">MBq</option>
+                    <option value="GBq">GBq</option>
+                </select>
+                <label for="metodo">Método</label>
+                <select name="metodo" id="metodo" class="envioBd" >
+                    <option value="Vía humeda (Sobre una superficie equivalente)">Superficie equivalente</option>
+                    <option value="Vía humeda (Sobre la fuente)">Sobre la fuente</option>
+                </select>
+                <label for="fecha_frotis">Fecha de toma</label>
+                <input type="date" name="fecha_frotis" id="fecha_frotis" class="envioBd">
+                <label class="letra-color" for="fecha_entrega">Fecha de recepcion en Labrotarotio</label>
+                <input type="date" name="fecha_entrega" id="fecha_entrega" class="envioBd">
+            </div>
             
-            <a class="btn-send" id="enviar">Enviar</a>
+
+
+
+
+            
         </section>
-        
-    </main>
-    
-    
+        <br><br> 
+    </main>      
     <script>
        
     let toggle = document.getElementById('menu_check');
@@ -100,6 +191,8 @@
     <script src="./js/laboratorio/cal.js"></script>
     <script src="./js/laboratorio/laboratorio.js"></script>
     <script src="./db/db.js"></script>
+    <script src="./js/pruebasFuga/pf.servicios.js"></script>
+
     <script type="module" src="./Pruebas.js"></script>
 
 

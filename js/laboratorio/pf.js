@@ -8,6 +8,8 @@ const monitorPf = document.getElementById('monitor');
 function pruebasFugaDash(){
     monitorLab.innerHTML='';
     monitorLab.innerHTML=`
+    <h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+  
     <h2>Num. de PF en el año</h2>
     <canvas id="myChart" width="250" height="100"></canvas>
     <h2>Num. de Isotopos en el año</h2>
@@ -108,6 +110,9 @@ function pruebasFugaDash(){
       }
         });
     const menu = document.createElement('div');
+
+  document.getElementById('atras').onclick = ()=> pruebasFugaMenu();
+
    
       
 
@@ -117,6 +122,8 @@ function pruebasFugaLicencia(){
 //Se debe mandar a llamar desde la Base de datos los campos correspondientes
 monitorLab.innerHTML = '';
 monitorLab.innerHTML=`
+<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+  
 <section class="card scroll-horizontal">
             <span class="tittle">No. Licencia</span>
             <table>
@@ -221,100 +228,102 @@ monitorLab.innerHTML=`
             <a class="btn-new personal">Agregar nuevo</a>
 
         </section>`;
-        let botones = document.querySelectorAll('.btn-new');
-        let licencias = document.getElementById('licencias');
-        let fuentes= document.getElementById('fuentes');
-        let equipos = document.getElementById('equipos');
-        let  detectores= document.getElementById('detectores');
-        let  personal= document.getElementById('personal');
+  let botones = document.querySelectorAll('.btn-new');
+  let licencias = document.getElementById('licencias');
+  let fuentes= document.getElementById('fuentes');
+  let equipos = document.getElementById('equipos');
+  let  detectores= document.getElementById('detectores');
+  let  personal= document.getElementById('personal');
 
-        botones.forEach(item =>{
-        
-        item.onclick = ()=> agregar(item.classList[1],'pf');
-        });
-        
-        laboratorioPf.licencias.forEach(licencia =>{
-        let fila = document.createElement('tr');
-        console.log(licencia.id);
-        fila.innerHTML = `
-            <td>${licencia.num_lic}</td>
-            <td>${licencia.nombre}</td>
-            <td>${licencia.fecha_emision}</td>
-            <td>${licencia.fecha_vencimiento}</td>
-            <td ><span class="${licencia.status.toLocaleLowerCase()}">${licencia.status}</span></td>
-            <td><img src="./assets/icons/editar.svg" class="edit_${licencia.id}"></img></td>
-            <td><img src="./assets/icons/eliminar.svg" class="delete_${licencia.id}"></img></td>
-            `;
-            licencias.appendChild(fila);
-            document.querySelector(`.edit_${licencia.id}`).onclick = ()=> editarElemento(licencia.id,'licencia','pf');
-            document.querySelector(`.delete_${licencia.id}`).onclick = ()=> deleteElemento(licencia.id,'licencia','pf');             
-        });
-        laboratorioPf.fuentes.forEach(item =>{
-        let fila = document.createElement('tr');
-        fila.innerHTML = `
-        <td>${item.isotopo}</td>
-        <td>${item.energia}</td>
-        <td>${item.serie}</td>
-        <td>${item.actividad_original}</td> 
-        <td>${item.fecha_cal}</td>
-        <td ><span class="${item.status.toLocaleLowerCase()}">${item.status}</span></td>
-        <td><img src="./assets/icons/editar.svg" class="edit_${item.id}"></img></td>
-        <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
-            `;
-            fuentes.appendChild(fila);
-            document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'fuente','pf');
-            document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'fuente','pf');             
-        });
-        laboratorioPf.equipos.forEach(item =>{
-        let fila = document.createElement('tr');
-        fila.innerHTML = `
-        <td>${item.marca}</td>
-        <td>${item.modelo}</td>
-        <td>${item.serie}</td>
-        <td>${item.tipo}</td>
-        <td ><span class="${item.status.toLocaleLowerCase()}">${item.status}</span></td>
-        <td><img src="./assets/icons/editar.svg" class="edit_${item.id}"></img></td>
-            <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
-            `;
-        equipos.appendChild(fila);
-        document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'equipo','pf');
-        document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'equipo','pf');             
-        });
-        laboratorioPf.detectores.forEach(item =>{
-        let fila = document.createElement('tr');
-        fila.innerHTML = `
-        <td>${item.marca}</td>
-        <td>${item.modelo}</td>
-        <td>${item.serie}</td>
-        <td>${item.tipo}</td>
-        <td>${item.hv}</td>
-        <td ><span class="${item.status.toLocaleLowerCase()}">${item.status}</span></td>
-        <td><img src="./assets/icons/editar.svg" class="edit_${item.id}"></img></td>
-            <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
-            `;
-        detectores.appendChild(fila);
-        document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'detector','pf');
-        document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'detector','pf');             
-        });
-        laboratorioPf.personalPf.forEach(item =>{
-        let fila = document.createElement('tr');
-        fila.innerHTML = `
-        <td>${item.nivel} ${item.nombre}</td>
-        <td>${item.cargo}</td>
-        <td ><span class="${item.status.toLocaleLowerCase()}">${item.status}</span></td>
-        <td><img src="./assets/icons/editar.svg" class="edit_${item.id}"></img></td>
-            <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
-            `;
-        personal.appendChild(fila);
-        document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'personal','pf');
-        document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'personal','pf');             
-        });
+  botones.forEach(item =>{
+  
+  item.onclick = ()=> agregar(item.classList[1],'pf');
+  });
+  
+  laboratorioPf.licencias.forEach(licencia =>{
+  let fila = document.createElement('tr');
+  console.log(licencia.id);
+  fila.innerHTML = `
+      <td>${licencia.num_lic}</td>
+      <td>${licencia.nombre}</td>
+      <td>${licencia.fecha_emision}</td>
+      <td>${licencia.fecha_vencimiento}</td>
+      <td ><span class="${licencia.status.toLocaleLowerCase()}">${licencia.status}</span></td>
+      <td><img src="./assets/icons/editar.svg" class="edit_${licencia.id}"></img></td>
+      <td><img src="./assets/icons/eliminar.svg" class="delete_${licencia.id}"></img></td>
+      `;
+      licencias.appendChild(fila);
+      document.querySelector(`.edit_${licencia.id}`).onclick = ()=> editarElemento(licencia.id,'licencia','pf');
+      document.querySelector(`.delete_${licencia.id}`).onclick = ()=> deleteElemento(licencia.id,'licencia','pf');             
+  });
+  laboratorioPf.fuentes.forEach(item =>{
+  let fila = document.createElement('tr');
+  fila.innerHTML = `
+  <td>${item.isotopo}</td>
+  <td>${item.energia}</td>
+  <td>${item.serie}</td>
+  <td>${item.actividad_original}</td> 
+  <td>${item.fecha_cal}</td>
+  <td ><span class="${item.status.toLocaleLowerCase()}">${item.status}</span></td>
+  <td><img src="./assets/icons/editar.svg" class="edit_${item.id}"></img></td>
+  <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
+      `;
+      fuentes.appendChild(fila);
+      document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'fuente','pf');
+      document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'fuente','pf');             
+  });
+  laboratorioPf.equipos.forEach(item =>{
+  let fila = document.createElement('tr');
+  fila.innerHTML = `
+  <td>${item.marca}</td>
+  <td>${item.modelo}</td>
+  <td>${item.serie}</td>
+  <td>${item.tipo}</td>
+  <td ><span class="${item.status.toLocaleLowerCase()}">${item.status}</span></td>
+  <td><img src="./assets/icons/editar.svg" class="edit_${item.id}"></img></td>
+      <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
+      `;
+  equipos.appendChild(fila);
+  document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'equipo','pf');
+  document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'equipo','pf');             
+  });
+  laboratorioPf.detectores.forEach(item =>{
+  let fila = document.createElement('tr');
+  fila.innerHTML = `
+  <td>${item.marca}</td>
+  <td>${item.modelo}</td>
+  <td>${item.serie}</td>
+  <td>${item.tipo}</td>
+  <td>${item.hv}</td>
+  <td ><span class="${item.status.toLocaleLowerCase()}">${item.status}</span></td>
+  <td><img src="./assets/icons/editar.svg" class="edit_${item.id}"></img></td>
+      <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
+      `;
+  detectores.appendChild(fila);
+  document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'detector','pf');
+  document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'detector','pf');             
+  });
+  laboratorioPf.personalPf.forEach(item =>{
+  let fila = document.createElement('tr');
+  fila.innerHTML = `
+  <td>${item.nivel} ${item.nombre}</td>
+  <td>${item.cargo}</td>
+  <td ><span class="${item.status.toLocaleLowerCase()}">${item.status}</span></td>
+  <td><img src="./assets/icons/editar.svg" class="edit_${item.id}"></img></td>
+      <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
+      `;
+  personal.appendChild(fila);
+  document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'personal','pf');
+  document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'personal','pf');             
+  });
 
+  document.getElementById('atras').onclick = ()=> pruebasFugaMenu();
         
 }
 function pruebasFugaMenu(){
     monitorLab.innerHTML='';
     monitorLab.innerHTML=`
+    <h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
     <section class="container">
             <article class="card card-cal-info indicadores" >
                 <img class="icon-lab indicadores" src="./assets/icons/Graph.svg" alt="icono grafico">
@@ -328,5 +337,7 @@ function pruebasFugaMenu(){
 `;
 document.querySelector('.indicadores').onclick = ()=> pruebasFugaDash();
 document.querySelector('.licencia').onclick = ()=> pruebasFugaLicencia();
+document.getElementById('atras').onclick = ()=> callLabGestion();
+
 
 }

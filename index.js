@@ -654,91 +654,91 @@ function listeners(){
     });
     monitor.addEventListener('click',(e)=>{
 
-        console.log(e.target);
-        console.log(e.target.id.split(':'));
-        let op = e.target.id.split(':');
+        // console.log(e.target);
+        // console.log(e.target.id.split(':'));
+        // let op = e.target.id.split(':');
 
-        switch (op[0]) {
-            case 'arribos':
-                callListArribos();                 
-                ruta.innerHTML+='/'+ op[0];
-                break;
-            case 'nuevo_arribo':
-                monitor.innerHTML ='';
-                monitor.innerHTML = objMenus[2];
-                ruta.innerHTML+='/'+ op[0];
-                break;
-                case 'nuevo_arribo':
-                monitor.innerHTML ='';
-                monitor.innerHTML = objMenus[2];
-                ruta.innerHTML+='/'+e.target.id;
-                break;
-            case 'check_det':
-                if(document.getElementById('check_det').checked){
-                    document.getElementById('datos_detector').innerHTML=`
-                    <label for="marca_detector" >Marca detector</label>
-                    <input type="text" name="marca_detector" id="marca_detector" class="envioDbEquipo" >
-                    <label for="modelo_detector"> Modelo detector</label>
-                    <input type="text" name="modelo_detector" id="modelo_detector" class="envioDbEquipo" >
-                    <label for="serie_detector" >Serie detector</label>
-                    <input type="text" name="serie_detector" id="serie_detector" class="envioDbEquipo" >`
+        // switch (op[0]) {
+        //     case 'arribos':
+        //         callListArribos();                 
+        //         ruta.innerHTML+='/'+ op[0];
+        //         break;
+        //     case 'nuevo_arribo':
+        //         monitor.innerHTML ='';
+        //         monitor.innerHTML = objMenus[2];
+        //         ruta.innerHTML+='/'+ op[0];
+        //         break;
+        //         case 'nuevo_arribo':
+        //         monitor.innerHTML ='';
+        //         monitor.innerHTML = objMenus[2];
+        //         ruta.innerHTML+='/'+e.target.id;
+        //         break;
+        //     case 'check_det':
+        //         if(document.getElementById('check_det').checked){
+        //             document.getElementById('datos_detector').innerHTML=`
+        //             <label for="marca_detector" >Marca detector</label>
+        //             <input type="text" name="marca_detector" id="marca_detector" class="envioDbEquipo" >
+        //             <label for="modelo_detector"> Modelo detector</label>
+        //             <input type="text" name="modelo_detector" id="modelo_detector" class="envioDbEquipo" >
+        //             <label for="serie_detector" >Serie detector</label>
+        //             <input type="text" name="serie_detector" id="serie_detector" class="envioDbEquipo" >`
                     
                     
-                }else{
-                    document.getElementById('datos_detector').innerHTML=`
-                    <label for="marca_detector" class="hiden">Marca detector</label>
-                    <input type="text" name="marca_detector" id="marca_detector" placeholder="" class="hiden" value="N/D">
-                    <label for="modelo_detector" class="hiden">Modelo detector</label>
-                    <input type="text" name="modelo_detector" id="modelo_detector" placeholder="" class="hiden" value="N/D">
-                    <label for="serie_detector" class="hiden">Serie detector</label>
-                    <input type="text" name="serie_detector" id="serie_detector" placeholder="" class="hiden" value="N/D">`;
-                        }
+        //         }else{
+        //             document.getElementById('datos_detector').innerHTML=`
+        //             <label for="marca_detector" class="hiden">Marca detector</label>
+        //             <input type="text" name="marca_detector" id="marca_detector" placeholder="" class="hiden" value="N/D">
+        //             <label for="modelo_detector" class="hiden">Modelo detector</label>
+        //             <input type="text" name="modelo_detector" id="modelo_detector" placeholder="" class="hiden" value="N/D">
+        //             <label for="serie_detector" class="hiden">Serie detector</label>
+        //             <input type="text" name="serie_detector" id="serie_detector" placeholder="" class="hiden" value="N/D">`;
+        //                 }
                 
-                break;
-            case 'mas_equipos':
+        //         break;
+        //     case 'mas_equipos':
                 
-                break;
+        //         break;
             
-            case 'envio_arribo_db':
-                sendDBArribo();
-                monitor.innerHTML ='';
-                callListArribos();
-                ruta.innerHTML='cal/arribos';
-                break;
-            case 'asignar_os':
-                monitor.innerHTML ='';
-                monitor.innerHTML = objMenus[3];
-                ruta.innerHTML+='/'+e.target.id;
-                callFormOs(op[1]);
-                break;
-            case 'calibracion':
-                monitor.innerHTML ='';
-                monitor.innerHTML = objMenus[4];
-                ruta.innerHTML+='/'+e.target.id;
-                break;
-            case 'calibrar':
-                monitor.innerHTML ='';
-                monitor.innerHTML = objMenus[5];
-                ruta.innerHTML+='/'+e.target.id;
-                contadorIntervalos=0;
-                break;
-            case 'nuevo_intervalo':
-                 callFormCal();
-                break;
-            case 'guardar_intervalo':
-                contadorIntervalos++;
-                sendDBInterval();
-                callNewInterval();
-                break;         
-            case 'envio_os_db':
-                sendOs(op[1]);
-                break; 
-            case 'buscar_os':
-                autoCompleteOs();
-                break;  
-                default:
-                break;
-        }
+        //     case 'envio_arribo_db':
+        //         sendDBArribo();
+        //         monitor.innerHTML ='';
+        //         callListArribos();
+        //         ruta.innerHTML='cal/arribos';
+        //         break;
+        //     case 'asignar_os':
+        //         monitor.innerHTML ='';
+        //         monitor.innerHTML = objMenus[3];
+        //         ruta.innerHTML+='/'+e.target.id;
+        //         callFormOs(op[1]);
+        //         break;
+        //     case 'calibracion':
+        //         monitor.innerHTML ='';
+        //         monitor.innerHTML = objMenus[4];
+        //         ruta.innerHTML+='/'+e.target.id;
+        //         break;
+        //     case 'calibrar':
+        //         monitor.innerHTML ='';
+        //         monitor.innerHTML = objMenus[5];
+        //         ruta.innerHTML+='/'+e.target.id;
+        //         contadorIntervalos=0;
+        //         break;
+        //     case 'nuevo_intervalo':
+        //          callFormCal();
+        //         break;
+        //     case 'guardar_intervalo':
+        //         contadorIntervalos++;
+        //         sendDBInterval();
+        //         callNewInterval();
+        //         break;         
+        //     case 'envio_os_db':
+        //         sendOs(op[1]);
+        //         break; 
+        //     case 'buscar_os':
+        //         autoCompleteOs();
+        //         break;  
+        //         default:
+        //         break;
+        // }
         
 
     });
