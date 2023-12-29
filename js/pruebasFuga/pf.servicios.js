@@ -1,9 +1,216 @@
 const monitorPfServ = document.getElementById('monitor');
+const formulariosPfServ = [`
+<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3><section class="card form-1"> 
+<span class="tittle">Solicitud de Análisis de Pruebas de Fuga</span>
+<label for="os">Orden de Servicio</label>
+<input type="text" id="os" name="os">
+<button>Buscar</button>
+<span class="tittle">Datos del Permisionario</span>
+<label for="razon_social">Razón Social</label>
+<input type="text" id="razon_social" name="razon_social"  class="envioBdPermisionario">
+<label for="licencia">Número de licencia</label>
+<input type="text" id="licencia" name="licencia"  class="envioBdPermisionario">
+<label for="fecha_vencimiento">Fecha de vencimiento de licencia</label>
+<input type="date" id="fecha_vencimiento" name="fecha_vencimiento"  class="envioBdPermisionario">
+<span class="tittle">Domicilio del permisionario</span>
+<label for="calle">Calle y número</label>
+<input type="text" id="calle" name="calle"  class="envioDir">
+<label for="colonia">Colonia</label>
+<input type="text" id="colonia" name="colonia"  class="envioDir">
+<label for="ciudad">Ciudad</label>
+<input type="text" id="ciudad" name="ciudad"  class="envioDir">
+<label for="estado">Estado</label>
+<input type="text" id="estado" name="estado"  class="envioDir">
+<label for="cp">C.P.</label>
+<input type="text" id="cp" name="cp"  class="envioDir">
+<label for="pais">País</label>
+<input type="text" id="pais" name="pais"  class="envioDir" value="México">
+<span class="tittle">Datos del Encargado de Seguridad Radiologíca</span>
+<label for="nombre">Nombre</label>
+<input type="text" name="nombre" id="nombre" class="envioBdEsr">
+<label for="nivel">Profesión</label>
+<select name="nivel" id="nivel" class="envioBdEsr">
+    <option value="Ing.">Ingeniero(a)</option>
+    <option value="Tec.">Técnico(a)</option>
+    <option value="Lic.">Licenciado(a)</option>
+    <option value="M. en C.">Maestria en ciencias</option>
+    <option value="C.">Ciudadano</option>
+</select>
+<label for="correo">Email</label>
+<input type="email" id="correo" name="correo"  class="envioBdEsr">
+<label for="telefono">Teléfono</label>
+<input type="tel" id="telefono" name="telefono"  class="envioBdEsr">
+<label for="fax">Fax</label>
+<input type="text" id="fax" name="fax"  class="envioBdEsr" value="N/D">
+<span class="tittle">Frotis</span>
+<a class="btn-new" id="nuevo_fortis"><span class="material-symbols-outlined">add_circle</span>Nuevo frotis</a>
+<div id="lista" class="scroll-horizontal">
+    <table>
+        <thead>
+            <th>Isótopo</th>
+            <th>No.Serie</th>
+            <th>Marca</th>
+            <th>Act.Original</th>
+            <th>Metodo Prueba</th>
+            <th>Fecha Frotis</th>
+            <th>Eliminar</th>
+        </thead>
+        <tbody id="frotis_tabla">
+            
+        </tbody>
+    </table>
+</div>
+
+<div id="frotis_form" class="recuadro form-1">
+    
+
+</div>
+</section>
+<br><br>
+<section class="form-1 card">
+    <a class="btn-send" id="enviar_registro"><span class="material-symbols-outlined">send</span>Enviar registro</a>
+</section>
+`]
 
 /************************************************************************************************************************
  * FUNCIONES PARA CONSTUIR DOM EN PF SERVICIOS
  *************************************************************************************************************************/
+function sendRegistroPf(){
+    //Creamos un objeto que contendra todos nuestros datos
+    const objData = {
+        permisionario:{
+            domicilio:{},
+            esr:{},
+            frotis:[]
+            }
+        }
+    objData['id']=generateRandomString(15);
+    objData['os']=document.getElementById('os').value;
+    let dataPermisionario = document.querySelectorAll('.envioBdPermisionario');
+    let dataDomicilio = document.querySelectorAll('.envioDir');
+    let dataEsr= document.querySelectorAll('.envioBdEsr');
+    
+    dataEsr.forEach(data =>{
+        objData['permisionario']['esr'][data.id]=data.value;
+    });
+    dataDomicilio.forEach(data =>{
+        objData['permisionario']['domicilio'][data.id]=data.value;
+    });
+    dataPermisionario.forEach(data =>{
+        objData['permisionario'][data.id]=data.value;
+    });
+    objData['frotis']=[...listaFrotis];
+    serviciosPf.push(objData);
 
+    console.log(objData);
+
+
+   
+
+
+}
+function eliminarFrotis(i){
+    console.log('[ELIMINAR]:',i);
+    const index = listaFrotis.findIndex(item => item.id === i );
+    console.log('[INDEX]:',index);
+    if(index != -1){
+        alert(`Deseas eliminar el frotis ${listaFrotis[index].serie}?`)
+        listaFrotis.splice(index,1);
+    }
+    construirListaFrotis();
+
+}
+function construirListaFrotis(){
+    document.getElementById('frotis_form').innerHTML='';
+    let tabla = document.getElementById('frotis_tabla');
+    tabla.innerHTML='';
+    let index =0;
+    listaFrotis.forEach(froti=>{
+        console.log(index);
+        let fila = document.createElement('tr');
+        
+        fila.innerHTML=`
+        <td>${froti.isotopo}</td>
+        <td>${froti.serie}</td>
+        <td>${froti.marca}</td>
+        <td>${froti.actividad_original} ${froti.unidades}</td>
+        <td>${froti.metodo}</td>
+        <td>${froti.fecha_frotis}</td>
+        <td><img src="./assets/icons/eliminar.svg" id="delete_${froti.id}"></img></td>`;       
+        tabla.appendChild(fila);
+        document.getElementById(`delete_${froti.id}`).onclick = ()=> eliminarFrotis(froti.id); 
+        
+         
+
+
+    });
+
+}
+//Variable para agregar los fortis que se daran de alta
+let listaFrotis = [];
+function agregarFrotis(){
+   let datos_frotis=  document.querySelectorAll('.nvoFrotis');
+    console.log(listaFrotis);
+    let objFrotis={}
+
+    datos_frotis.forEach(frotis =>{
+        objFrotis[frotis.id]=frotis.value;
+    });
+    objFrotis['id']=generateRandomString(10);
+    listaFrotis.push(objFrotis);
+    construirListaFrotis();
+
+
+}
+function callNuevoFortis(){
+    document.getElementById('frotis_form').innerHTML=`<span class="letra-color">Datos del frotis</span>
+    <br>
+    <label for="isotopo">Isotopo</label>
+    <select name="isotopo" id="isotopo" class="nvoFrotis">
+        <option value="Cs-137">Cs-137</option>
+        <option value="Co-60">Co-60</option>
+        <option value="Sr-90">Sr-90</option>
+        <option value="Ba-133">Ba-133</option>
+        <option value="Am-241">Am-241</option>
+        <option value="H-3">H-3</option>
+    </select>
+    <label for="serie">serie</label>
+    <input type="text" name="serie" id="serie" class="nvoFrotis">
+    <label for="marca">marca</label>
+    <input type="text" name="marca" id="marca" class="nvoFrotis">
+    <label for="actividad_original">Actividad_original</label>
+    <input type="number" name="actividad_original" id="actividad_original" class="nvoFrotis">
+    <label for="unidades">Unidades</label>
+    <select name="unidades" id="unidades" class="nvoFrotis" >
+        <option value="Ci">Ci</option>
+        <option value="mCi">mCi</option>
+        <option value="µCi">µCi</option>
+        <option value="Bq">Bq</option>
+        <option value="KBq">KBq</option>
+        <option value="MBq">MBq</option>
+        <option value="GBq">GBq</option>
+    </select>
+    <label for="metodo">Método</label>
+    <select name="metodo" id="metodo" class="nvoFrotis" >
+        <option value="Vía humeda (Sobre una superficie equivalente)">Superficie equivalente</option>
+        <option value="Vía humeda (Sobre la fuente)">Sobre la fuente</option>
+    </select>
+    <label for="fecha_frotis">Fecha de toma</label>
+    <input type="date" name="fecha_frotis" id="fecha_frotis" class="nvoFrotis">
+    <label class="letra-color" for="fecha_entrega">Fecha de recepcion en Labrotarotio</label>
+    <input type="date" name="fecha_entrega" id="fecha_entrega" class="nvoFrotis">
+    <a class="btn-send" id="agregar">Agregar</a>`;
+    document.getElementById('agregar').onclick = () => agregarFrotis();
+}
+function callNuevoServicioPf(){
+    monitorPfServ.innerHTML = formulariosPfServ[0];
+    document.getElementById('atras').onclick = ()=> callPruebasFuga();
+    document.getElementById('nuevo_fortis').onclick = ()=> callNuevoFortis();
+    document.getElementById('enviar_registro').onclick = ()=> sendRegistroPf();  
+
+    
+    listaFrotis = [];
+}
 function callPruebasFuga(){
     
     monitorPfServ.innerHTML=`
@@ -92,7 +299,6 @@ function callPruebasFuga(){
    
     
 }
-
 function realizarPf(clave){
     const [id,isotopo,fechaFrotis, fechaEntrega] = clave.split(',');
     const permisionario = serviciosPf.find((item) => {return item.id === id});
@@ -203,10 +409,5 @@ function realizarPf(clave){
             `
         }
     });
-    
-
-
-
-
 
 }
