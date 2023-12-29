@@ -155,7 +155,8 @@ const serviciosPf = [
     id:'asek4k4j5jrkewwq',
     os:'OS-S-RUT23-226',
     frotis:[
-      {
+      { 
+        
         isotopo:'Am-241',
         serie:'316-02-10',
         marca:'BERTHOLD TECHNOLOGIES',
