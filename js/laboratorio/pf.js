@@ -262,7 +262,7 @@ monitorLab.innerHTML=`
   <td>${item.isotopo}</td>
   <td>${item.energia}</td>
   <td>${item.serie}</td>
-  <td>${item.actividad_original}</td> 
+  <td>${item.actividad_original} ${item.unidades}</td> 
   <td>${item.fecha_cal}</td>
   <td ><span class="${item.status.toLocaleLowerCase()}">${item.status}</span></td>
   <td><img src="./assets/icons/editar.svg" class="edit_${item.id}"></img></td>

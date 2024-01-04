@@ -393,8 +393,29 @@ const  generateRandomString = (num) => {
 
     return result1;
 }
+const formatNumber = (num) => {
+    num=parseInt(num);
+    if(num < 1000){
+        return ('00' + num).slice(-3);
+    }else{
+        return num.toString();
+    }
+}
 const user='MSDB';
-
+// const meses = {
+//     0:'ENERO',
+//     1:'FEBRERO',
+//     2:'MARZO',
+//     3:'ABRIL',
+//     4:'MAYO',
+//     5:'JUNIO',
+//     6:'JULIO',
+//     7:'AGOSTO',
+//     8:'SEPTIEMBRE',
+//     9:'OCTUBRE',
+//     10:'NOVIEMBRE',
+//     11:'DICIEMBRE'
+//   }
 
     /********************************************************************************************************************************************
  * Variables traidas de MongoDB
@@ -640,108 +661,108 @@ let contadorIntervalos=0;
  * Listeners
  * *****************************************************************************************************************************************/
 function listeners(){
-    aside.addEventListener('click',(e)=>{
-        console.log('ASIDE:' + e.target.id);
-        ruta.innerHTML=e.target.id;
-        switch (e.target.id) {
-            // case 'cal':                
-            //     callCalibraciones();
-            //     break;
+    // aside.addEventListener('click',(e)=>{
+    //     console.log('ASIDE:' + e.target.id);
+    //     ruta.innerHTML=e.target.id;
+    //     switch (e.target.id) {
+    //         // case 'cal':                
+    //         //     callCalibraciones();
+    //         //     break;
         
-            default:
-                break;
-        }
-    });
-    monitor.addEventListener('click',(e)=>{
+    //         default:
+    //             break;
+    //     }
+    // });
+    // monitor.addEventListener('click',(e)=>{
 
-        // console.log(e.target);
-        // console.log(e.target.id.split(':'));
-        // let op = e.target.id.split(':');
+    //     // console.log(e.target);
+    //     // console.log(e.target.id.split(':'));
+    //     // let op = e.target.id.split(':');
 
-        // switch (op[0]) {
-        //     case 'arribos':
-        //         callListArribos();                 
-        //         ruta.innerHTML+='/'+ op[0];
-        //         break;
-        //     case 'nuevo_arribo':
-        //         monitor.innerHTML ='';
-        //         monitor.innerHTML = objMenus[2];
-        //         ruta.innerHTML+='/'+ op[0];
-        //         break;
-        //         case 'nuevo_arribo':
-        //         monitor.innerHTML ='';
-        //         monitor.innerHTML = objMenus[2];
-        //         ruta.innerHTML+='/'+e.target.id;
-        //         break;
-        //     case 'check_det':
-        //         if(document.getElementById('check_det').checked){
-        //             document.getElementById('datos_detector').innerHTML=`
-        //             <label for="marca_detector" >Marca detector</label>
-        //             <input type="text" name="marca_detector" id="marca_detector" class="envioDbEquipo" >
-        //             <label for="modelo_detector"> Modelo detector</label>
-        //             <input type="text" name="modelo_detector" id="modelo_detector" class="envioDbEquipo" >
-        //             <label for="serie_detector" >Serie detector</label>
-        //             <input type="text" name="serie_detector" id="serie_detector" class="envioDbEquipo" >`
+    //     // switch (op[0]) {
+    //     //     case 'arribos':
+    //     //         callListArribos();                 
+    //     //         ruta.innerHTML+='/'+ op[0];
+    //     //         break;
+    //     //     case 'nuevo_arribo':
+    //     //         monitor.innerHTML ='';
+    //     //         monitor.innerHTML = objMenus[2];
+    //     //         ruta.innerHTML+='/'+ op[0];
+    //     //         break;
+    //     //         case 'nuevo_arribo':
+    //     //         monitor.innerHTML ='';
+    //     //         monitor.innerHTML = objMenus[2];
+    //     //         ruta.innerHTML+='/'+e.target.id;
+    //     //         break;
+    //     //     case 'check_det':
+    //     //         if(document.getElementById('check_det').checked){
+    //     //             document.getElementById('datos_detector').innerHTML=`
+    //     //             <label for="marca_detector" >Marca detector</label>
+    //     //             <input type="text" name="marca_detector" id="marca_detector" class="envioDbEquipo" >
+    //     //             <label for="modelo_detector"> Modelo detector</label>
+    //     //             <input type="text" name="modelo_detector" id="modelo_detector" class="envioDbEquipo" >
+    //     //             <label for="serie_detector" >Serie detector</label>
+    //     //             <input type="text" name="serie_detector" id="serie_detector" class="envioDbEquipo" >`
                     
                     
-        //         }else{
-        //             document.getElementById('datos_detector').innerHTML=`
-        //             <label for="marca_detector" class="hiden">Marca detector</label>
-        //             <input type="text" name="marca_detector" id="marca_detector" placeholder="" class="hiden" value="N/D">
-        //             <label for="modelo_detector" class="hiden">Modelo detector</label>
-        //             <input type="text" name="modelo_detector" id="modelo_detector" placeholder="" class="hiden" value="N/D">
-        //             <label for="serie_detector" class="hiden">Serie detector</label>
-        //             <input type="text" name="serie_detector" id="serie_detector" placeholder="" class="hiden" value="N/D">`;
-        //                 }
+    //     //         }else{
+    //     //             document.getElementById('datos_detector').innerHTML=`
+    //     //             <label for="marca_detector" class="hiden">Marca detector</label>
+    //     //             <input type="text" name="marca_detector" id="marca_detector" placeholder="" class="hiden" value="N/D">
+    //     //             <label for="modelo_detector" class="hiden">Modelo detector</label>
+    //     //             <input type="text" name="modelo_detector" id="modelo_detector" placeholder="" class="hiden" value="N/D">
+    //     //             <label for="serie_detector" class="hiden">Serie detector</label>
+    //     //             <input type="text" name="serie_detector" id="serie_detector" placeholder="" class="hiden" value="N/D">`;
+    //     //                 }
                 
-        //         break;
-        //     case 'mas_equipos':
+    //     //         break;
+    //     //     case 'mas_equipos':
                 
-        //         break;
+    //     //         break;
             
-        //     case 'envio_arribo_db':
-        //         sendDBArribo();
-        //         monitor.innerHTML ='';
-        //         callListArribos();
-        //         ruta.innerHTML='cal/arribos';
-        //         break;
-        //     case 'asignar_os':
-        //         monitor.innerHTML ='';
-        //         monitor.innerHTML = objMenus[3];
-        //         ruta.innerHTML+='/'+e.target.id;
-        //         callFormOs(op[1]);
-        //         break;
-        //     case 'calibracion':
-        //         monitor.innerHTML ='';
-        //         monitor.innerHTML = objMenus[4];
-        //         ruta.innerHTML+='/'+e.target.id;
-        //         break;
-        //     case 'calibrar':
-        //         monitor.innerHTML ='';
-        //         monitor.innerHTML = objMenus[5];
-        //         ruta.innerHTML+='/'+e.target.id;
-        //         contadorIntervalos=0;
-        //         break;
-        //     case 'nuevo_intervalo':
-        //          callFormCal();
-        //         break;
-        //     case 'guardar_intervalo':
-        //         contadorIntervalos++;
-        //         sendDBInterval();
-        //         callNewInterval();
-        //         break;         
-        //     case 'envio_os_db':
-        //         sendOs(op[1]);
-        //         break; 
-        //     case 'buscar_os':
-        //         autoCompleteOs();
-        //         break;  
-        //         default:
-        //         break;
-        // }
+    //     //     case 'envio_arribo_db':
+    //     //         sendDBArribo();
+    //     //         monitor.innerHTML ='';
+    //     //         callListArribos();
+    //     //         ruta.innerHTML='cal/arribos';
+    //     //         break;
+    //     //     case 'asignar_os':
+    //     //         monitor.innerHTML ='';
+    //     //         monitor.innerHTML = objMenus[3];
+    //     //         ruta.innerHTML+='/'+e.target.id;
+    //     //         callFormOs(op[1]);
+    //     //         break;
+    //     //     case 'calibracion':
+    //     //         monitor.innerHTML ='';
+    //     //         monitor.innerHTML = objMenus[4];
+    //     //         ruta.innerHTML+='/'+e.target.id;
+    //     //         break;
+    //     //     case 'calibrar':
+    //     //         monitor.innerHTML ='';
+    //     //         monitor.innerHTML = objMenus[5];
+    //     //         ruta.innerHTML+='/'+e.target.id;
+    //     //         contadorIntervalos=0;
+    //     //         break;
+    //     //     case 'nuevo_intervalo':
+    //     //          callFormCal();
+    //     //         break;
+    //     //     case 'guardar_intervalo':
+    //     //         contadorIntervalos++;
+    //     //         sendDBInterval();
+    //     //         callNewInterval();
+    //     //         break;         
+    //     //     case 'envio_os_db':
+    //     //         sendOs(op[1]);
+    //     //         break; 
+    //     //     case 'buscar_os':
+    //     //         autoCompleteOs();
+    //     //         break;  
+    //     //         default:
+    //     //         break;
+    //     // }
         
 
-    });
+    // });
     
 }
 
@@ -920,6 +941,14 @@ function modificarVoDist(parametros){
     ${parametros.dist_80.toFixed(2)}`;
 
 }
+function fechaLarga(fecha){
+    const e = fecha.split('-');
+    console.log(e)
+    const f = new Date(e[0],e[1]-1,e[2]);
+    console.log(f)
+    return `${f.getDate()} DE ${meses[f.getMonth()]} DE ${f.getFullYear()} `;
+}
+
 
 /********************************************************************************************************************************************
  * Funciones de envio a base de datos

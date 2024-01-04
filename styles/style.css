@@ -10,6 +10,8 @@
             --tittle-color:#ff0080;
             --activo:greenyellow;
             --baja:rgb(255, 0, 0,0.5);
+            --black:black;
+            --low-black:rgb(0, 0, 0,0.5s);
 
         }
         html{
@@ -30,6 +32,9 @@
             outline-color: var(--yellow);
             
             color: var(--primary-color);
+        }
+        .material-symbols-outlined{
+            cursor: pointer;
         }
         /* ASIDE  */
         aside{
@@ -189,6 +194,7 @@
             background-color: green;
             color: var(--background-color);
             border-radius: 5px;
+            cursor: pointer;
         }
         .col-2{
             display: grid;
@@ -209,6 +215,9 @@
         }
         .text-center{
             text-align: center;
+        }
+        .smaller-letter{
+            font-size: 0.6rem;
         }
         .selected{
             background-color: var(--primary-color);
@@ -473,6 +482,142 @@
         .letra-color{
             color: #ff0080;
         }
+        /* certificados */
+        .informe-pf{
+            width: 800px;
+            /* padding: 10px auto; */
+            height: 1100px;
+           
+        }
+        .informe-pf img{
+            width: 100%;
+        }
+        
+        .content{
+            display: flex;
+            flex-direction: column;
+            width: 100%;  
+            align-items: center;
+            padding: 0;
+        }
+        .content h4{
+            margin: 0;
+            
+        }
+        .table-left{
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+        }
+        .table-1,.table-1 thead{
+            font-size: 0.8rem;
+            padding: 0;
+            width: 100px;
+            min-width: 150px;
+            border: 1px solid var(--gray);
+        }
+        .border{
+            border: 1px solid var(--black);
+            border-radius: 2px;
+        }
+        .table-center{
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            margin: 20px auto;     
+        }
+        .table-center-2{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-self: flex-end;
+            margin-right: 35px;
+            text-align: center;
+            width: 300px;
+            
+            
+
+        }
+        .table-center-2 p{
+            margin: 0;
+            color: var(--black);
+            font-weight: bold;
+        }
+        .tittle-table{
+            width: 100%;
+            margin: 0;
+            text-align: center;
+            background-color: rgb(199, 196, 196);
+            color: var(--black);
+        }
+        .little-text{
+            font-size: 0.8rem;
+            padding: 0 10px;
+        }
+        .table-center{
+            margin: 2px auto;
+        }
+        .table-center p{
+            margin: 0;
+            color: var(--black);
+        }
+        .table-center p span{
+            color: var(--primary-color);
+            font-weight: bold;
+            
+        }
+        .colum-info{
+            padding: 0 10px;
+            
+        }
+        .colum-info-3{
+            display: grid;
+            grid-template-columns: 1.5fr 3fr;
+            
+        }
+        .colum-info-2{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            
+        }
+        .colum-info-4{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            
+        }
+        .row-info{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0 10px;
+        }
+        .row-info-3{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding: 0 10px;
+        }
+        .row-info-2-1{
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            padding: 0 10px;
+        }
+        .underlined{
+            display: block;
+            width: 100px;
+            border-bottom: 1px solid var(--gray); 
+        }
+        .colum-info-4 p{
+            display: flex;
+            justify-content: center;
+        }
+        .firmas{
+            align-items: center;
+            justify-items: center;
+            margin-top: 10px;
+        }
+        .under-text{
+            font-size: 0.8rem;
+            border-top: 1px solid var(--gray);
+            margin-top: 0;
+        }
+        
 
 
 

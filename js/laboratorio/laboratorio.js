@@ -1,5 +1,5 @@
 const formulariosPf = [
-  `<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
+`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
   <section class="card form-1">         
   <span class="tittle">Nueva Licencia</span>
   <br>
@@ -32,28 +32,22 @@ const formulariosPf = [
 <section class="card form-1">         
 <span class="tittle">Nueva Fuente</span>
 <br>
-<label for="isotopo">Isotopo</label>
-<select name="isotopo" id="isotopo" class="envioBd">
-    <option value="Cs-137">Cs-137</option>
-    <option value="Co-60">Co-60</option>
-    <option value="Sr-90">Sr-90</option>
-    <option value="Ba-133">Ba-133</option>
-    <option value="Am-241">Am-241</option>
-    <option value="H-3">H-3</option>
-</select>
+<label for="isotopo">Isotopo (Forma corta)</label>
+<input type="text" name="isotopo" id="isotopo" class="envioBd" placeholder="Ejemplo: Cs-137">
 <label for="energia">Energía(s)</label>
 <input type="text" name="energia" id="energia" class="envioBd">
+<label for="vida_media">Vida media (años)</label>
+<input type="text" name="vida_media" id="vida_media" class="envioBd">
+<label for="rendiemiento">Rendiemiento</label>
+<input type="text" name="rendiemiento" id="rendiemiento" class="envioBd">
 <label for="marca">marca</label>
 <input type="text" name="marca" id="marca" class="envioBd">
 <label for="serie">serie</label>
 <input type="text" name="serie" id="serie" class="envioBd">
-<label for="actividad_original">Actividad_original</label>
+<label for="actividad_original">Actividad_original en Bq</label>
 <input type="number" name="actividad_original" id="actividad_original" class="envioBd">
-<label for="unidades">Unidades</label>
+<label for="unidades">Unidades </label>
 <select name="unidades" id="unidades" class="envioBd" >
-    <option value="Ci">Ci</option>
-    <option value="mCi">mCi</option>
-    <option value="µCi">µCi</option>
     <option value="Bq">Bq</option>
     <option value="KBq">KBq</option>
     <option value="MBq">MBq</option>
@@ -71,14 +65,15 @@ const formulariosPf = [
 <input type="text" name="marca" id="marca" class="envioBd">
 <label for="modelo">Modelo</label>
 <input type="text" name="modelo" id="modelo" class="envioBd">
-<label for="serie">serie</label>
+<label for="serie">Serie</label>
 <input type="text" name="serie" id="serie" class="envioBd">
 <label for="tipo">Tipo</label>
 <select name="tipo" id="tipo" class="envioBd">
     <option value="Monocanal">Monocanal</option>
     <option value="Multicanal">Multicanal</option>
 </select>
-
+<label for="resolucion">Resolucion (V)</label>
+<input type="text" name="resolucion" id="resolucion" class="envioBd">
 <a class="btn-send" id="enviar">Enviar</a>
 </section>`,
 `<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
