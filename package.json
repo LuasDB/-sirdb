@@ -1,0 +1,24 @@
+{
+  "name": "sirdb",
+  "version": "1.0.0",
+  "description": "Plataforma para laboratorio de  SI Radiación",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LuasDB/sirdb.git"
+  },
+  "author": "Ing. Mario Saul De la fuente Barrueta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LuasDB/sirdb/issues"
+  },
+  "homepage": "https://github.com/LuasDB/sirdb#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

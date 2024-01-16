@@ -94,7 +94,7 @@ function generarPDF() {
     const elemento = document.getElementById(`${informe.informe_num}`);
     // Opciones de configuración para el PDF (puedes personalizar según tus necesidades)
     const opciones = {
-        margin:[4,5,0,0],
+        margin:[2,1,0,0],
         filename: informe.nombre_pdf,
         image: { type: 'jpeg', quality: 1 },
         html2canvas: { scale: 3 },
