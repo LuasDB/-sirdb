@@ -9,7 +9,7 @@ function pruebasFugaDash(){
     monitorLab.innerHTML='';
     monitorLab.innerHTML=`
     <h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
-  
+
     <h2>Num. de PF en el año</h2>
     <canvas id="myChart" width="250" height="100"></canvas>
     <h2>Num. de Isotopos en el año</h2>
@@ -43,7 +43,7 @@ function pruebasFugaDash(){
         'rgb(201, 203, 207)'
       ],
       borderWidth: 1,
-      
+
     }]
   },
   options: {
@@ -59,7 +59,7 @@ function pruebasFugaDash(){
             display:false
         }
       }
-     
+
     }
   }
     });
@@ -89,7 +89,7 @@ function pruebasFugaDash(){
             'rgb(201, 203, 207)'
           ],
           borderWidth: 1,
-          
+
         }]
       },
       options: {
@@ -105,7 +105,7 @@ function pruebasFugaDash(){
                 display:false
             }
           }
-         
+
         }
       }
         });
@@ -113,17 +113,23 @@ function pruebasFugaDash(){
 
   document.getElementById('atras').onclick = ()=> pruebasFugaMenu();
 
-   
-      
+
+
 
 
 }
-function pruebasFugaLicencia(){
+async function pruebasFugaLicencia(){
+  //traemos la información de la base de datos a travez de fetch
+  const labPf = await fetch(API_PF);
+  const dataLab = await labPf.json();
+  console.log(labPf);
+  console.log(dataLab);
+
 //Se debe mandar a llamar desde la Base de datos los campos correspondientes
 monitorLab.innerHTML = '';
 monitorLab.innerHTML=`
 <h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
-  
+
 <section class="card scroll-horizontal">
             <span class="tittle">No. Licencia</span>
             <table>
@@ -137,7 +143,7 @@ monitorLab.innerHTML=`
                     <th>Eliminar</th>
                 </thead>
                 <tbody id="licencias">
-                            
+
                 </tbody>
             </table>
             <br>
@@ -158,8 +164,8 @@ monitorLab.innerHTML=`
                     <th>Eliminar</th>
                 </thead>
                 <tbody id="fuentes">
-                    
-                    
+
+
                 </tbody>
             </table>
             <br>
@@ -179,8 +185,8 @@ monitorLab.innerHTML=`
                     <th>Eliminar</th>
                 </thead>
                 <tbody id="equipos">
-                    
-                    
+
+
                 </tbody>
             </table>
             <br>
@@ -201,8 +207,8 @@ monitorLab.innerHTML=`
                     <th>Eliminar</th>
                 </thead>
                 <tbody id="detectores">
-                    
-                    
+
+
                 </tbody>
             </table>
             <br>
@@ -220,12 +226,12 @@ monitorLab.innerHTML=`
                     <th>Eliminar</th>
                 </thead>
                 <tbody id="personal">
-                    
-                    
+
+
                 </tbody>
             </table>
             <br>
-            <a class="btn-new personal">Agregar nuevo</a>
+            <a class="btn-new personalPf">Agregar nuevo</a>
 
         </section>`;
   let botones = document.querySelectorAll('.btn-new');
@@ -236,11 +242,10 @@ monitorLab.innerHTML=`
   let  personal= document.getElementById('personal');
 
   botones.forEach(item =>{
-  
   item.onclick = ()=> agregar(item.classList[1],'pf');
   });
-  
-  laboratorioPf.licencias.forEach(licencia =>{
+
+  dataLab.licencias.lista.forEach(licencia =>{
   let fila = document.createElement('tr');
   console.log(licencia.id);
   fila.innerHTML = `
@@ -253,26 +258,26 @@ monitorLab.innerHTML=`
       <td><img src="./assets/icons/eliminar.svg" class="delete_${licencia.id}"></img></td>
       `;
       licencias.appendChild(fila);
-      document.querySelector(`.edit_${licencia.id}`).onclick = ()=> editarElemento(licencia.id,'licencia','pf');
-      document.querySelector(`.delete_${licencia.id}`).onclick = ()=> deleteElemento(licencia.id,'licencia','pf');             
+      document.querySelector(`.edit_${licencia.id}`).onclick = ()=> editarElemento(licencia.id,'licencias','pf');
+      document.querySelector(`.delete_${licencia.id}`).onclick = ()=> deleteElemento(licencia.id,'licencias','pf');
   });
-  laboratorioPf.fuentes.forEach(item =>{
+  dataLab.fuentes.lista.forEach(item =>{
   let fila = document.createElement('tr');
   fila.innerHTML = `
   <td>${item.isotopo}</td>
   <td>${item.energia}</td>
   <td>${item.serie}</td>
-  <td>${item.actividad_original} ${item.unidades}</td> 
+  <td>${item.actividad_original} ${item.unidades}</td>
   <td>${item.fecha_cal}</td>
   <td ><span class="${item.status.toLocaleLowerCase()}">${item.status}</span></td>
   <td><img src="./assets/icons/editar.svg" class="edit_${item.id}"></img></td>
   <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
       `;
       fuentes.appendChild(fila);
-      document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'fuente','pf');
-      document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'fuente','pf');             
+      document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'fuentes','pf');
+      document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'fuentes','pf');
   });
-  laboratorioPf.equipos.forEach(item =>{
+  dataLab.equipos.lista.forEach(item =>{
   let fila = document.createElement('tr');
   fila.innerHTML = `
   <td>${item.marca}</td>
@@ -284,10 +289,10 @@ monitorLab.innerHTML=`
       <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
       `;
   equipos.appendChild(fila);
-  document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'equipo','pf');
-  document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'equipo','pf');             
+  document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'equipos','pf');
+  document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'equipos','pf');
   });
-  laboratorioPf.detectores.forEach(item =>{
+  dataLab.detectores.lista.forEach(item =>{
   let fila = document.createElement('tr');
   fila.innerHTML = `
   <td>${item.marca}</td>
@@ -300,10 +305,10 @@ monitorLab.innerHTML=`
       <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
       `;
   detectores.appendChild(fila);
-  document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'detector','pf');
-  document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'detector','pf');             
+  document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'detectores','pf');
+  document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'detectores','pf');
   });
-  laboratorioPf.personalPf.forEach(item =>{
+  dataLab.personalPf.lista.forEach(item =>{
   let fila = document.createElement('tr');
   fila.innerHTML = `
   <td>${item.nivel} ${item.nombre}</td>
@@ -313,12 +318,12 @@ monitorLab.innerHTML=`
       <td><img src="./assets/icons/eliminar.svg" class="delete_${item.id}"></img></td>
       `;
   personal.appendChild(fila);
-  document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'personal','pf');
-  document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'personal','pf');             
+  document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'personalPf','pf');
+  document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'personalPf','pf');
   });
 
   document.getElementById('atras').onclick = ()=> pruebasFugaMenu();
-        
+
 }
 function pruebasFugaMenu(){
     monitorLab.innerHTML='';
@@ -327,11 +332,11 @@ function pruebasFugaMenu(){
     <section class="container">
             <article class="card card-cal-info indicadores" >
                 <img class="icon-lab indicadores" src="./assets/icons/Graph.svg" alt="icono grafico">
-                    <h3 class="indicadores">Indicadores</h3>                                 
+                    <h3 class="indicadores">Indicadores</h3>
             </article>
             <article class="card card-cal-info licencia" >
                 <img class="icon-lab licencia" src="./assets/icons/Licencia-icon.svg" alt="icono grafico">
-                    <h3 class="licencia">Licencia de Operación</h3>                                 
+                    <h3 class="licencia">Licencia de Operación</h3>
             </article>
         </section>
 `;

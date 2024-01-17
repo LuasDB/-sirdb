@@ -1,7 +1,7 @@
 
 const boom = require('@hapi/boom');
-const { refNuevo,refCities,laboratorioPf } = require('../db/firebase');
-const {  doc,addDoc, getDocs,setDoc,writeBatch,updateDoc, arrayUnion} = require("firebase/firestore");
+const { db,laboratorioPf } = require('../db/firebase');
+const {  doc,addDoc, getDocs,getDoc,setDoc,writeBatch,updateDoc, arrayUnion,query, where} = require("firebase/firestore");
 
 
 class labPf{
@@ -35,25 +35,68 @@ class labPf{
       message:"CREADO",
        response,
     };
-
-
   }
 
-  find(){
-    return [];
-  }
-
-  findOne(collection,id){
-    return {collection,id}
-  }
-
-  update(collection,id,changes){
-    return {
-      colelction,id,changes
+  async findAll(){
+    const q= query(laboratorioPf);
+    const snapshot = await getDocs(q);
+    if(!snapshot){
+      throw boom.notFound('No encontrado');
     }
+    let respuesta = {}
+    snapshot.forEach(doc =>{
+      respuesta[doc.id]=doc.data();
+    });
+    return respuesta;
   }
-  delete(collection,id){
-    return {collection,id}
+
+  async update(collection,id,changes){
+
+    let array = [];
+    const ref =doc(laboratorioPf,collection)
+    const miDoc = await getDoc(ref);
+    console.log(miDoc.exists());
+    if(miDoc.exists()){
+      array=miDoc.data().lista;
+    }else{
+      throw boom.notFound('No se encontro ese elemento');
+    }
+    const index = array.findIndex(campo => campo.id === id);
+    if(index === -1){
+      throw boom.notFound('ELEMENTO NO ENCONTRADO');
+    }
+    const copy = array[index];
+    array[index]={
+      ...copy,
+      ...changes
+    };
+
+    const actualizar = await updateDoc(ref,{lista:array});
+
+    return {actualizar};
+  }
+
+  async delete(collection,id){
+    let array = [];
+    const ref =doc(laboratorioPf,collection)
+    const miDoc = await getDoc(ref);
+    console.log(miDoc.exists());
+    if(miDoc.exists()){
+      array=miDoc.data().lista;
+    }else{
+      throw boom.notFound('No se encontro ese elemento');
+    }
+    const index = array.findIndex(campo => campo.id === id );
+    if(index === -1){
+      throw boom.notFound('No se encontro para eliminar');
+    }
+    array.splice(index,1);
+    const actualizar = await updateDoc(ref,{lista:array});
+
+    return {
+      message:'Eliminado',
+      actualizar
+    }
   }
 }
 

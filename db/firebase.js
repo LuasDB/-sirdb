@@ -21,7 +21,6 @@ const refCities = collection(db,'cities');
 const laboratorioPf = collection(db,'laboratorioPf');
 
 module.exports={
-  refNuevo,
-  refCities,
+  db,
   laboratorioPf,
 };

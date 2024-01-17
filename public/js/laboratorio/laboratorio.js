@@ -175,10 +175,10 @@ function agregar(tabla,area){
         const enviar_detectores=document.getElementById('enviar');
         enviar_detectores.onclick = ()=> envioBdPf('detectores');
         break;
-      case 'personal':
+      case 'personalPf':
         monitorLab.innerHTML =formulariosPf[4];
         const enviar_personal=document.getElementById('enviar');
-        enviar_personal.onclick = ()=> envioBdPf('personal');
+        enviar_personal.onclick = ()=> envioBdPf('personalPf');
 
         break;
 
@@ -192,13 +192,17 @@ function agregar(tabla,area){
   }
 
 }
-function editarElemento(id,tabla,area){
-  if(area === 'pf'){
+async function editarElemento(id,tabla,area){
+   //traemos la información de la base de datos a travez de fetch
+   const labPf = await fetch(API_PF);
+   const dataLab = await labPf.json();
 
+  if(area === 'pf'){
+    monitorLab.innerHTML=`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>`;
     switch(tabla){
-      case 'licencia':
-        const licencia = laboratorioPf.licencias.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
-        monitorLab.innerHTML=`
+      case 'licencias':
+        const licencia = dataLab.licencias.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+        monitorLab.innerHTML+=`
         <section class="card form-1">
           <span class="tittle">Licencia ${licencia.num_lic}</span>
           <br>
@@ -240,9 +244,9 @@ function editarElemento(id,tabla,area){
           }
         }
       break;
-      case 'fuente':
-        const fuente = laboratorioPf.fuentes.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
-        monitorLab.innerHTML=`
+      case 'fuentes':
+        const fuente = dataLab.fuentes.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+        monitorLab.innerHTML+=`
         <section class="card form-1">
             <span class="tittle">Fuente ${fuente.isotopo} serie ${fuente.serie}</span>
             <br>
@@ -305,9 +309,9 @@ function editarElemento(id,tabla,area){
           }
         }
       break;
-      case 'equipo':
-        const equipo = laboratorioPf.equipos.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
-        monitorLab.innerHTML=`
+      case 'equipos':
+        const equipo = dataLab.equipos.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+        monitorLab.innerHTML+=`
         <section class="card form-1">
             <span class="tittle">Equipo ${equipo.marca} modelo ${equipo.modelo}</span>
             <br>
@@ -346,9 +350,9 @@ function editarElemento(id,tabla,area){
           }
         }
         break;
-      case 'detector':
-          const detector = laboratorioPf.detectores.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
-          monitorLab.innerHTML=`
+      case 'detectores':
+          const detector = dataLab.detectores.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+          monitorLab.innerHTML+=`
           <section class="card form-1">
             <span class="tittle">Detector ${detector.marca} modelo ${detector.modelo} serie ${detector.serie}</span>
             <br>
@@ -391,10 +395,9 @@ function editarElemento(id,tabla,area){
             }
           }
           break;
-      case 'personal':
-        const personal = laboratorioPf.personalPf.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
-        monitorLab.innerHTML=`
-        <h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+      case 'personalPf':
+        const personal = dataLab.personalPf.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+        monitorLab.innerHTML+=`
         <section class="card form-1">
             <span class="tittle">${personal.cargo}</span>
             <br>
@@ -453,20 +456,37 @@ function editarElemento(id,tabla,area){
     //Elementos de editar para Calibracion
   }
 }
-function deleteElemento(id,tabla){
-  console.log(`[ELIMINAR ${tabla}]:${id}`);
+async function deleteElemento(id,tabla,area){
+  const objson ={}
+  if(area === 'pf'){
+    objson['collection']=tabla;
+    objson['id']=id;
+
+  const res = await fetch(API_PF, {
+    method: 'DELETE',
+     headers: {
+        'Content-Type': 'application/json',
+     },
+    body: JSON.stringify(objson)
+  });
+
+const data = await res.json();
+console.log(data);
+setTimeout(() => {
+  pruebasFugaLicencia();
+}, 2000);
+
+
+  }
 }
 /***************************************************************************************************
  * FUNCIONES PARA ENVIO A BASE DE DATOS
  ***************************************************************************************************/
-const API ='http://localhost:3000/api/v1/pfLaboratorio';
+const API_PF ='http://localhost:3000/api/v1/pfLaboratorio';
 async function envioBdPf(tabla){
 
   let objson ={};
-
   const objdata={};
-
-
   switch (tabla) {
     case 'licencias':
 
@@ -509,7 +529,7 @@ async function envioBdPf(tabla){
       console.log(objdata)
       laboratorioPf.detectores.push(objdata);
       break;
-    case 'personal':
+    case 'personalPf':
       document.querySelectorAll('.envioBd').forEach(item =>{
         objdata[item.id]=item.value;
       });
@@ -529,7 +549,7 @@ async function envioBdPf(tabla){
   console.log(objson);
 
 
-  const res = await fetch(API, {
+  const res = await fetch(API_PF, {
     method: 'POST',
      headers: {
         'Content-Type': 'application/json',
@@ -539,14 +559,20 @@ async function envioBdPf(tabla){
 
 const data = await res.json();
 console.log(data);
-  pruebasFugaLicencia();
+  setTimeout(() => {
+    pruebasFugaLicencia();
+
+  }, 2000);
 
 }
-function actualizarBdPf(id, tabla){
+async function actualizarBdPf(id, tabla){
+  //Declaramos el objeto que vamos a enviar
+  const objson={}
+  //Objeto de ayuda para almacenar todos los cambios
   const objdata={}
   let index;
   switch (tabla) {
-    case 'licencia':
+    case 'licencias':
 
       const objdir = {};
       document.querySelectorAll('.dir').forEach(item =>{
@@ -562,7 +588,7 @@ function actualizarBdPf(id, tabla){
       index= laboratorioPf.licencias.findIndex(item => item.id === id);
       laboratorioPf.licencias[index] = objdata;
       break;
-    case 'fuente':
+    case 'fuentes':
         document.querySelectorAll('.envioBd').forEach(item =>{
           objdata[item.id]=item.value;
         });
@@ -572,7 +598,7 @@ function actualizarBdPf(id, tabla){
         index= laboratorioPf.fuentes.findIndex(item => item.id === id);
         laboratorioPf.fuentes[index] = {...objdata};
         break;
-    case 'equipo':
+    case 'equipos':
       document.querySelectorAll('.envioBd').forEach(item =>{
         objdata[item.id]=item.value;
       });
@@ -582,7 +608,7 @@ function actualizarBdPf(id, tabla){
       index= laboratorioPf.equipos.findIndex(item => item.id === id);
       laboratorioPf.equipos[index] = {...objdata};
       break;
-    case 'detector':
+    case 'detectores':
       document.querySelectorAll('.envioBd').forEach(item =>{
         objdata[item.id]=item.value;
       });
@@ -593,7 +619,7 @@ function actualizarBdPf(id, tabla){
       laboratorioPf.detectores[index] = {...objdata};
       break;
 
-    case 'personal':
+    case 'personalPf':
       document.querySelectorAll('.envioBd').forEach(item =>{
         objdata[item.id]=item.value;
       });
@@ -608,7 +634,24 @@ function actualizarBdPf(id, tabla){
       break;
   }
 
+  objson['collection']=tabla;
+  objson['id']=id;
+  objson['lista']=objdata;
+  console.log(objson);
+  const res = await fetch(API_PF, {
+    method: 'PATCH',
+     headers: {
+        'Content-Type': 'application/json',
+     },
+    body: JSON.stringify(objson)
+});
+
+const data = await res.json();
+console.log(data);
+setTimeout(() => {
   pruebasFugaLicencia();
+}, 2000);
+
 
 
 }
