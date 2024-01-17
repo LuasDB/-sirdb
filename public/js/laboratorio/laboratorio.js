@@ -1,6 +1,6 @@
 const formulariosPf = [
-`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
-  <section class="card form-1">         
+`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+  <section class="card form-1">
   <span class="tittle">Nueva Licencia</span>
   <br>
   <label for="num_lic">Número Licencia</label>
@@ -28,8 +28,8 @@ const formulariosPf = [
   <input type="text" class="dir" name="pais" id="pais">
   <a class="btn-send" id="enviar">Enviar</a>
 </section>`,
-`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
-<section class="card form-1">         
+`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+<section class="card form-1">
 <span class="tittle">Nueva Fuente</span>
 <br>
 <label for="isotopo">Isotopo (Forma corta)</label>
@@ -57,8 +57,8 @@ const formulariosPf = [
 <input type="date" name="fecha_cal" id="fecha_cal" class="envioBd">
 <a class="btn-send" id="enviar">Enviar</a>
 </section>`,
-`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
-<section class="card form-1">         
+`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+<section class="card form-1">
 <span class="tittle">Nuevo Equipo</span>
 <br>
 <label for="marca">Marca</label>
@@ -76,8 +76,8 @@ const formulariosPf = [
 <input type="text" name="resolucion" id="resolucion" class="envioBd">
 <a class="btn-send" id="enviar">Enviar</a>
 </section>`,
-`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
-<section class="card form-1">         
+`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+<section class="card form-1">
 <span class="tittle">Nuevo Detector</span>
 <br>
 <label for="marca">Marca</label>
@@ -98,8 +98,8 @@ const formulariosPf = [
 
 <a class="btn-send" id="enviar">Enviar</a>
 </section>`,
-`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
-<section class="card form-1">         
+`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+<section class="card form-1">
     <span class="tittle">Nuevo Personal</span>
     <br>
     <label for="nombre">Nombre</label>
@@ -120,7 +120,7 @@ const formulariosPf = [
     <a class="btn-send" id="enviar">Enviar</a>
 </section>`
 ]
-// funcion para crear ID aleatorios 
+// funcion para crear ID aleatorios
 
 
 
@@ -137,11 +137,11 @@ function callLabGestion(){
   <section class="container">
   <article class="card card-cal-info calibracion" >
           <span class="material-symbols-outlined calibracion"><img src="./assets/icons/monitor 3.svg" alt="IconoMonitor2"></span>
-          <h3 class="calibracion">Calibración</h3>                                 
+          <h3 class="calibracion">Calibración</h3>
   </article>
   <article class="card card-cal-info pruebas_fuga">
       <span class="material-symbols-outlined pruebas_fuga"><img src="./assets/icons/pf.svg" alt="Icono Prueba de fuga"></span>
-      <h3 class="pruebas_fuga">Pruebas de fuga</h3>                                 
+      <h3 class="pruebas_fuga">Pruebas de fuga</h3>
   </article>
 </section>`;
 // Asignamos una función para cada modulo a travez de su clase correpondiente
@@ -179,27 +179,27 @@ function agregar(tabla,area){
         monitorLab.innerHTML =formulariosPf[4];
         const enviar_personal=document.getElementById('enviar');
         enviar_personal.onclick = ()=> envioBdPf('personal');
-        
+
         break;
-    
+
       default:
         break;
     }
     document.getElementById('atras').onclick = ()=> pruebasFugaLicencia();
-    
+
   }else{
     ///Funciones para calibración
   }
-  
+
 }
 function editarElemento(id,tabla,area){
   if(area === 'pf'){
-    
+
     switch(tabla){
       case 'licencia':
         const licencia = laboratorioPf.licencias.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
         monitorLab.innerHTML=`
-        <section class="card form-1">         
+        <section class="card form-1">
           <span class="tittle">Licencia ${licencia.num_lic}</span>
           <br>
           <label for="num_lic">Número Licencia</label>
@@ -243,7 +243,7 @@ function editarElemento(id,tabla,area){
       case 'fuente':
         const fuente = laboratorioPf.fuentes.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
         monitorLab.innerHTML=`
-        <section class="card form-1">         
+        <section class="card form-1">
             <span class="tittle">Fuente ${fuente.isotopo} serie ${fuente.serie}</span>
             <br>
             <label for="isotopo">Isotopo</label>
@@ -291,7 +291,7 @@ function editarElemento(id,tabla,area){
             item.selected = true;
           }
         }
-        
+
         let unidades=document.getElementById('unidades').options;
         for (const item of unidades) {
           if(item.value === fuente.unidades){
@@ -308,7 +308,7 @@ function editarElemento(id,tabla,area){
       case 'equipo':
         const equipo = laboratorioPf.equipos.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
         monitorLab.innerHTML=`
-        <section class="card form-1">         
+        <section class="card form-1">
             <span class="tittle">Equipo ${equipo.marca} modelo ${equipo.modelo}</span>
             <br>
             <label for="marca">Marca</label>
@@ -327,7 +327,7 @@ function editarElemento(id,tabla,area){
               <option value="Activo">Activo</option>
               <option value="Baja">Baja</option>
           </select>
-            
+
             <a class="btn-send" id="guardar">Guardar</a>
         </section>
         `;
@@ -349,7 +349,7 @@ function editarElemento(id,tabla,area){
       case 'detector':
           const detector = laboratorioPf.detectores.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
           monitorLab.innerHTML=`
-          <section class="card form-1">         
+          <section class="card form-1">
             <span class="tittle">Detector ${detector.marca} modelo ${detector.modelo} serie ${detector.serie}</span>
             <br>
             <label for="marca">Marca</label>
@@ -372,7 +372,7 @@ function editarElemento(id,tabla,area){
               <option value="Activo">Activo</option>
               <option value="Baja">Baja</option>
             </select>
-            
+
             <a class="btn-send" id="guardar">Guardar</a>
           </section>
           `;
@@ -394,8 +394,8 @@ function editarElemento(id,tabla,area){
       case 'personal':
         const personal = laboratorioPf.personalPf.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
         monitorLab.innerHTML=`
-        <h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>   
-        <section class="card form-1">         
+        <h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+        <section class="card form-1">
             <span class="tittle">${personal.cargo}</span>
             <br>
             <label for="nombre">Nombre</label>
@@ -418,7 +418,7 @@ function editarElemento(id,tabla,area){
               <option value="Activo">Activo</option>
               <option value="Baja">Baja</option>
             </select>
-            
+
             <a class="btn-send" id="guardar">Guardar</a>
           </section>
         </section>
@@ -444,7 +444,7 @@ function editarElemento(id,tabla,area){
           }
         }
         break;
-    
+
         default:
         break;
     }
@@ -459,11 +459,17 @@ function deleteElemento(id,tabla){
 /***************************************************************************************************
  * FUNCIONES PARA ENVIO A BASE DE DATOS
  ***************************************************************************************************/
-function envioBdPf(tabla){
+const API ='http://localhost:3000/api/v1/pfLaboratorio';
+async function envioBdPf(tabla){
+
+  let objson ={};
+
   const objdata={};
+
+
   switch (tabla) {
     case 'licencias':
-      
+
       const objdir = {};
       document.querySelectorAll('.dir').forEach(item =>{
         objdir[item.id]=item.value;
@@ -474,9 +480,11 @@ function envioBdPf(tabla){
       objdata['domicilio']={...objdir};
       objdata['status']='Activo';
       objdata['id']=generateRandomString(15);
+
       laboratorioPf.licencias.push(objdata);
+
       break;
-    case 'fuentes':      
+    case 'fuentes':
       document.querySelectorAll('.envioBd').forEach(item =>{
         objdata[item.id]=item.value;
       });
@@ -484,7 +492,7 @@ function envioBdPf(tabla){
       objdata['id']=generateRandomString(15);
       laboratorioPf.fuentes.push(objdata);
       break;
-    case 'equipos':      
+    case 'equipos':
       document.querySelectorAll('.envioBd').forEach(item =>{
         objdata[item.id]=item.value;
       });
@@ -492,7 +500,7 @@ function envioBdPf(tabla){
       objdata['id']=generateRandomString(15);
       laboratorioPf.equipos.push(objdata);
       break;
-    case 'detectores':      
+    case 'detectores':
       document.querySelectorAll('.envioBd').forEach(item =>{
         objdata[item.id]=item.value;
       });
@@ -501,7 +509,7 @@ function envioBdPf(tabla){
       console.log(objdata)
       laboratorioPf.detectores.push(objdata);
       break;
-    case 'personal':      
+    case 'personal':
       document.querySelectorAll('.envioBd').forEach(item =>{
         objdata[item.id]=item.value;
       });
@@ -510,19 +518,36 @@ function envioBdPf(tabla){
       console.log(objdata)
       laboratorioPf.personalPf.push(objdata);
       break;
-  
+
     default:
       break;
   }
+
+
+  objson['collection']=tabla;
+  objson['lista']=objdata;
+  console.log(objson);
+
+
+  const res = await fetch(API, {
+    method: 'POST',
+     headers: {
+        'Content-Type': 'application/json',
+     },
+    body: JSON.stringify(objson)
+});
+
+const data = await res.json();
+console.log(data);
   pruebasFugaLicencia();
-  
+
 }
 function actualizarBdPf(id, tabla){
   const objdata={}
   let index;
   switch (tabla) {
     case 'licencia':
-      
+
       const objdir = {};
       document.querySelectorAll('.dir').forEach(item =>{
         objdir[item.id]=item.value;
@@ -578,11 +603,11 @@ function actualizarBdPf(id, tabla){
       index= laboratorioPf.personalPf.findIndex(item => item.id === id);
       laboratorioPf.personalPf[index] = {...objdata};
       break;
-  
+
     default:
       break;
   }
-  
+
   pruebasFugaLicencia();
 
 
