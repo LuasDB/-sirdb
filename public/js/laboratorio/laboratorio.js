@@ -196,12 +196,13 @@ async function editarElemento(id,tabla,area){
    //traemos la información de la base de datos a travez de fetch
    const labPf = await fetch(API_PF);
    const dataLab = await labPf.json();
+   const dataLabRes=dataLab.respuesta;
 
   if(area === 'pf'){
     monitorLab.innerHTML=`<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>`;
     switch(tabla){
       case 'licencias':
-        const licencia = dataLab.licencias.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+        const licencia = dataLabRes.licencias.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
         monitorLab.innerHTML+=`
         <section class="card form-1">
           <span class="tittle">Licencia ${licencia.num_lic}</span>
@@ -245,7 +246,7 @@ async function editarElemento(id,tabla,area){
         }
       break;
       case 'fuentes':
-        const fuente = dataLab.fuentes.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+        const fuente = dataLabRes.fuentes.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
         monitorLab.innerHTML+=`
         <section class="card form-1">
             <span class="tittle">Fuente ${fuente.isotopo} serie ${fuente.serie}</span>
@@ -310,7 +311,7 @@ async function editarElemento(id,tabla,area){
         }
       break;
       case 'equipos':
-        const equipo = dataLab.equipos.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+        const equipo = dataLabRes.equipos.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
         monitorLab.innerHTML+=`
         <section class="card form-1">
             <span class="tittle">Equipo ${equipo.marca} modelo ${equipo.modelo}</span>
@@ -351,7 +352,7 @@ async function editarElemento(id,tabla,area){
         }
         break;
       case 'detectores':
-          const detector = dataLab.detectores.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+          const detector = dataLabRes.detectores.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
           monitorLab.innerHTML+=`
           <section class="card form-1">
             <span class="tittle">Detector ${detector.marca} modelo ${detector.modelo} serie ${detector.serie}</span>
@@ -396,7 +397,7 @@ async function editarElemento(id,tabla,area){
           }
           break;
       case 'personalPf':
-        const personal = dataLab.personalPf.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
+        const personal = dataLabRes.personalPf.lista.find(item => item.id === id);//Esto lo tenemos que traer de la base de datos
         monitorLab.innerHTML+=`
         <section class="card form-1">
             <span class="tittle">${personal.cargo}</span>

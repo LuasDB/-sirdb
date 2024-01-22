@@ -40,6 +40,7 @@ class labPf{
   async findAll(){
     const q= query(laboratorioPf);
     const snapshot = await getDocs(q);
+
     if(!snapshot){
       throw boom.notFound('No encontrado');
     }
@@ -47,7 +48,7 @@ class labPf{
     snapshot.forEach(doc =>{
       respuesta[doc.id]=doc.data();
     });
-    return respuesta;
+    return {respuesta};
   }
 
   async update(collection,id,changes){

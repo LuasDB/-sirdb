@@ -245,7 +245,7 @@ monitorLab.innerHTML=`
   item.onclick = ()=> agregar(item.classList[1],'pf');
   });
 
-  dataLab.licencias.lista.forEach(licencia =>{
+  dataLab.respuesta.licencias.lista.forEach(licencia =>{
   let fila = document.createElement('tr');
   console.log(licencia.id);
   fila.innerHTML = `
@@ -261,7 +261,7 @@ monitorLab.innerHTML=`
       document.querySelector(`.edit_${licencia.id}`).onclick = ()=> editarElemento(licencia.id,'licencias','pf');
       document.querySelector(`.delete_${licencia.id}`).onclick = ()=> deleteElemento(licencia.id,'licencias','pf');
   });
-  dataLab.fuentes.lista.forEach(item =>{
+  dataLab.respuesta.fuentes.lista.forEach(item =>{
   let fila = document.createElement('tr');
   fila.innerHTML = `
   <td>${item.isotopo}</td>
@@ -277,7 +277,7 @@ monitorLab.innerHTML=`
       document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'fuentes','pf');
       document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'fuentes','pf');
   });
-  dataLab.equipos.lista.forEach(item =>{
+  dataLab.respuesta.equipos.lista.forEach(item =>{
   let fila = document.createElement('tr');
   fila.innerHTML = `
   <td>${item.marca}</td>
@@ -292,7 +292,7 @@ monitorLab.innerHTML=`
   document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'equipos','pf');
   document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'equipos','pf');
   });
-  dataLab.detectores.lista.forEach(item =>{
+  dataLab.respuesta.detectores.lista.forEach(item =>{
   let fila = document.createElement('tr');
   fila.innerHTML = `
   <td>${item.marca}</td>
@@ -308,7 +308,7 @@ monitorLab.innerHTML=`
   document.querySelector(`.edit_${item.id}`).onclick = ()=> editarElemento(item.id,'detectores','pf');
   document.querySelector(`.delete_${item.id}`).onclick = ()=> deleteElemento(item.id,'detectores','pf');
   });
-  dataLab.personalPf.lista.forEach(item =>{
+  dataLab.respuesta.personalPf.lista.forEach(item =>{
   let fila = document.createElement('tr');
   fila.innerHTML = `
   <td>${item.nivel} ${item.nombre}</td>
