@@ -4,11 +4,11 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 //Traemos routerApi para gestionar las rutas detectadas por el servidor
-const {  routerApi } = require('./routes');
+const { routerApi } = require('./routes');
 const { logErrors,boomErrorHandler,errorHandler } = require('./middlewares/errorHandler');
 
 app.use(express.json());
-//Agregamos al routerApi nuesta app
+//Agregamos al routerApi nuesta app 1
 routerApi(app);
 //Despues del router agregamos los middlewares de errores
 app.use(logErrors);

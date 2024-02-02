@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laboratorio SIRSA</title>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="./styles/style.css">
 
-    
+
 </head>
 <body>
     <nav class="card">
@@ -19,25 +20,25 @@
                 <span class="material-symbols-outlined">search</span>
                 <input type="text">
             </div>
-            
+
             <span class="material-symbols-outlined">person</span>
             <input type="checkbox" id="menu_check" class="hiden">
             <label for="menu_check">
                 <span class="btn-menu material-symbols-outlined" id="menu">menu</span>
                 <span class="material-symbols-outlined" id="close">menu_open</span>
             </label>
-            
+
             <span class="material-symbols-outlined">settings</span>
         </div>
-        
+
     </nav>
-    <aside class="card" id="menu_aside">       
+    <aside class="card" id="menu_aside">
         <img src="./assets/img/Logo-SIRSA-2.svg" alt="LOGO SIRSA">
         <ul id="menu-list">
             <li id="cal" onclick="callCalibraciones()"><span class="card-icon material-symbols-outlined ">
                 monitor_heart
                 </span> Calibración</li>
-            <li onclick="callPruebasFuga()"> <span class="card-icon material-symbols-outlined">
+            <li onclick="callMenuPfServicios()"> <span class="card-icon material-symbols-outlined">
                 analytics
                 </span>Pruebas de Fuga</li>
             <li id="" ><span class="card-icon material-symbols-outlined">
@@ -51,23 +52,23 @@
                     </span> STI </li>
         </ul>
     </aside>
-    
-    
-    
-    <main class="container" id="monitor">
-        
-     
 
-      
-    </main>      
-    
+
+
+    <main class="container" id="monitor">
+
+
+
+
+    </main>
+
     <script>
-       
+
     let toggle = document.getElementById('menu_check');
     let aside = document.getElementById('menu_aside');
 
     toggle.addEventListener('click',function(){
-        
+
         if(toggle.checked){
             aside.style.left='10px';
         }
@@ -78,6 +79,9 @@
     </script>
     <!-- Scripts online para herramienbtas -->
     <script src="https://kit.fontawesome.com/609fa7e19c.js" crossorigin="anonymous"></script>
+    <script src="sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script src="./index.js"></script>
     <script src="./js/laboratorio/pf.js"></script>
@@ -93,7 +97,7 @@
     <script src="https://momentjs.com/downloads/moment.js"></script>
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 
-    
-    
+
+
 </body>
-</html> 
+</html>

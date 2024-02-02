@@ -1,3 +1,5 @@
+
+
 const formulariosPf = [
 `<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
   <section class="card form-1">
@@ -38,8 +40,8 @@ const formulariosPf = [
 <input type="text" name="energia" id="energia" class="envioBd">
 <label for="vida_media">Vida media (años)</label>
 <input type="text" name="vida_media" id="vida_media" class="envioBd">
-<label for="rendiemiento">Rendiemiento</label>
-<input type="text" name="rendiemiento" id="rendiemiento" class="envioBd">
+<label for="rendimiento">Rendiemiento</label>
+<input type="text" name="rendimiento" id="rendimiento" class="envioBd">
 <label for="marca">marca</label>
 <input type="text" name="marca" id="marca" class="envioBd">
 <label for="serie">serie</label>
@@ -193,6 +195,7 @@ function agregar(tabla,area){
 
 }
 async function editarElemento(id,tabla,area){
+
    //traemos la información de la base de datos a travez de fetch
    const labPf = await fetch(API_PF);
    const dataLab = await labPf.json();
@@ -458,200 +461,289 @@ async function editarElemento(id,tabla,area){
   }
 }
 async function deleteElemento(id,tabla,area){
-  const objson ={}
-  if(area === 'pf'){
-    objson['collection']=tabla;
-    objson['id']=id;
+  //Preguntamos al usuario si desea eliminar el registro, usando sweetalert2
+  Swal.fire({
+    title: "¿Deseas eliminar este registro?",
+    text: "No se podra recuperar la información",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    cancelButtonText: "No,espera",
+    confirmButtonText: "Si, eliminalo"
+  }).then(async(result) => {
+    if (result.isConfirmed) {
+      const objson ={}
+      if(area === 'pf'){
+        objson['collection']=tabla;
+        objson['id']=id;
 
-  const res = await fetch(API_PF, {
-    method: 'DELETE',
-     headers: {
-        'Content-Type': 'application/json',
-     },
-    body: JSON.stringify(objson)
+      const res = await fetch(API_PF, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(objson)
+      });
+
+      const data = await res.json();
+      if(data.message === 'Eliminado'){
+        Swal.fire({
+          title: "ELIMINADO!",
+          text: "El registro se eliminó correctamente",
+          icon: "success",
+          showConfirmButton: false,
+          timer:2000
+        });
+        pruebasFugaLicencia();
+      }else{
+        Swal.fire({
+          title: "Algo salio mal!",
+          text: "No se elimino el registro",
+          icon: "error",
+          showConfirmButton: false,
+          timer:2000
+        });
+      }
+      }
+
+
+    }
   });
 
-const data = await res.json();
-console.log(data);
-setTimeout(() => {
-  pruebasFugaLicencia();
-}, 2000);
-
-
-  }
 }
 /***************************************************************************************************
  * FUNCIONES PARA ENVIO A BASE DE DATOS
  ***************************************************************************************************/
-const API_PF ='http://localhost:3000/api/v1/pfLaboratorio';
+const  API_PF ='http://localhost:3000/api/v1/pfLaboratorio';
 async function envioBdPf(tabla){
+  Swal.fire({
+    title: "Alta en base de datos",
+    text: "Revisaste que la información sea correcta?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    cancelButtonText: "No,espera",
+    confirmButtonText: "Si,claro"
+  }).then(async(result) => {
+    if (result.isConfirmed) {
+      let objson ={};
+      const objdata={};
+      switch (tabla) {
+        case 'licencias':
 
-  let objson ={};
-  const objdata={};
-  switch (tabla) {
-    case 'licencias':
+          const objdir = {};
+          document.querySelectorAll('.dir').forEach(item =>{
+            objdir[item.id]=item.value;
+          });
+          document.querySelectorAll('.envioBd').forEach(item =>{
+            objdata[item.id]=item.value;
+          });
+          objdata['domicilio']={...objdir};
+          objdata['status']='Activo';
+          objdata['id']=generateRandomString(15);
 
-      const objdir = {};
-      document.querySelectorAll('.dir').forEach(item =>{
-        objdir[item.id]=item.value;
+          laboratorioPf.licencias.push(objdata);
+
+          break;
+        case 'fuentes':
+          document.querySelectorAll('.envioBd').forEach(item =>{
+            objdata[item.id]=item.value;
+          });
+          objdata['status']='Activo';
+          objdata['id']=generateRandomString(15);
+          laboratorioPf.fuentes.push(objdata);
+          break;
+        case 'equipos':
+          document.querySelectorAll('.envioBd').forEach(item =>{
+            objdata[item.id]=item.value;
+          });
+          objdata['status']='Activo';
+          objdata['id']=generateRandomString(15);
+          laboratorioPf.equipos.push(objdata);
+          break;
+        case 'detectores':
+          document.querySelectorAll('.envioBd').forEach(item =>{
+            objdata[item.id]=item.value;
+          });
+          objdata['status']='Activo';
+          objdata['id']=generateRandomString(15);
+          console.log(objdata)
+          laboratorioPf.detectores.push(objdata);
+          break;
+        case 'personalPf':
+          document.querySelectorAll('.envioBd').forEach(item =>{
+            objdata[item.id]=item.value;
+          });
+          objdata['status']='Activo';
+          objdata['id']=generateRandomString(15);
+          console.log(objdata)
+          laboratorioPf.personalPf.push(objdata);
+          break;
+
+        default:
+          break;
+      }
+
+
+      objson['collection']=tabla;
+      objson['lista']=objdata;
+      console.log(objson);
+
+
+      const res = await fetch(API_PF, {
+        method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+        body: JSON.stringify(objson)
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+
+      Swal.fire({
+        title: "Listo!",
+        text: "Tu información se guardo correctamente",
+        icon: "success",
+        showConfirmButton: false,
+        timer:2000
       });
-      document.querySelectorAll('.envioBd').forEach(item =>{
-        objdata[item.id]=item.value;
-      });
-      objdata['domicilio']={...objdir};
-      objdata['status']='Activo';
-      objdata['id']=generateRandomString(15);
-
-      laboratorioPf.licencias.push(objdata);
-
-      break;
-    case 'fuentes':
-      document.querySelectorAll('.envioBd').forEach(item =>{
-        objdata[item.id]=item.value;
-      });
-      objdata['status']='Activo';
-      objdata['id']=generateRandomString(15);
-      laboratorioPf.fuentes.push(objdata);
-      break;
-    case 'equipos':
-      document.querySelectorAll('.envioBd').forEach(item =>{
-        objdata[item.id]=item.value;
-      });
-      objdata['status']='Activo';
-      objdata['id']=generateRandomString(15);
-      laboratorioPf.equipos.push(objdata);
-      break;
-    case 'detectores':
-      document.querySelectorAll('.envioBd').forEach(item =>{
-        objdata[item.id]=item.value;
-      });
-      objdata['status']='Activo';
-      objdata['id']=generateRandomString(15);
-      console.log(objdata)
-      laboratorioPf.detectores.push(objdata);
-      break;
-    case 'personalPf':
-      document.querySelectorAll('.envioBd').forEach(item =>{
-        objdata[item.id]=item.value;
-      });
-      objdata['status']='Activo';
-      objdata['id']=generateRandomString(15);
-      console.log(objdata)
-      laboratorioPf.personalPf.push(objdata);
-      break;
-
-    default:
-      break;
-  }
+      pruebasFugaLicencia();
+    }
+  });
 
 
-  objson['collection']=tabla;
-  objson['lista']=objdata;
-  console.log(objson);
 
 
-  const res = await fetch(API_PF, {
-    method: 'POST',
-     headers: {
-        'Content-Type': 'application/json',
-     },
-    body: JSON.stringify(objson)
-});
-
-const data = await res.json();
-console.log(data);
-  setTimeout(() => {
-    pruebasFugaLicencia();
-
-  }, 2000);
 
 }
 async function actualizarBdPf(id, tabla){
-  //Declaramos el objeto que vamos a enviar
-  const objson={}
-  //Objeto de ayuda para almacenar todos los cambios
-  const objdata={}
-  let index;
-  switch (tabla) {
-    case 'licencias':
+  //Preguntamos al usuario si los datos son correctos, usando sweetalert2
+  Swal.fire({
+    title: "¿LOS CAMBIOS SON CORRECTOS?",
+    text: "La información se actualizará tal como esta",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    cancelButtonText: "No,espera",
+    confirmButtonText: "Si, actualiza"
+  }).then(async(result) => {
+    if (result.isConfirmed) {
+          //Declaramos el objeto que vamos a enviar
+          const objson={}
+          //Objeto de ayuda para almacenar todos los cambios
+          const objdata={}
+          let index;
+          switch (tabla) {
+            case 'licencias':
 
-      const objdir = {};
-      document.querySelectorAll('.dir').forEach(item =>{
-        objdir[item.id]=item.value;
-      });
-      document.querySelectorAll('.envioBd').forEach(item =>{
-        objdata[item.id]=item.value;
-      });
-      objdata['domicilio']={...objdir};
-      objdata['id']=id;
+              const objdir = {};
+              document.querySelectorAll('.dir').forEach(item =>{
+                objdir[item.id]=item.value;
+              });
+              document.querySelectorAll('.envioBd').forEach(item =>{
+                objdata[item.id]=item.value;
+              });
+              objdata['domicilio']={...objdir};
+              objdata['id']=id;
 
-      console.log(`[ACTUALIZACION]:${objdata}`);
-      index= laboratorioPf.licencias.findIndex(item => item.id === id);
-      laboratorioPf.licencias[index] = objdata;
-      break;
-    case 'fuentes':
-        document.querySelectorAll('.envioBd').forEach(item =>{
-          objdata[item.id]=item.value;
+              console.log(`[ACTUALIZACION]:${objdata}`);
+              index= laboratorioPf.licencias.findIndex(item => item.id === id);
+              laboratorioPf.licencias[index] = objdata;
+              break;
+            case 'fuentes':
+                document.querySelectorAll('.envioBd').forEach(item =>{
+                  objdata[item.id]=item.value;
+                });
+                // objdata['id']=id;
+                console.log(`[ACUALIZACION]:${id}`);
+                console.log(objdata)
+                index= laboratorioPf.fuentes.findIndex(item => item.id === id);
+                laboratorioPf.fuentes[index] = {...objdata};
+                break;
+            case 'equipos':
+              document.querySelectorAll('.envioBd').forEach(item =>{
+                objdata[item.id]=item.value;
+              });
+              // objdata['id']=id;
+              console.log(`[ACUALIZACION]:${id}`);
+              console.log(objdata)
+              index= laboratorioPf.equipos.findIndex(item => item.id === id);
+              laboratorioPf.equipos[index] = {...objdata};
+              break;
+            case 'detectores':
+              document.querySelectorAll('.envioBd').forEach(item =>{
+                objdata[item.id]=item.value;
+              });
+              // objdata['id']=id;
+              console.log(`[ACUALIZACION]:${id}`);
+              console.log(objdata)
+              index= laboratorioPf.detectores.findIndex(item => item.id === id);
+              laboratorioPf.detectores[index] = {...objdata};
+              break;
+
+            case 'personalPf':
+              document.querySelectorAll('.envioBd').forEach(item =>{
+                objdata[item.id]=item.value;
+              });
+              // objdata['id']=id;
+              console.log(`[ACUALIZACION]:${id}`);
+              console.log(objdata)
+              index= laboratorioPf.personalPf.findIndex(item => item.id === id);
+              laboratorioPf.personalPf[index] = {...objdata};
+              break;
+
+            default:
+              break;
+          }
+
+          objson['collection']=tabla;
+          objson['id']=id;
+          objson['lista']=objdata;
+          console.log(objson);
+
+
+
+          const res = await fetch(API_PF, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(objson)
+          });
+
+
+
+
+          const data = await res.json();
+        console.log('Actualizado:');
+
+        console.log(data);
+      if(data.message === 'Actualizado'){
+        Swal.fire({
+          title: "ACTUALIZADO",
+          text: "El registro se actualizo correctamente",
+          icon: "success",
+          showConfirmButton: false,
+          timer:2000
         });
-        // objdata['id']=id;
-        console.log(`[ACUALIZACION]:${id}`);
-        console.log(objdata)
-        index= laboratorioPf.fuentes.findIndex(item => item.id === id);
-        laboratorioPf.fuentes[index] = {...objdata};
-        break;
-    case 'equipos':
-      document.querySelectorAll('.envioBd').forEach(item =>{
-        objdata[item.id]=item.value;
-      });
-      // objdata['id']=id;
-      console.log(`[ACUALIZACION]:${id}`);
-      console.log(objdata)
-      index= laboratorioPf.equipos.findIndex(item => item.id === id);
-      laboratorioPf.equipos[index] = {...objdata};
-      break;
-    case 'detectores':
-      document.querySelectorAll('.envioBd').forEach(item =>{
-        objdata[item.id]=item.value;
-      });
-      // objdata['id']=id;
-      console.log(`[ACUALIZACION]:${id}`);
-      console.log(objdata)
-      index= laboratorioPf.detectores.findIndex(item => item.id === id);
-      laboratorioPf.detectores[index] = {...objdata};
-      break;
+        pruebasFugaLicencia();
+      }else{
+        Swal.fire({
+          title: "Algo salio mal!",
+          text: "No se elimino el registro",
+          icon: "error",
+          showConfirmButton: false,
+          timer:2000
+        });
+      }
+      }
+  });
 
-    case 'personalPf':
-      document.querySelectorAll('.envioBd').forEach(item =>{
-        objdata[item.id]=item.value;
-      });
-      // objdata['id']=id;
-      console.log(`[ACUALIZACION]:${id}`);
-      console.log(objdata)
-      index= laboratorioPf.personalPf.findIndex(item => item.id === id);
-      laboratorioPf.personalPf[index] = {...objdata};
-      break;
-
-    default:
-      break;
-  }
-
-  objson['collection']=tabla;
-  objson['id']=id;
-  objson['lista']=objdata;
-  console.log(objson);
-  const res = await fetch(API_PF, {
-    method: 'PATCH',
-     headers: {
-        'Content-Type': 'application/json',
-     },
-    body: JSON.stringify(objson)
-});
-
-const data = await res.json();
-console.log(data);
-setTimeout(() => {
-  pruebasFugaLicencia();
-}, 2000);
 
 
 

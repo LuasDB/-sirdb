@@ -2,11 +2,11 @@
 let menu_list =document.querySelectorAll('#menu-list li');
 menu_list.forEach(element =>{
     element.addEventListener('click',()=>{
-        
+
         menu_list.forEach(li =>{ li.classList.remove('selected'); });
         element.classList.add('selected');
         toggle.checked = false;
-        aside.style.left='-310px';       
+        aside.style.left='-310px';
     });
 });
 
@@ -24,27 +24,27 @@ let objMenus = [
             <span class="material-symbols-outlined" id="arribos">browser_updated</span>
             <h3 id="arribos">Arribos</h3>
             <p id="arribos">0</p>
-        </div> 
+        </div>
         <div class="card card-cal-info" id="calibracion">
             <span class="material-symbols-outlined" id="calibracion">speed</span>
             <h3 id="calibracion">Calibración</h3>
             <p id="calibracion">0</p>
-        </div> 
+        </div>
         <div class="card card-cal-info" id="firmas">
             <span class="material-symbols-outlined" id="firmas">draw</span>
             <h3 id="firmas">Firmas</h3>
             <p id="firmas">0</p>
-        </div> 
+        </div>
         <div class="card card-cal-info" id="embalaje">
             <span class="material-symbols-outlined" id="embalaje">box_add</span>
             <h3 id="embalaje">Embalaje</h3>
             <p id="embalaje">0</p>
-        </div> 
+        </div>
         <div class="card card-cal-info" id="envios">
             <span class="material-symbols-outlined" id="envios">local_shipping</span>
             <h3 id="envios">Envios</h3>
             <p id="envios">0</p>
-        </div> 
+        </div>
     </section>
     <section class="bitacora">
          <h2 class="title-divider">Bitacora</h2>
@@ -66,12 +66,12 @@ let objMenus = [
             </div>
             <div class="obj-date success">
                 <span>Fecha arribo</span>
-                <p>28/09/2023</p> 
-            </div>  
-            <div></div> 
-            <a class="btn btn-color" id="asignar_os">Asignar O.S.</a>    
+                <p>28/09/2023</p>
+            </div>
+            <div></div>
+            <a class="btn btn-color" id="asignar_os">Asignar O.S.</a>
         </article>
-        
+
     </div>
     <div class="card">
         <article class="card-info-gral">
@@ -83,12 +83,12 @@ let objMenus = [
             </div>
             <div class="obj-date success">
                 <span>Fecha arribo</span>
-                <p>28/09/2023</p> 
-            </div>  
-            <div></div> 
-            <a class="btn btn-color" id="asignar_os">Asignar O.S.</a>    
+                <p>28/09/2023</p>
+            </div>
+            <div></div>
+            <a class="btn btn-color" id="asignar_os">Asignar O.S.</a>
         </article>
-        
+
     </div>
     <div class="card">
         <article class="card-info-gral">
@@ -100,13 +100,13 @@ let objMenus = [
             </div>
             <div class="obj-date success">
                 <span>Fecha arribo</span>
-                <p>28/09/2023</p> 
-            </div>  
-            <div></div> 
-            <a class="btn btn-color" id="asignar_os">Asignar O.S.</a>    
+                <p>28/09/2023</p>
+            </div>
+            <div></div>
+            <a class="btn btn-color" id="asignar_os">Asignar O.S.</a>
         </article>
-        
-    </div>   
+
+    </div>
 </section>`,
     `<section id="arribo-form">
     <article class="card form-1">
@@ -125,7 +125,7 @@ let objMenus = [
         <input type="text" name="serie_monitor" id="serie_monitor" placeholder="" class="envioDbEquipo">
         <div>
             <input type="checkbox" name="razon" id="check_det">
-            <label for="razon">Detector externo</label> 
+            <label for="razon">Detector externo</label>
         </div>
         <div id="datos_detector" class="form-1 ">
             <label for="marca_detector" class="hiden">Marca detector</label>
@@ -161,13 +161,13 @@ let objMenus = [
             <p>Desc.</p>
             <p>BC</p>
             <p>Observaciones</p>
-        
+
             <label for="carcasa">Carcasa:</label>
             <input type="checkbox" name="carcasa" id="carcasa" class="envioDbEquipo">
             <input type="text" id="observaciones_carcasa" class="envioDbEquipo">
             <label for="display">Display/Carátula:</label>
             <input type="checkbox" name="display" id="display"  class="envioDbEquipo">
-            <input type="text" id="observaciones_display" class="envioDbEquipo"> 
+            <input type="text" id="observaciones_display" class="envioDbEquipo">
             <label for="interruptores">Interruptores/botones: </label>
             <input type="checkbox" name="interruptores" id="interruptores" class="envioDbEquipo">
             <input type="text" id="observaciones_interruptores" class="envioDbEquipo">
@@ -183,7 +183,7 @@ let objMenus = [
             <label for="matelin">Maletín/Embalaje: </label>
             <input type="checkbox" name="matelin" id="matelin" class="envioDbEquipo">
 
-            
+
             <input type="text" id="observaciones_matelin" class="envioDbEquipo">
             <label for="software">CD/Software </label>
             <input type="checkbox" name="software" id="software" class="envioDbEquipo">
@@ -197,7 +197,7 @@ let objMenus = [
             <label for="otro">Otro: </label>
             <input type="checkbox" name="otro" id="otro" class="envioDbEquipo">
             <input type="text" id="observaciones_otro" class="envioDbEquipo">
-        </div>   
+        </div>
     </article>
     <article class="card form-1">
         <h3>Medio de ingreso</h3>
@@ -225,7 +225,7 @@ let objMenus = [
             <p><span>Recibido:</span>Paquetería</p>
             <p><span>Intervalos:</span>0-1,0-10,0-100</p>
         </div>
-        
+
     </article>
     <article class="card form-1">
         <h3>Datos consesionario</h3>
@@ -263,7 +263,7 @@ let objMenus = [
             <option value="12">12 meses</option>
             <option value="12">6 meses</option>
         </select>
-        
+
      </article>
 
      <article class="card form-1">
@@ -283,7 +283,7 @@ let objMenus = [
         </select>
         <label for="razon">Comentarios</label>
         <textarea name="direccion" id="direccion" cols="30" rows="5" placeholder="Observaciones o comentarios"></textarea>
-    
+
     </article>
      <a class="btn-send">Enviar</a>
 </section>`,
@@ -299,12 +299,12 @@ let objMenus = [
             </div>
             <div class="obj-date error">
                 <span>Fecha objetivo</span>
-                <p>28/09/2023</p> 
-            </div>  
-            <div></div> 
-            <a class="btn btn-color" id="calibrar">Calibrar</a>    
+                <p>28/09/2023</p>
+            </div>
+            <div></div>
+            <a class="btn btn-color" id="calibrar">Calibrar</a>
         </article>
-        
+
     </div>
     <div class="card">
         <article class="card-info-gral">
@@ -316,12 +316,12 @@ let objMenus = [
             </div>
             <div class="obj-date danger">
                 <span>Fecha objetivo</span>
-                <p>28/09/2023</p> 
-            </div>  
-            <div></div> 
-            <a class="btn btn-color" id="calibrar">Calibrar</a>    
+                <p>28/09/2023</p>
+            </div>
+            <div></div>
+            <a class="btn btn-color" id="calibrar">Calibrar</a>
         </article>
-        
+
     </div>
     <div class="card">
         <article class="card-info-gral">
@@ -333,12 +333,12 @@ let objMenus = [
             </div>
             <div class="obj-date success">
                 <span>Fecha objetivo</span>
-                <p>28/09/2023</p> 
-            </div>  
-            <div></div> 
-            <a class="btn btn-color" id="calibrar">Calibrar</a>   
+                <p>28/09/2023</p>
+            </div>
+            <div></div>
+            <a class="btn btn-color" id="calibrar">Calibrar</a>
         </article>
-        
+
     </div>
 </section> `,
     ` <section id="calibracion-form">
@@ -367,7 +367,7 @@ let objMenus = [
         add_circle
         </span> Nuevo intervalo</a>
         <div id="intervalos-area">
-        
+
         </div>
 
     <form action="" class="card form-1" id="cal-area">
@@ -382,8 +382,8 @@ let objMenus = [
     ``
 
     ];
-  
-const  generateRandomString = (num) => { 
+
+const  generateRandomString = (num) => {
     const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result1= '';
     const charactersLength = characters.length;
@@ -587,7 +587,7 @@ let servicios={
             fecha_arribo:'2022-12-25',
         }
     },
-    
+
     'd3er5t72qwege65':{
         id:'d3er5t72qwege65',
         status:'arribo',
@@ -646,7 +646,7 @@ let equipos={
 
 }
 let ordenesServicio={
-  
+
 
 }
 
@@ -656,7 +656,7 @@ let ordenesServicio={
 
 let contadorIntervalos=0;
 
-     
+
 /********************************************************************************************************************************************
  * Listeners
  * *****************************************************************************************************************************************/
@@ -665,10 +665,10 @@ function listeners(){
     //     console.log('ASIDE:' + e.target.id);
     //     ruta.innerHTML=e.target.id;
     //     switch (e.target.id) {
-    //         // case 'cal':                
+    //         // case 'cal':
     //         //     callCalibraciones();
     //         //     break;
-        
+
     //         default:
     //             break;
     //     }
@@ -681,7 +681,7 @@ function listeners(){
 
     //     // switch (op[0]) {
     //     //     case 'arribos':
-    //     //         callListArribos();                 
+    //     //         callListArribos();
     //     //         ruta.innerHTML+='/'+ op[0];
     //     //         break;
     //     //     case 'nuevo_arribo':
@@ -703,8 +703,8 @@ function listeners(){
     //     //             <input type="text" name="modelo_detector" id="modelo_detector" class="envioDbEquipo" >
     //     //             <label for="serie_detector" >Serie detector</label>
     //     //             <input type="text" name="serie_detector" id="serie_detector" class="envioDbEquipo" >`
-                    
-                    
+
+
     //     //         }else{
     //     //             document.getElementById('datos_detector').innerHTML=`
     //     //             <label for="marca_detector" class="hiden">Marca detector</label>
@@ -714,12 +714,12 @@ function listeners(){
     //     //             <label for="serie_detector" class="hiden">Serie detector</label>
     //     //             <input type="text" name="serie_detector" id="serie_detector" placeholder="" class="hiden" value="N/D">`;
     //     //                 }
-                
+
     //     //         break;
     //     //     case 'mas_equipos':
-                
+
     //     //         break;
-            
+
     //     //     case 'envio_arribo_db':
     //     //         sendDBArribo();
     //     //         monitor.innerHTML ='';
@@ -750,20 +750,20 @@ function listeners(){
     //     //         contadorIntervalos++;
     //     //         sendDBInterval();
     //     //         callNewInterval();
-    //     //         break;         
+    //     //         break;
     //     //     case 'envio_os_db':
     //     //         sendOs(op[1]);
-    //     //         break; 
+    //     //         break;
     //     //     case 'buscar_os':
     //     //         autoCompleteOs();
-    //     //         break;  
+    //     //         break;
     //     //         default:
     //     //         break;
     //     // }
-        
+
 
     // });
-    
+
 }
 
 /********************************************************************************************************************************************
@@ -786,10 +786,10 @@ function calculoPromedio(){
         obt80_2:document.getElementById('80_2').checked ? obturadores.dos : 0,
         obt80_3:document.getElementById('80_3').checked ? obturadores.tres : 0,
     }
-   
+
     let parametros=distanciasObjetivo(intervalo,alcance,cs_137,obturador);
 
-    
+
     let promedio20= document.querySelectorAll('.valor20');
     let promedio50= document.querySelectorAll('.valor50');
     let promedio80= document.querySelectorAll('.valor80');
@@ -862,7 +862,7 @@ function calculoPromedio(){
     e50.innerHTML=`${err50.toFixed(2)}`;
     e80.innerHTML=`${err80.toFixed(2)} `;
 
-    
+
 
 
 
@@ -874,9 +874,9 @@ function calcDistancia(fuente,intensidad,obturador1,obturador2,obturador3){
     if(obturador3 != 0){int=int*obturador3}
     console.log(obturador3)
         return i = Math.sqrt((actActual(fuente)*fuente.constGamma)/(intensidad*0.001*int));
-    
-    
-      
+
+
+
 }
 function actActual(fuente){
     let time_cal=new Date(String(fuente.fechaCal));
@@ -900,10 +900,10 @@ function intervalChange(){
         obt80_2:document.getElementById('80_2').checked ? obturadores.dos : 0,
         obt80_3:document.getElementById('80_3').checked ? obturadores.tres : 0,
     }
-   
+
     let parametros=distanciasObjetivo(intervalo,alcance,cs_137,obturador);
-    modificarVoDist(parametros);  
-    calculoPromedio(); 
+    modificarVoDist(parametros);
+    calculoPromedio();
 }
 function distanciasObjetivo(intervalo,alcance,fuente,obturador){
     return {
@@ -948,6 +948,13 @@ function fechaLarga(fecha){
     console.log(f)
     return `${f.getDate()} DE ${meses[f.getMonth()]} DE ${f.getFullYear()} `;
 }
+function fechaCorta(){
+  const hoy = new Date();
+  const año = hoy.getFullYear();
+  const mes = ('0' + (hoy.getMonth() + 1)).slice(-2);
+  const dia = ('0' + hoy.getDate()).slice(-2);
+  return `${año}-${mes}-${dia}`;
+}
 
 
 /********************************************************************************************************************************************
@@ -959,7 +966,7 @@ function sendDBInterval(){
      let data50 = document.querySelectorAll('.data-interval50');
      let data80 = document.querySelectorAll('.data-interval80');
 
-     
+
     let general ={};
      let valor20={};
      let valor50={};
@@ -982,7 +989,7 @@ function sendDBInterval(){
         }else{
             valor20[item.id]=Number(item.innerHTML);
         }
-        
+
      });
      data50.forEach(item =>{
         if(item.value == 'on'){
@@ -992,7 +999,7 @@ function sendDBInterval(){
         }else{
             valor50[item.id]=Number(item.innerHTML);
         }
-        
+
      });
      data80.forEach(item =>{
         if(item.value == 'on'){
@@ -1003,23 +1010,23 @@ function sendDBInterval(){
         }else{
             valor80[item.id]=Number(item.innerHTML);
         }
-        
+
      });
-     
+
      datosIntervalos[contadorIntervalos]={
         general,valor20,valor50,valor80,
      }
      datosIntervalos['total_intervalos']=contadorIntervalos;
      console.log(datosIntervalos);
-     
 
-     
-     
+
+
+
 
 
 
 }
-function sendDBArribo(){ 
+function sendDBArribo(){
 
     let data_equipo = document.querySelectorAll('.envioDbEquipo');
     let cliente = document.querySelector('.envioDbCliente');
@@ -1033,12 +1040,12 @@ function sendDBArribo(){
         nombre:cliente.value,
     }
     data_equipo.forEach(item=>{
-        if(item.type == 'checkbox'){   
+        if(item.type == 'checkbox'){
             if(item.checked == true){
                 equipo[item.id]='BC';
             }else{
                 equipo[item.id]='NA';
-            }       
+            }
         }else{
             equipo[item.id]=item.value;
         }
@@ -1075,38 +1082,38 @@ function sendOs(id){
     let consesionario={}
     let obj_os={}
     let servicio={}
-    let envio={} 
+    let envio={}
 
-    
+
     //Crear un registro para envio a DB
 
     dataConsesionario.forEach(item=>{
         consesionario[item.id]=item.value;
     });
-    
+
     dataServicio.forEach(item=>{
-        if(item.type == 'checkbox'){   
+        if(item.type == 'checkbox'){
             if(item.checked == true){
                 servicio[item.id]='Si';
             }else{
                 servicio[item.id]='No';
-            }       
+            }
         }else{
             servicio[item.id]=item.value;
         }
     });
-    
+
     dataEnvio.forEach(item=>{
         envio[item.id]=item.value;
     });
 
-    //Creamos registro de OS para auto llenado de formulario 
+    //Creamos registro de OS para auto llenado de formulario
     obj_os={
         consesionario,
         servicio,
         envio
     }
-   
+
     obj_os[dataOs.id]=dataOs.value;
     console.log('[ORDENES]:');
     console.log(ordenesServicio);
@@ -1118,7 +1125,7 @@ function sendOs(id){
         ordenesServicio[dataOs.value]=obj_os;
         ordenesServicio[dataOs.value]['registros']=nvo_registro;
     } else{
-        Object.keys(ordenesServicio).forEach(item=>{    
+        Object.keys(ordenesServicio).forEach(item=>{
             if(item===dataOs.value){
                 ordenesServicio[dataOs.value]['registros'][id]=dataOs.value;
                 encontrado=false;
@@ -1131,12 +1138,12 @@ function sendOs(id){
             ordenesServicio[dataOs.value]['registros']=nvo_registro;
             encontrado=false;
         }
-        
-    } 
+
+    }
     console.log('[O.S]:');
     console.log(ordenesServicio);
 
-    
+
 
 
     servicios[id]['orden']={...obj_os};
@@ -1150,7 +1157,7 @@ function sendOs(id){
 
 
 
-   
+
 
 }
 /********************************************************************************************************************************************
@@ -1176,7 +1183,7 @@ function callCalibraciones(){
     document.querySelector('.card-cal-info p#firmas').innerHTML=num_firmas;
     document.querySelector('.card-cal-info p#embalaje').innerHTML=num_embalaje;
     document.querySelector('.card-cal-info p#envios').innerHTML=num_envios;
-   
+
 }
 function callListArribos(){
     monitor.innerHTML ='';
@@ -1187,9 +1194,9 @@ function callListArribos(){
                 </span>    Nuevo arribo</a>
             <h2 class="title-divider">Arribos</h2>
             <div id="area-listado">
-            </div>    
+            </div>
         </section>`;
-    
+
     for(const [key,value] of Object.entries(servicios)){
         if(value.status == 'arribo'){
             let newCard = document.createElement('div');
@@ -1205,10 +1212,10 @@ function callListArribos(){
                 </div>
                 <div class="obj-date success">
                     <span>Fecha arribo</span>
-                    <p>${value.arriboData.fecha_arribo}</p> 
-                </div>  
-                <div></div> 
-                <a class="btn btn-color" id="asignar_os:${key}">Asignar O.S.</a>    
+                    <p>${value.arriboData.fecha_arribo}</p>
+                </div>
+                <div></div>
+                <a class="btn btn-color" id="asignar_os:${key}">Asignar O.S.</a>
                 </article>`;
                 document.getElementById('area-listado').appendChild(newCard);
         }
@@ -1220,11 +1227,11 @@ function callListArribos(){
 function callFormOs(id){
     console.log('ID:',id);
     monitor.innerHTML ='';
-    //LLamada a DB 
+    //LLamada a DB
     let equipo = servicios[id];
     console.log(equipo);
 
-    monitor.innerHTML = 
+    monitor.innerHTML =
     `<section id="os-form">
     <article class="card form-1">
         <h3>Datos del arribo</h3>
@@ -1236,13 +1243,13 @@ function callFormOs(id){
             <p><span>Recibido:</span> ${equipo.arriboData.medioArribo.recepcion}</p>
             <p><span>Intervalos:</span> ${equipo.arriboData.equipo.intervalos}</p>
         </div>
-        
+
     </article>
     <article class="card form-1" >
         <h3>Orden de Servicio</h3>
         <label for="orden">Orden de Servicio</label>
         <input type="text" id="orden" class="dataOs">
-        <button id="buscar_os">Buscar</button> 
+        <button id="buscar_os">Buscar</button>
 
         <h3>Datos consesionario</h3>
         <label for="razon">Razón social</label>
@@ -1252,7 +1259,7 @@ function callFormOs(id){
     </article>
     <article class="card form-1">
         <h3>Datos del servicio</h3>
-        
+
         <div>
             <input type="checkbox" id="tipo_servicio" class="dataServicio">
             <label for="tipo_servicio">Servicio Urgente</label>
@@ -1301,7 +1308,7 @@ function callFormOs(id){
         </select>
         <label for="razon">Comentarios</label>
         <textarea id="entrega_comentarios" cols="30" rows="5" class="dataEntrega"></textarea>
-    
+
     </article>
      <a class="btn-send" id="envio_os_db:${id}">Enviar</a>
 </section>
@@ -1309,7 +1316,7 @@ function callFormOs(id){
     <article class="card form-1">
         <h3>Asignar otros equipos a esta Orden de servicio</h3>
         <input type="checkbox" id="mas_equipos">
-        
+
     </article>
     <div id="arribos_adicionales">
 
@@ -1342,7 +1349,7 @@ function callFormCal(){
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-cal">
                     <div>
                         <p>20%</p>
@@ -1360,7 +1367,7 @@ function callFormCal(){
                             <p>PROM:<span class="data-interval20" id="promedio20">0</span> </p>
                             <p >ERROR:<span class="data-interval20" id="error20">0</span> %</p>
                         </div>
-                        
+
                         <input type="number" id="v20_1" name="v20_1" class="data-interval20 valor20" onchange="calculoPromedio();">
                         <input type="number" id="v20_2" name="v20_2" class="data-interval20 valor20" onchange="calculoPromedio();">
                         <input type="number" id="v20_3" name="v20_3" class="data-interval20 valor20" onchange="calculoPromedio();">
@@ -1373,7 +1380,7 @@ function callFormCal(){
                         <input type="number" id="v20_10" name="v20_10" class="data-interval20 valor20" onchange="calculoPromedio();">
                     </div>
                     <div>
-                        
+
                         <p>50%</p>50
                         <div class="obturadores">
                             <div><label for="obt50_1">1</label>
@@ -1389,7 +1396,7 @@ function callFormCal(){
                             <p >PROM:<span class="data-interval50" id="promedio50">0</span> </p>
                             <p >ERROR:<span class="data-interval50" id="error50">0</span> %</p>
                         </div>
-                        
+
                         <input type="number" id="v50_1" name="v50_1" class="data-interval50 valor50" onchange="calculoPromedio();">
                         <input type="number" id="v50_2" name="v50_2" class="data-interval50 valor50" onchange="calculoPromedio();">
                         <input type="number" id="v50_3" name="v50_3" class="data-interval50 valor50" onchange="calculoPromedio();">
@@ -1402,7 +1409,7 @@ function callFormCal(){
                         <input type="number" id="v50_10" name="v50_10" class="data-interval50 valor50" onchange="calculoPromedio();" >
                     </div>
                     <div>
-                        
+
                         <p>80%</p>
                         <div class="obturadores">
                             <div><label for="obt80_1">1</label>
@@ -1419,7 +1426,7 @@ function callFormCal(){
                             <p >PROM:<span class="data-interval80" id="promedio80">0</span> </p>
                             <p >ERROR:<span class="data-interval80" id="error80">0</span> %</p>
                         </div>
-                        
+
                         <input type="number" id="v80_1" name="v80_1" class="data-interval80 valor80" onchange="calculoPromedio();">
                         <input type="number" id="v80_2" name="v80_2" class="data-interval80 valor80" onchange="calculoPromedio();">
                         <input type="number" id="v80_3" name="v80_3" class="data-interval80 valor80" onchange="calculoPromedio();">
@@ -1450,7 +1457,7 @@ function callFormCal(){
         obt80_3:document.getElementById('80_3').checked ? obturadores.tres : 0,
     }
     let parametros=distanciasObjetivo(intervalo,alcance,cs_137,obturador);
-    modificarVoDist(parametros);   
+    modificarVoDist(parametros);
 }
 function callNewInterval(){
     document.getElementById('cal-area').innerHTML='';
@@ -1459,10 +1466,10 @@ function callNewInterval(){
     //Se consulta desde la base de datos para poner intervalos
     for(const [key,value] of Object.entries(datosIntervalos)){
         let nuevo_intervalo= document.createElement('article');
-         
+
     nuevo_intervalo.classList.add('card');
     nuevo_intervalo.classList.add('intervalo-cal');
-    
+
     nuevo_intervalo.innerHTML=`
     <div>
         <p ><span>Intervalo:</span>0 - ${value.general.intervalo*value.general.alcance}</p>
@@ -1474,11 +1481,11 @@ function callNewInterval(){
         <span class="material-symbols-outlined focus-red">delete</span>
     </div>`;
     intervalos_area.appendChild(nuevo_intervalo);
-        
+
     }
-   
+
 }
-function autoCompleteOs(){ 
+function autoCompleteOs(){
     let os = document.getElementById('orden').value;
     let data =ordenesServicio[os]
     if(!data){
@@ -1523,7 +1530,7 @@ function autoCompleteOs(){
 
 
 
-       
+
 
 
 
@@ -1532,10 +1539,10 @@ function autoCompleteOs(){
 
 
     }
-    
+
 
 
 }
 
 
-listeners();  
+listeners();

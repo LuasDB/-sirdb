@@ -13,7 +13,7 @@ const meses = {
   11:'DICIEMBRE'
 }
 
-const laboratorioPf = 
+const laboratorioPf =
   {
     licencias:[
       {
@@ -32,7 +32,7 @@ const laboratorioPf =
             cp:'54070',
             pais:'México'
         },
-        
+
       },
       {
         id:'sdsdlf34344l34',
@@ -119,7 +119,7 @@ const laboratorioPf =
         status:'Activo',
         resolucion:'0.1 V'
      },
-     
+
     ],
     detectores:[
       {
@@ -147,21 +147,21 @@ const laboratorioPf =
         nombre:'Mario Saul De la fuente Barrueta',
         nivel:'Ing.',
         cargo:'Auxiliar de E.S.R.',
-        status:'Activo'      
+        status:'Activo'
       },
       {
         id:'dsd23gfk4kdskj43sd456',
         nombre:'Francisco Javier García Villanueva',
         nivel:'Ing.',
         cargo:'E.S.R.',
-        status:'Baja'      
+        status:'Baja'
       },
       {
         id:'dsd23gfk4kdskj43sderf',
         nombre:'Julio César Ríos Balderas',
         nivel:'Ing.',
         cargo:'P.O.E.',
-        status:'Activo'      
+        status:'Activo'
       }
     ]
   }
@@ -171,8 +171,9 @@ const serviciosPf = [
     id:'asek4k4j5jrkewwq',
     os:'OS-S-RUT23-226',
     frotis:[
-      { 
+      {
         id:'12587sde34',
+        status:'Creado',
         isotopo:'Co-60',
         serie:'316-02-10',
         marca:'BERTHOLD TECHNOLOGIES',
@@ -232,11 +233,11 @@ const serviciosPf = [
           fecha_informe:'2023-06-14',
           num_informe:'001',
           nombre_pdf:'001_nombre_amBe_serie.pdf'
-          
         }
       },
       {
         id:'2587s1w233',
+        status:'Creado',
         isotopo:'Co-60',
         serie:'317-02-10',
         marca:'BERTHOLD TECHNOLOGIES',
@@ -250,6 +251,7 @@ const serviciosPf = [
       {
         id:'poi87sde34',
         isotopo:'Am-241',
+        status:'Creado',
         serie:'318-02-10',
         marca:'BERTHOLD TECHNOLOGIES',
         actividad_original:44.4,
@@ -262,6 +264,7 @@ const serviciosPf = [
       {
         id:'125lo98e34',
         isotopo:'Co-60',
+        status:'En curso',
         serie:'325-02-10',
         marca:'BERTHOLD TECHNOLOGIES',
         actividad_original:44.4,
@@ -274,6 +277,7 @@ const serviciosPf = [
       {
         id:'12587s98oi',
         isotopo:'Cs-137',
+        status:'Creado',
         serie:'325-02-10',
         marca:'BERTHOLD TECHNOLOGIES',
         actividad_original:44.4,
@@ -286,6 +290,7 @@ const serviciosPf = [
       {
         id:'12587spñl8',
         isotopo:'H-3',
+        status:'Creado',
         serie:'325-02-10',
         marca:'BERTHOLD TECHNOLOGIES',
         actividad_original:44.4,
@@ -295,7 +300,6 @@ const serviciosPf = [
         metodo:'Vía humeda (Sobre una superficie equivalente)',
         certificado:{}
       },
-      
     ],
     permisionario:{
       razon_social:'SERVICIOS INTEGRALES PARA LA RADIACION 2',

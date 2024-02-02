@@ -6,7 +6,6 @@ const { labPf } = require('../services/pf.service');
 const laboratorio = new labPf();
 
 router.get('/',async(req,res,next)=>{
-
   try {
     const group = await laboratorio.findAll();
     res.json(group);
@@ -32,7 +31,8 @@ router.post('/',async(req,res,next)=>{
 router.patch('/',async (req,res,next)=>{
   const body = req.body;
   try {
-    const update = laboratorio.update(body.collection,body.id,body.lista);
+    const update = await laboratorio.update(body.collection,body.id,body.lista);
+    console.log(update);
     res.status(201).json(update);
 
   } catch (error) {

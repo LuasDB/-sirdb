@@ -1,7 +1,8 @@
 
 const boom = require('@hapi/boom');
 const { db,laboratorioPf } = require('../db/firebase');
-const {  doc,addDoc, getDocs,getDoc,setDoc,writeBatch,updateDoc, arrayUnion,query, where} = require("firebase/firestore");
+const {  doc,addDoc, getDocs,getDoc,setDoc,deleteDoc,updateDoc, arrayUnion,query, where, collection} = require("firebase/firestore");
+const { get } = require('../routes/pf.router');
 
 
 class labPf{
@@ -74,7 +75,9 @@ class labPf{
 
     const actualizar = await updateDoc(ref,{lista:array});
 
-    return {actualizar};
+    return {
+      actualizar,
+      message:'Actualizado'};
   }
 
   async delete(collection,id){
@@ -99,47 +102,144 @@ class labPf{
       actualizar
     }
   }
+
 }
-
-
 // Creamos una clase para la los servicios
-
 class pruebasFugaService{
 
   constructor(){
 
 
   }
-  async findAll(){
+  async findAll(params){
+    const { a } = params;
+    const refService = `serviciosPf${a}`;
 
     try {
-      const todo = await getDocs(refCities);
-      return todo;
-
-
-    } catch (error) {
-      console.log('[ERROR CONSULTA]:',error);
-      return error;
-    }
-  }
-  async createCities(){
-    console.log('[CREANDO]');
-    try {
-      const docRef = await addDoc(refNuevo,{
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
+      const q = query(collection(db,refService));
+      const servicios = await getDocs(q);
+      if(!servicios){
+        throw boom.notFound('No encontrado');
+      }
+      let respuesta = {}
+      servicios.forEach(doc =>{
+        respuesta[doc.id]=doc.data();
       });
-      console.log('Se agrego nuevo :',docRef.id);
-      return docRef;
+      return {respuesta};
 
     } catch (error) {
-      console.log('[ERROR CREANDO]:',error);
-      return error;
+     return {
+      message:error
+     }
+    }
+  }
+  async findReports(a){
+    const refInformes = collection(db,`informesPF${a}`);
+    const informes = await getDocs(refInformes);
+    let array = []
+    if(informes){
+      informes.forEach(informe =>{
+        array.push(informe.data());
+      })
+      return {message:'Solicitado',length:array.length}
+    }else{
+      throw boom.notFound('No se encontro informe');
     }
 
 
+
   }
+  async createService(body){
+    const refService = `serviciosPf${body.año}`;
+    const newServce = await addDoc(collection(db,refService),body);
+    return { message:`Construido con ID ${newServce.id}`};
+  }
+  async createReport(body){
+    const { informes, permisionario } = body;
+    const refInformes = collection(db,`informesPF${body.año}`);
+    // const newReport = await addDoc(refInformes,body.registro);
+    informes.forEach(async(informe) =>{
+      const objInforme = {
+      }
+      objInforme['actividad']=`${informe.froti.actividad_original} ${informe.froti.unidades}`;
+      objInforme['empresa']=`${informe.permisionario.razon_social}`;
+      objInforme['fecha_frotis']=informe.froti.fecha_frotis;
+      objInforme['fecha_informe']=informe.froti.certificado.fecha_informe;
+      objInforme['isotopo']=informe.froti.isotopo;
+      objInforme['licencia']=informe.permisionario.licencia;
+      objInforme['marca_fuente']=informe.froti.marca;
+      objInforme['nombre_pdf']=informe.froti.certificado.nombre_pdf;
+      objInforme['num_informe']=informe.froti.certificado.num_informe;
+      objInforme['num_serie']=informe.froti.serie;
+      await addDoc(refInformes,objInforme);
+    });
+
+
+    // informes.forEach(froti =>{
+    //   const obj = {
+    //     actividad:`${froti.actividad_original} ${froti.unidades}`,
+    //     clienteId,
+    //     empresa:
+    //   }
+
+    // });
+    console.log('[CREACION REPORTES]',body);
+    return {
+      message:'Registros Creados',
+      respuesta:{
+        informes,permisionario
+      }
+    }
+  }
+  async updateFrotis(body){
+
+    const { año, status,id_servicio,id_frotis,fecha_entrega} = body;
+    let array =[]
+    const refFroti = `serviciosPf${año}`;
+    const q = query(doc(db,refFroti,id_servicio));
+    const documento = await getDoc(q);
+    const registro = documento.data();
+
+    if(documento.exists()){
+      array = registro.frotis;
+    }else{
+      throw boom.notFound('Frotis no encontrado');
+    }
+    const index = array.findIndex(item=>item.id === id_frotis);
+    if(index === -1){
+      throw boom.notFound('Frotis no encontrado');
+    }
+    registro.frotis[index]['status']=status;
+    registro.frotis[index]['fecha_entrega']=fecha_entrega;
+    const actualizar = await setDoc(doc(db,refFroti,id_servicio),registro);
+
+    return {actualizar}
+  }
+  async updateService(body){
+    const { año,status,id_servicio,frotis } = body;
+
+    const refServicio = doc(db,`serviciosPf${año}`,id_servicio);
+    console.log(refServicio);
+    const documento = await getDoc(refServicio);
+    const res = documento.data();
+    res.frotis = frotis;
+    const actualizacionServicio = await setDoc(refServicio,res);
+    return { actualizacionServicio };
+
+  }
+  async deleteService(params,body){
+    console.log(params.id)
+    const ref = doc(db,`serviciosPf${body.año}`,params.id);
+    const eliminado= await deleteDoc(ref);
+    return {
+      message:'Eliminado',eliminado
+    }
+  }
+
+
+
+
+
 
 
 

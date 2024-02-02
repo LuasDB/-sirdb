@@ -1,3 +1,4 @@
+
 //Siempre declararemos una variable en cada modulo con su respectivo nombre del mismo elemento,
 // en este caso la etiqueta main llamada 'monitor'
 const monitorPf = document.getElementById('monitor');
@@ -119,6 +120,7 @@ function pruebasFugaDash(){
 
 }
 async function pruebasFugaLicencia(){
+
   //traemos la información de la base de datos a travez de fetch
   const labPf = await fetch(API_PF);
   const dataLab = await labPf.json();
