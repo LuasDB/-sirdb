@@ -1,76 +1,124 @@
+/************************************************************************************************************************
+ * ATAJOS
+ *************************************************************************************************************************/
+const $ =(element)=>document.querySelector(element);
+const $a =(element)=>document.querySelectorAll(element);
+const n =(element)=>document.getElementById(element);
+
+
+
+window.onbeforeunload = function() {
+  window.scrollTo(0, 0);
+}
+
+/************************************************************************************************************************
+* VARIABLE MONITOR
+*************************************************************************************************************************/
 const monitorPfServ = document.getElementById('monitor');
+/************************************************************************************************************************
+ * Formularios para servicio de Pruebas de fuga
+ * [0]=Formulario para registro de nuevo servicio
+ * [1]=Formulario para registro de nuevo cliente
+ *************************************************************************************************************************/
 const formulariosPfServ = [`
-<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3><section class="card form-1">
-<span class="tittle">Solicitud de Análisis de Pruebas de Fuga</span>
-<label for="os">Orden de Servicio</label>
-<input type="text" id="os" name="os">
-<button>Buscar</button>
-<span class="tittle">Datos del Permisionario</span>
-<label for="razon_social">Razón Social</label>
-<input type="text" id="razon_social" name="razon_social"  class="envioBdPermisionario">
-<label for="licencia">Número de licencia</label>
-<input type="text" id="licencia" name="licencia"  class="envioBdPermisionario">
-<label for="fecha_vencimiento">Fecha de vencimiento de licencia</label>
-<input type="date" id="fecha_vencimiento" name="fecha_vencimiento"  class="envioBdPermisionario">
-<span class="tittle">Domicilio del permisionario</span>
-<label for="calle">Calle y número</label>
-<input type="text" id="calle" name="calle"  class="envioDir">
-<label for="colonia">Colonia</label>
-<input type="text" id="colonia" name="colonia"  class="envioDir">
-<label for="ciudad">Ciudad</label>
-<input type="text" id="ciudad" name="ciudad"  class="envioDir">
-<label for="estado">Estado</label>
-<input type="text" id="estado" name="estado"  class="envioDir">
-<label for="cp">C.P.</label>
-<input type="text" id="cp" name="cp"  class="envioDir">
-<label for="pais">País</label>
-<input type="text" id="pais" name="pais"  class="envioDir" value="México">
-<span class="tittle">Datos del Encargado de Seguridad Radiologíca</span>
-<label for="nombre">Nombre</label>
-<input type="text" name="nombre" id="nombre" class="envioBdEsr">
-<label for="nivel">Profesión</label>
-<select name="nivel" id="nivel" class="envioBdEsr">
+<datalist id="lista_empresas">
+
+</datalist>
+<h3 class="tittle" > <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+<section class="card form-1">
+  <span class="tittle">Cliente </span>
+  <label for="cliente2">Cliente o empresa</label>
+  <input list="lista_empresas" id="id_cliente" name="cliente2" autocomplete="off">
+  <button id="buscar_cliente"> Buscar </button>
+</section>
+<div class="hiden" id="contenido_form">
+
+<section class="card form-1">
+  <span class="tittle">Solicitud de Análisis de Pruebas de Fuga</span>
+  <label for="os">Orden de Servicio</label>
+  <input type="text" id="os" name="os">
+  <span class="tittle">Datos del Permisionario</span>
+  <label for="razon_social">Razón Social</label>
+  <input type="text" id="razon_social" name="razon_social"  class="envioBdPermisionario">
+  <label for="licencia">Número de licencia</label>
+  <input type="text" id="licencia" name="licencia"  class="envioBdPermisionario">
+  <label for="fecha_vencimiento">Fecha de vencimiento de licencia</label>
+  <input type="date" id="fecha_vencimiento" name="fecha_vencimiento"  class="envioBdPermisionario">
+  <span class="tittle">Domicilio del permisionario</span>
+  <label for="calle">Calle y número</label>
+  <input type="text" id="calle" name="calle"  class="envioDir">
+  <label for="colonia">Colonia</label>
+  <input type="text" id="colonia" name="colonia"  class="envioDir">
+  <label for="ciudad">Ciudad</label>
+  <input type="text" id="ciudad" name="ciudad"  class="envioDir">
+  <label for="estado">Estado</label>
+  <input type="text" id="estado" name="estado"  class="envioDir">
+  <label for="cp">C.P.</label>
+  <input type="text" id="cp" name="cp"  class="envioDir">
+  <label for="pais">País</label>
+  <input type="text" id="pais" name="pais"  class="envioDir" value="México">
+  <span class="tittle">Datos del Encargado de Seguridad Radiologíca</span>
+  <label for="nombre">Nombre</label>
+  <input type="text" name="nombre" id="nombre" class="envioBdEsr">
+  <label for="nivel">Profesión</label>
+  <select name="nivel" id="nivel" class="envioBdEsr">
     <option value="Ing.">Ingeniero(a)</option>
     <option value="Tec.">Técnico(a)</option>
     <option value="Lic.">Licenciado(a)</option>
     <option value="M. en C.">Maestria en ciencias</option>
     <option value="C.">Ciudadano</option>
-</select>
-<label for="correo">Email</label>
-<input type="email" id="correo" name="correo"  class="envioBdEsr">
-<label for="telefono">Teléfono</label>
-<input type="tel" id="telefono" name="telefono"  class="envioBdEsr">
-<label for="fax">Fax</label>
-<input type="text" id="fax" name="fax"  class="envioBdEsr" value="N/D">
-<span class="tittle">Frotis</span>
-<a class="btn-new" id="nuevo_fortis"><span class="material-symbols-outlined">add_circle</span>Nuevo frotis</a>
-<div id="lista" class="scroll-horizontal">
-    <table>
-        <thead>
-            <th>Isótopo</th>
-            <th>No.Serie</th>
-            <th>Marca</th>
-            <th>Act.Original</th>
-            <th>Metodo Prueba</th>
-            <th>Fecha Frotis</th>
-            <th>Eliminar</th>
-        </thead>
-        <tbody id="frotis_tabla">
+  </select>
+  <label for="correo">Email</label>
+  <input type="email" id="correo" name="correo"  class="envioBdEsr">
+  <label for="telefono">Teléfono</label>
+  <input type="tel" id="telefono" name="telefono"  class="envioBdEsr">
+  <label for="fax">Fax</label>
+  <input type="text" id="fax" name="fax"  class="envioBdEsr" value="N/D">
+  <span class="tittle">Frotis</span>
+  <a class="btn-new" id="nuevo_fortis"><span class="material-symbols-outlined">add_circle</span>Nuevo frotis</a>
+  <div id="lista" class="scroll-horizontal">
+      <table>
+          <thead>
+              <th>Isótopo</th>
+              <th>No.Serie</th>
+              <th>Marca</th>
+              <th>Act.Original</th>
+              <th>Metodo Prueba</th>
+              <th>Fecha Frotis</th>
+              <th>Eliminar</th>
+          </thead>
+          <tbody id="frotis_tabla">
 
-        </tbody>
-    </table>
+          </tbody>
+      </table>
+  </div>
+
+  <div id="frotis_form" class="recuadro form-1">
+
+
+  </div>
+  </section>
+  <br><br>
+  <section class="form-1 card">
+      <a class="btn-send" id="enviar_registro"><span class="material-symbols-outlined">send</span>Enviar registro</a>
+  </section>
 </div>
-
-<div id="frotis_form" class="recuadro form-1">
-
-
-</div>
-</section>
-<br><br>
-<section class="form-1 card">
-    <a class="btn-send" id="enviar_registro"><span class="material-symbols-outlined">send</span>Enviar registro</a>
-</section>
-`];
+`,`
+<h3 class="tittle" > <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+      <section class="card form-1">
+        <p>Para llenar el siguiente formulario es importante que solicites al cliente un correo que servira para poder acceder a su cuenta</p>
+        <p>* La contraseña se enviara automaticamente al correo que registres</p>
+        <p>* El nombre que registres se guardará para seleccionarlo cada que registres un nuevo servicio </p>
+        <span class="tittle">Nuevo Cliente</span>
+        <label for="nombre">Nombre cliente</label>
+        <input type="text" id="nombre"  autocomplete="off" class="envioDb" required>
+        <span class="tittle">Información de contacto</span>
+        <label for="nombre_contacto">Nombre contacto</label>
+        <input type="text" id="nombre_contacto"  autocomplete="off" class="envioDb" required>
+        <label for="correo_cuenta">Correo asociado a la cuenta</label>
+        <input type="email" id="correo_cuenta"  autocomplete="off" class="envioDb" required>
+        <button class="btn-send" id="enviar_cliente">Registrar</button>
+      </section>`];
 const hoy = new Date();
 //Variable para agregar los fortis que se daran de alta
 let listaFrotis = [];
@@ -78,14 +126,17 @@ let informesNum = [];
 /************************************************************************************************************************
  *VARIABLES PARA LA API DE SERVICIOS PF
  *************************************************************************************************************************/
- const API_SERVICIOS_PF = 'http://localhost:3000/api/v1/pruebasFugaServices';
+//  const SERVER =`http://localhost:3000`//pruevas locales
+ const SERVER =`https://sirdb.onrender.com`//pruevas locales
+
+ const API_SERVICIOS_PF = `${SERVER}/api/v1/pruebasFugaServices`;
+ const API_CLIENTES = `${SERVER}/api/v1/clientes`;
 
 /************************************************************************************************************************
  * FUNCIONES PARA CONSTUIR DOM EN PF SERVICIOS
  *************************************************************************************************************************/
-      // Variable para llevar el control de la página actual
-      let paginaActual = 1;
-
+// Variable para llevar el control de la página actual
+let paginaActual = 1;
 //Funcion para em menu de servicios
 function callMenuPfServicios(){
   monitorPfServ.innerHTML=`
@@ -108,17 +159,103 @@ document.querySelector('.recepcionPf').onclick = () => callRecepcionPf();
 document.querySelector('.pf').onclick = () => callPruebasFuga();
 
 
-}
 
+}
 //Funciones para registro de nuevo servicio
-function callNuevoServicioPf(){
+async function callNuevoServicioPf(){
   monitorPfServ.innerHTML = formulariosPfServ[0];
+  //Se debe mandar a llamar el listado de clientes a la BD
+  const resApi = await fetch(API_CLIENTES);
+  const res = await resApi.json();
+  //Llenamos los dataList de clientes
+  const datalist = document.getElementById('lista_empresas');
+  res.clientes.forEach(cliente =>{
+    const option = document.createElement('option');
+    option.value = cliente.nombre;
+    option.id = cliente.id_cliente;
+    datalist.appendChild(option);
+  });
+
+
+  //Asignamos las funciones a los botones
   document.getElementById('atras').onclick = ()=> callPruebasFuga();
   document.getElementById('nuevo_fortis').onclick = ()=> callNuevoFortis();
   document.getElementById('enviar_registro').onclick = ()=> sendRegistroPf();
-
+  document.getElementById('buscar_cliente').onclick = ()=> searchCustomer();
 
   listaFrotis = [];
+}
+// función para buscar cliente
+function searchCustomer(){
+  const cliente = document.getElementById('id_cliente').value;
+  const lista_empresas =  document.getElementById('lista_empresas');
+  const id_cliente = lista_empresas.querySelector(`option[value="${cliente}"]`);
+  const contenido_form = document.getElementById('contenido_form');
+  if(id_cliente){
+    contenido_form.classList.remove('hiden')
+  }else{
+    Swal.fire({
+      title: "Este cliente no se encuentra",
+      text: "¿Deseas agregar a un cliente nuevo?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "No,espera",
+      confirmButtonText: "Si"
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        callNewCustomer();
+      }
+    }).catch(error=> console.log(error));
+  }
+
+}
+//Funcion para registro de nuevo cliente:
+function callNewCustomer(){
+  monitorPfServ.innerHTML=formulariosPfServ[1];
+  document.getElementById('atras').onclick = ()=> callNuevoServicioPf();
+  document.getElementById('enviar_cliente').onclick = ()=> sendNuevoCliente();
+
+}
+//fUNCION PARA DAR DE ALTA EL NUEVO CLIENTE EN LA BASE DE DATOS
+async function sendNuevoCliente(){
+   // funcion para preguntar al usuario si la informacion es correcta
+   Swal.fire({
+    title: "Alta en base de datos",
+    text: "Revisaste que la información sea correcta?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    cancelButtonText: "No,espera",
+    confirmButtonText: "Si,claro"
+  })
+  .then(async(result) => {
+    if (result.isConfirmed) {
+      const data = document.querySelectorAll('.envioDb');
+      const obj = {}
+      data.forEach(element =>{
+        element.id === 'correo_cuenta'
+        ?obj[element.id]=element.value.toLowerCase()
+        :obj[element.id]=element.value.toUpperCase()
+      });
+      //de qui se envía a Base de datos
+      const envio = await fetch(API_CLIENTES,{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(obj)
+      })
+      const respuesta = await envio.json();
+      console.log(respuesta);
+      if(respuesta.id){
+        callNuevoServicioPf();
+      }
+    }
+  });
+
 }
 function agregarFrotis(){
   let datos_frotis=  document.querySelectorAll('.nvoFrotis');
@@ -201,14 +338,21 @@ function sendRegistroPf(){
   .then(async(result) => {
     if (result.isConfirmed) {
       //Creamos un objeto que contendra todos nuestros datos
-    const objData = {
+      const objData = {
       permisionario:{
         domicilio:{},
         esr:{}
       }
     }
+    //Agregamos el ID del cliente
+    const clienteInput = document.getElementById('id_cliente').value;
+    const lista_empresas =  document.getElementById('lista_empresas');
+    const cliente = lista_empresas.querySelector(`option[value="${clienteInput}"]`);
+    console.log('[ID CLIENTE]',cliente.id);
+
   //Creamos un id a este objeto que se esta construyendo
   objData['id']=generateRandomString(15);
+  objData['clienteId']=cliente.id;
   //Agregamos la O.S.
   objData['os']=document.getElementById('os').value;
   let dataPermisionario = document.querySelectorAll('.envioBdPermisionario');
@@ -243,9 +387,6 @@ function sendRegistroPf(){
     }
   })
   .catch(error => console.log(error));
-
-
-
 }
 function construirListaFrotis(){
     document.getElementById('frotis_form').innerHTML='';
@@ -284,6 +425,7 @@ async function callRecepcionPf(){
   });
   console.log(arrayServicios);
   monitorPfServ.innerHTML=`
+    <h3 class="tittle" > <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
     <span class="tittle">Recepción de frotis</span>
     <section class="card scroll-horizontal">
         <span class="tittle">Solicitudes de Pruebas de Fuga</span>
@@ -304,6 +446,7 @@ async function callRecepcionPf(){
         <br>
     </section>
   `;
+  document.getElementById('atras').onclick = ()=> callMenuPfServicios();
   //Usamos Variable para cada tabla que exista
   const solicitudes = document.getElementById('solicitudes');
   //Construimos cada fila de la tabla
@@ -366,6 +509,8 @@ const url = `${API_SERVICIOS_PF}/all/${hoy.getFullYear()}`
   });
   console.log(arrayServicios);
   monitorPfServ.innerHTML=`
+  <h3 class="tittle" > <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
+
   <div id="lista" class="scroll-horizontal">
   <p>${clave}</p>
     <table>
@@ -383,6 +528,7 @@ const url = `${API_SERVICIOS_PF}/all/${hoy.getFullYear()}`
         </tbody>
     </table>
 </div>`;
+document.getElementById('atras').onclick = ()=> callMenuPfServicios();
 
 const tabla_frotis = document.getElementById('frotis_tabla');
 const [id_servicio,id,isotopo,fechaFrotis] = clave.split(',');
@@ -420,7 +566,8 @@ async function recepcionFroti(clave){
   // const indexFrotis =  arrayServicios[index].frotis.findIndex(item => item.id === id_froti);
   // arrayServicios[index].frotis[indexFrotis]['fecha_entrega']=fechaCorta();
   // arrayServicios[index].frotis[indexFrotis]['status']='En curso';
-  document.getElementById(clave).classList.add('success');
+  document.getElementById(clave).classList.add('recived');
+
   //actualización de BD
   const obj ={}
   obj['año']=hoy.getFullYear();
@@ -439,6 +586,7 @@ async function recepcionFroti(clave){
   },
   body: JSON.stringify(obj)
   });
+  console.log(await actualizar.json())
 }
 //fUNCION PARA LLAMAR AL FORMULARIO DE SOLICITUDES DE PF
 async function callSolicitudesPf(){
@@ -452,6 +600,7 @@ async function callSolicitudesPf(){
   });
   console.log(arrayServicios);
   monitorPfServ.innerHTML=`
+  <h3 class="tittle" > <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
   <a class="btn-new" id="nuevo"><span class="material-symbols-outlined">add_circle</span>
           Nueva solicitud
       </a>
@@ -476,6 +625,7 @@ async function callSolicitudesPf(){
               <br>
           </section>
   `;
+  document.getElementById('atras').onclick = ()=> callMenuPfServicios();
   document.getElementById('nuevo').onclick = () => callNuevoServicioPf();
   //Usamos Variable para cada tabla que exista
   const solicitudes = document.getElementById('solicitudes');
@@ -538,6 +688,7 @@ async function callPruebasFuga(){
   });
   console.log(arrayServicios);
     monitorPfServ.innerHTML=`
+    <h3 class="tittle" > <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
     <a class="btn-new" id="nuevo"><span class="material-symbols-outlined">add_circle</span>
             Nueva solicitud
         </a>
@@ -563,6 +714,8 @@ async function callPruebasFuga(){
                 <br>
             </section>
             `;
+    document.getElementById('atras').onclick = ()=> callMenuPfServicios();
+
     document.getElementById('nuevo').onclick = () => callNuevoServicioPf();
     //Usamos Variable para cada tabla que exista
     const solicitudes = document.getElementById('solicitudes');
@@ -627,29 +780,29 @@ function eliminarSolicitudPf(clave){
 //funciones para realización de PF
 async function realizarPf(clave){
   const url = `${API_SERVICIOS_PF}/all/${hoy.getFullYear()}`
-  console.log(url);
+
   const solicitudesCreadas = await fetch(url);
   const res = await solicitudesCreadas.json();
-  console.log(res);
+
   const arrayServicios = Object.keys(res.respuesta).map((key)=>{
     let obj ={}
     obj['id_servicio']=key;
     obj['data']=res.respuesta[key]
     return obj;
   });
-  console.log(arrayServicios);
+
 
     const [id_servicio,isotopo,fechaFrotis, fechaEntrega] = clave.split(',');
     const permisionario = arrayServicios.find(item => item.id_servicio === id_servicio);
-    console.log(permisionario);
+
      // construccion de el formulario completo
      monitorPfServ.innerHTML=`
      <datalist id="personal_realizo">
 
-    </datalist>
-    <datalist id="personal_autorizo">
+      </datalist>
+      <datalist id="personal_autorizo">
 
-    </datalist>
+      </datalist>
      <section class="card form-1">
          <p><span class="tittle">Datos del permisionario:</span></p>
          <p ><span class="bold-primary-color">Razón social:</span>${permisionario.data.permisionario.razon_social}</p>
@@ -668,12 +821,13 @@ async function realizarPf(clave){
             <option value="" selected></option>
          </select>
          <label for="fuente">Fuente de referencia</label>
-         <select name="equipo" id="fuentes" class="envioCerEquipo">
+         <select name="equipo" id="fuente_select">
             <option value="" selected></option>
          </select>
-         <p><span class="bold-primary-color">Actividad Original:</span>185244 Bq</p>
-         <p><span class="bold-primary-color">Fecha calibración:</span> 11/12/2015</p>
-         <p class="bold-primary-color"><span class="letra-color">Actividad Actual:</span>152244 Bq</p>
+        <input name="equipo" id="fuentes" class="envioCerEquipo hiden">
+         <p><span class="bold-primary-color">Actividad Original:</span> <span class="actividad-original">185244 Bq</span></p>
+         <p><span class="bold-primary-color">Fecha calibración:</span> <span class="fecha-calibracion">11/12/2015</span></p>
+         <p class="bold-primary-color"><span class="letra-color">Actividad Actual:</span><span id="actividad_fechaCal" >152244 Bq</span></p>
          <span class="tittle">Parametros de calibración</span>
          <label for="threshold">T.H. (mV)</label>
          <input type="number" id="threshold" name="threshold" class="envioCerEquipo">
@@ -705,9 +859,10 @@ async function realizarPf(clave){
      </section>
 
      `;
+     document.getElementById('fuente_select').onchange=()=> actualizarTablaFuenteRef();
 
 
-    const fuentes = document.getElementById('fuentes');
+    const fuentes = document.getElementById('fuente_select');
     const detectores = document.getElementById('detectores');
     const equipos = document.getElementById('equipos');
     const personal_realizo = document.getElementById('personal_realizo');
@@ -715,14 +870,12 @@ async function realizarPf(clave){
     //Mandar a traer los datos del laboratorio
     const labPf = await fetch(API_PF);
     const dataLab = await labPf.json();
-    console.log(labPf);
-    console.log(dataLab);
 
     document.getElementById('enviar').onclick = ()=> envioResultadosPfBd(permisionario,clave,dataLab);
 
     dataLab.respuesta.fuentes.lista.forEach(fuente =>{
         if(fuente.status === 'Activo'){
-            fuentes.innerHTML+=`<option value="${fuente.id}">${fuente.isotopo} serie ${fuente.serie}</option>`;
+            fuentes.innerHTML+=`<option value='${JSON.stringify(fuente)}'>${fuente.isotopo} serie ${fuente.serie}</option>`;
         }
     });
     dataLab.respuesta.detectores.lista.forEach(detector =>{
@@ -748,16 +901,20 @@ async function realizarPf(clave){
 
     const lista = document.getElementById('lista_frotis');
     let x=0;
+
     permisionario.data.frotis.forEach(froti=>{
         x+=1;
         const claveF = `${id_servicio},${froti.isotopo},${froti.fecha_frotis},${froti.fecha_entrega}`;
         if(claveF === clave){
+          if(froti.status != 'Realizado'){
 
-            console.log(`[Agregado a tabla]: ${froti.serie}`);
             lista.innerHTML+=`
             <label for="frotis1" class="letra-color">${froti.serie}</label>
             <input type="number" id="${froti.id}" name="frotis1" placeholder="Cuentas" class="envioFrotis" value="${200+x}">
             `;
+          }
+
+
 
         }
     });
@@ -798,6 +955,7 @@ async function envioResultadosPfBd(permisionario,clave,dataLab){
   document.querySelectorAll('.envioFrotis').forEach(async(item)=>{
       //Buscar cada froti en la Base de datos y modificarlo
       const indexFroti = permisionario.data.frotis.findIndex(froti => froti.id === item.id);
+      permisionario.data.frotis[indexFroti]['clienteId']=permisionario.data.clienteId;
       permisionario.data.frotis[indexFroti]['status']='Realizado';
       permisionario.data.frotis[indexFroti]['certificado']={...objData};
       permisionario.data.frotis[indexFroti]['certificado']['prueba']={...objPrueba};
@@ -807,24 +965,25 @@ async function envioResultadosPfBd(permisionario,clave,dataLab){
       contadorNum+=1;
       const nombre_pdf = `${permisionario.data.frotis[indexFroti]['certificado']['num_informe']}_${permisionario.data.permisionario.razon_social}_${permisionario.data.frotis[indexFroti].isotopo.split('/')}_${permisionario.data.frotis[indexFroti].serie}.pdf`
       permisionario.data.frotis[indexFroti]['certificado']['nombre_pdf']= nombre_pdf;
-      listadoFrotis.push(permisionario.data.frotis[indexFroti]);
-      informesPF2024.push(permisionario.data.frotis[indexFroti]['certificado']);
 
       //Creamos Array para enviar la coleccion de Informes
       const objFroti={}
       objFroti['permisionario']=permisionario.data.permisionario;
       objFroti['froti']=permisionario.data.frotis[indexFroti];
+      objFroti['clienteId']=permisionario.data.clienteId;
+
+      listadoFrotis.push(permisionario.data.frotis[indexFroti]);
+
 
       arrayInformes.push(objFroti);
   });
-  console.log('[NUEVO permisionario]:');
-  console.log(permisionario);
+
   //Creamos un objeto nuevo para actualizar el listado FROTIS de este servicio
   const obj ={}
   obj['año']=hoy.getFullYear();
   obj['id_servicio']=id_servicio;
   obj['frotis']=permisionario.data.frotis;
-  console.log(obj);
+
   const api = `${API_SERVICIOS_PF}/service`;
   const actualizarServicio = await fetch(api,{
     method:'PATCH',
@@ -838,7 +997,7 @@ async function envioResultadosPfBd(permisionario,clave,dataLab){
   console.log(res);
   //Envio a la API los informes para la coleccion de informes
   const apiCrearInformes = `${API_SERVICIOS_PF}/informes`;
-
+  console.log('[CREACION INFORMES0]',arrayInformes);
   const creacionInformes = await fetch(apiCrearInformes,{
     method:'POST',
     headers:{
@@ -888,7 +1047,8 @@ function actActualPf(fuente){
     return actividad;
 }
 function calculoHermeticidad(datos){
-    let fuente = datos.fuente_ref;
+    let fuente = datos.fuente_ref; //fUENTE SELECCIONADA
+    //DATOS DE LOS CONTEOS
     let xm = datos.cont_fuente;
     let xf = datos.cont_fondo;
     let s = Math.sqrt(xf);
@@ -901,6 +1061,7 @@ function calculoHermeticidad(datos){
     console.log('[Xf]',xf);
     console.log('[Sf]',s);
     console.log('[A]',actividad);
+    console.log('[R]',parseFloat(fuente.rendimiento));
     console.log('[Ft]',FlujoTeorico);
     console.log('[E]',eficiencia*100);
     console.log('[CPS/Bq]',cuentas_bequerel);
@@ -920,6 +1081,17 @@ function calculoHermeticidad(datos){
 
 
 
+
+}
+function actualizarTablaFuenteRef(){
+  const fuente =JSON.parse(n('fuente_select').value);
+  const actividada_actual = actActualPf(fuente);
+  console.log(fuente)
+  $('.actividad-original').innerHTML=`${fuente.actividad_original} Bq`;
+  $('.fecha-calibracion').innerHTML=`${fuente.fecha_cal} `;
+  n('actividad_fechaCal').innerHTML=`${actividada_actual} Bq`;
+  n('fuentes').value=fuente.id
+  console.log(n('fuentes').value)
 
 }
 // Función para generar el PDF
@@ -947,6 +1119,8 @@ async function imprimirInformesPf(id, listadoFortis,permisionario){
     cont_frotis,
     fuente_ref
     });
+
+
     let fecha_larga = `${hoy.getDate()} DE ${meses[hoy.getMonth()]} DE ${hoy.getFullYear()}`
     const num_informe =froti.certificado.num_informe;
     let informe_num = `SIR${hoy.getFullYear() % 100}-PF-${num_informe}`;
@@ -1148,7 +1322,7 @@ async function imprimirInformesPf(id, listadoFortis,permisionario){
      </section>
      <div class="underlined">
      </div>
-  `;
+      `;
   });
 
 

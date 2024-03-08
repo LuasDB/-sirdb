@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>Sube tus archivos</h2>
+
+  <input type="file" id="folderInput" webkitdirectory directory multiple>
+<button id="btn_1">Subir Carpeta</button>
+
+<script type="module">
+   // Import the functions you need from the SDKs you need
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getStorage,ref,uploadBytes,getDownloadURL,uploadBytesResumable ,getMetadata,updateMetadata} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
+        import {  collection, addDoc,getFirestore,query,where,getDocs,doc,setDoc,getDoc} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC2eIzzCPoMJS6-nzTayxeaCq4Sm8fqVJM",
+            authDomain: "sirdb-1d3ba.firebaseapp.com",
+            projectId: "sirdb-1d3ba",
+            storageBucket: "sirdb-1d3ba.appspot.com",
+            messagingSenderId: "844126039442",
+            appId: "1:844126039442:web:781bb173550e1560d1654b"
+        };
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+const btn = document.getElementById('btn_1');
+btn.onclick = ()=> uploadFolder();
+
+
+// Función para subir la carpeta
+function uploadFolder() {
+  const folderInput = document.getElementById("folderInput");
+  const files = folderInput.files;
+
+  // Itera sobre los archivos de la carpeta y súbelos uno por uno
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    const filePath = file.webkitRelativePath;
+    const fileRef = storage.ref(filePath);
+
+    // Sube el archivo a Firebase Storage
+    fileRef.put(file).then((snapshot) => {
+      console.log("Archivo subido:", snapshot.metadata.fullPath);
+    }).catch((error) => {
+      console.error("Error al subir archivo:", error);
+    });
+}
+</script>
+</body>
+</html>

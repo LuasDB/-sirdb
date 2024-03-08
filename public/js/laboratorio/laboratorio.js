@@ -1,5 +1,4 @@
 
-
 const formulariosPf = [
 `<h3 class="tittle" id="atras"> <span class="material-symbols-outlined tittle" id="atras">arrow_back</span> Atras</h3>
   <section class="card form-1">

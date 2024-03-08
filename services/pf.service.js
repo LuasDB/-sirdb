@@ -171,6 +171,7 @@ class pruebasFugaService{
       objInforme['nombre_pdf']=informe.froti.certificado.nombre_pdf;
       objInforme['num_informe']=informe.froti.certificado.num_informe;
       objInforme['num_serie']=informe.froti.serie;
+      objInforme['clienteId']=informe.clienteId;
       await addDoc(refInformes,objInforme);
     });
 

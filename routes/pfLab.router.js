@@ -15,8 +15,6 @@ router.get('/',async(req,res,next)=>{
   }
 
 });
-
-
 router.post('/',async(req,res,next)=>{
   try {
     const body = req.body;
@@ -27,7 +25,6 @@ router.post('/',async(req,res,next)=>{
     next(error);
   }
 });
-
 router.patch('/',async (req,res,next)=>{
   const body = req.body;
   try {

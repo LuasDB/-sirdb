@@ -34,12 +34,12 @@
             border: 1px solid var(--gray);
             border-radius: 5px;
             outline-color: var(--yellow);
-            
+
             color: var(--primary-color);
         }
         /* ASIDE  */
         aside{
-            
+
             position: absolute;
             top: 15px;
             /* left: 10px; */
@@ -52,7 +52,7 @@
         aside img{
             width: 150px;
             margin-left: 30px;
-            margin-bottom: 10px;     
+            margin-bottom: 10px;
             }
         aside ul{
             list-style: none;
@@ -66,11 +66,11 @@
             margin-bottom: 15px;
         }
         /* NAV */
-        nav{     
+        nav{
             width: 90%;
             height: 15vh;
             margin: 20px auto;
-            padding: 5px; 
+            padding: 5px;
             color: var(--primary-color);
             font-size: 1.8rem;
         }
@@ -86,10 +86,10 @@
             border: none;
             outline: none;
             font-size: 1rem;
-           
+
         }
         /* Utilities */
-        
+
         .container{
             margin: 10px auto;
             padding: 5px 10px;
@@ -107,7 +107,7 @@
         }
         #menu_check:checked ~ label #close{
             display: block;
-        }  
+        }
         #menu_check:checked ~ label #menu{
             display: none;
         }
@@ -123,15 +123,15 @@
             box-shadow: 1px 1px 3px 1px rgb(128, 128, 128,0.5);
             margin-right: 10px;
             justify-self: center;
-            
-        }      
+
+        }
         .search{
             display: flex;
             align-items: center;
             justify-content: center;
             border: 1px solid var(--low-gray);
             border-radius: 10px;
-        } 
+        }
         .search input{
             margin: 0;
         }
@@ -143,7 +143,7 @@
             align-self: center;
             color: var(--primary-color);
             border-bottom:1px solid var(--yellow);
-            
+
         }
         .success{
             background-color: green;
@@ -156,8 +156,8 @@
         }
         .btn-color{
             background-color: var(--primary-color);
-            
-            
+
+
         }
         .btn{
             text-align: center;
@@ -231,16 +231,16 @@
             border-radius: 4px;
             color: var(--background-color);
         }
-       
-        
+
+
 
         /* Seccion Calibración        */
         .container-cards-2{
             display: grid;
             grid-template-columns: repeat(2,1fr);
             gap: 10px;
-            padding: 0px 5px; 
-            
+            padding: 0px 5px;
+
         }
         .card-cal-info{
             display: flex;
@@ -269,7 +269,7 @@
             display: grid;
             grid-template-columns:3fr 1fr ;
             padding: 5px;
-        } 
+        }
         .card-info-gral .obj-date{
             padding-top: 5px;
             text-align: center;
@@ -284,19 +284,19 @@
             font-weight: bold;
         }
         /* FORMULARIOS */
-        .form-1{  
+        .form-1{
             display: flex;
             flex-direction: column;
             padding: 5px 20px 10px;
             color: var(--primary-color);
-        }      
+        }
         .form-1 select{
             padding: 5px;
             margin-bottom: 10px;
             border: 1px solid var(--gray);
             border-radius: 5px;
             outline-color: var(--yellow);
-            
+
             color: var(--primary-color);
         }
         .condiciones-fisicas{
@@ -352,29 +352,29 @@
 
             border: solid 1px var(--primary-color);
             border-radius: 10px;
-            
+
             color: var(--primary-color);
         }
         .update div label{
             display: block;
-            
+
         }
         .update div{
            width: 80%;
-            
+
         }
         .update div input{
            width: 80%;
-            
+
         }
-        
+
         .form-upload{
             padding: 30px;
             height: auto;
-           
+
         }
-        
-       
+
+
 
 
     </style>
@@ -382,13 +382,13 @@
 
 </head>
 <body>
-      
+
     <main class="container" id="monitor">
         <section class="card container form-upload">
             <h3>Subir Informes de Pruebas de Fuga</h3>
 
             <datalist id="empresas">
-                
+
             </datalist>
             <datalist id="isotopos">
                 <option value="Cs-137">
@@ -401,16 +401,16 @@
                 <option value="A00.200/1258/2023">
                 <option value="A00.200/1254/2022">
                 <option value="A00.200/1218/2021">
-                
+
             </datalist>
-            
-            
-           
+
+
+
             <a class="btn-new" id=""><span class="material-symbols-outlined">
                 add_circle
                 </span>Nuevo archivo</a>
             <div class="update" id="update_area">
-                
+
                 <div><label for="empresa">Empresa:</label>
                 <input list="empresas" name="empresa" id="empresa" autocomplete="nope">
                 </div>
@@ -449,7 +449,7 @@
 
 
             </div>
-<!-- 
+<!--
                 <a class="btn-new" id=""><span class="material-symbols-outlined">
                     add_circle
                     </span>descargar archivo</a>
@@ -461,16 +461,16 @@
         </section>
 
 
-    </main> 
+    </main>
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
         import { getStorage,ref,uploadBytes,getDownloadURL,uploadBytesResumable ,getMetadata,updateMetadata} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
         import {  collection, addDoc,getFirestore,query,where,getDocs,doc,setDoc,getDoc} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
-        
+
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
-      
+
         // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyC2eIzzCPoMJS6-nzTayxeaCq4Sm8fqVJM",
@@ -488,12 +488,12 @@
 
         // VARIABLES PARA EL DOM
         const btn = document.getElementById('nuevo_archivo');
-        
+
         // const btn2 = document.getElementById('descargar_archivo');
-        
+
         //EVENTOS DE LOS BOTONES
         btn.addEventListener('click',envio);
-        
+
         // btn2.addEventListener('click',descarga);
 
         // FUNCIONES DE CONSTRUCCIÓN DEL DOM
@@ -509,7 +509,7 @@
             let fecha_informe=document.getElementById('fecha_informe').value;
             let licencia=document.getElementById('licencia').value;
 
-        
+
             let nombre_pdf=`${num_informe}_${empresa}_${isotopo}_${num_serie}.pdf`;
             //BUSCAMOS EN LA COLECCION "clientes" EL NOMBRE DEL CLIENTE PARA VERIFICAR SI EXISTE, EN CASO DE EXISTIR
             //GUARDAMOS LA NUEVA INFORMACION
@@ -536,19 +536,21 @@
 
                 // }
                 // // const informeRef =
-                //  await addDoc(collection(db,"informesPF2023"),data ); 
-               
+                //  await addDoc(collection(db,"informesPF2023"),data );
+/************************************************************************************************************
+ * AREA PARA COPIAR LOS QUERY DE SUBIDA DE INFORMACION
+*****************************************************************************************/
 
 
-               
+
 
 
 
                 ///////////////////////////////////////////////
-               
-               
-              
-                
+
+
+
+
                 // const storageRef = ref(storage,"2023/"+nombre_pdf);
                 // uploadBytes(storageRef, file.files[0]).then((snapshot) => {
                 //     console.log(snapshot);
@@ -573,25 +575,25 @@
                 // const informeRef = doc(collection(db,"informesPF","2023",num_informe));
                 // await setDoc(informeRef,data);
 
-                
+
                 // const l = await getDoc(informeRef);
                 // console.log(l.data());
 
-                // 
-                    
                 //
 
-                
- 
+                //
+
+
+
 
             }
-           
-            
-            
 
-           
+
+
+
+
             // const storageRef = ref(storage,nombre_pdf);
-                
+
             // uploadBytes(storageRef, file.files[0]).then((snapshot) => {
             //     console.log(snapshot);
 
@@ -603,18 +605,18 @@
 }
 
         function descarga(){
-            
+
         }
-      
-        
+
+
       </script>
 
-    
+
     <!-- Scripts online para herramienbtas -->
     <script src="https://kit.fontawesome.com/609fa7e19c.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.min.js"></script>
 
-    
+
 </body>
 </html>
