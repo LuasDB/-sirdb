@@ -3,7 +3,7 @@ const express = require('express');
 //Creamos una variable para llamar a las funciones de express
 const app = express();
 const port = process.env.PORT || 3000;
-//Traemos la libreria de cors para evitar estos errores en produccion
+//Traemos la libreria de cors para evitar estos errores de permisos en produccion
 const cors = require('cors');
 //Traemos routerApi para gestionar las rutas detectadas por el servidor
 const { routerApi } = require('./routes');

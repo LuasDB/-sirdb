@@ -123,8 +123,6 @@ const formulariosPf = [
 ]
 // funcion para crear ID aleatorios
 
-
-
 //Siempre declararemos una variable en cada modulo con su respectivo nombre del mismo elemento,
 // en este caso la etiqueta main llamada 'monitor'
 const monitorLab= document.getElementById('monitor');
@@ -514,7 +512,7 @@ async function deleteElemento(id,tabla,area){
 /***************************************************************************************************
  * FUNCIONES PARA ENVIO A BASE DE DATOS
  ***************************************************************************************************/
-const  API_PF ='http://localhost:3000/api/v1/pfLaboratorio';
+const  API_PF =`${SERVIDOR}/api/v1/pfLaboratorio`;
 async function envioBdPf(tabla){
   Swal.fire({
     title: "Alta en base de datos",

@@ -6,7 +6,7 @@ const $a =(element)=>document.querySelectorAll(element);
 const n =(element)=>document.getElementById(element);
 
 
-
+//Función para colocar hasta arriba la pantalla despues de cualquier recarga
 window.onbeforeunload = function() {
   window.scrollTo(0, 0);
 }
@@ -126,12 +126,10 @@ let informesNum = [];
 /************************************************************************************************************************
  *VARIABLES PARA LA API DE SERVICIOS PF
  *************************************************************************************************************************/
+//  const SERVER =`https://sirdb.onrender.com`//pruevas produccion
 //  const SERVER =`http://localhost:3000`//pruevas locales
- const SERVER =`https://sirdb.onrender.com`//pruevas locales
-
  const API_SERVICIOS_PF = `${SERVER}/api/v1/pruebasFugaServices`;
  const API_CLIENTES = `${SERVER}/api/v1/clientes`;
-
 /************************************************************************************************************************
  * FUNCIONES PARA CONSTUIR DOM EN PF SERVICIOS
  *************************************************************************************************************************/
